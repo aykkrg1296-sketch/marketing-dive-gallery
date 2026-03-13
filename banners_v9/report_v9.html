@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARKETING DIVE Banner v9.0 — Intelligence Report</title>
+<style>
+  :root {
+    --primary: #1058C4;
+    --secondary: #67CAFF;
+    --accent: #A7FFFB;
+    --orange: #FF6600;
+    --gold: #FFC61C;
+    --yellow: #FFE500;
+    --bg: #0a0e1a;
+    --card: #111827;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* Header */
+  .hero {
+    background: linear-gradient(135deg, #0a0e1a 0%, #1058C4 50%, #0a0e1a 100%);
+    padding: 60px 40px;
+    text-align: center;
+    border-bottom: 2px solid var(--secondary);
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--secondary), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.05em;
+  }
+  .hero .subtitle {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .hero .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--gold);
+  }
+  .stat-box .label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 60px;
+  }
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--secondary);
+    border-left: 4px solid var(--orange);
+    padding-left: 16px;
+    margin-bottom: 24px;
+  }
+
+  /* Strategy Card */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .strategy-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #1f2937;
+  }
+  .strategy-card h3 {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .strategy-card p {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .strategy-card .detail {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* Hook Group */
+  .hook-group {
+    margin-bottom: 48px;
+  }
+  .hook-label {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .hook-welcome { background: rgba(255,198,28,0.2); color: var(--gold); }
+  .hook-aptitude { background: rgba(103,202,255,0.2); color: var(--secondary); }
+  .hook-fun { background: rgba(167,255,251,0.2); color: var(--accent); }
+  .hook-empathy { background: rgba(255,102,0,0.2); color: var(--orange); }
+
+  /* Banner Grid */
+  .banner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .banner-card {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .banner-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--secondary);
+  }
+  .banner-card.star5 {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(255,198,28,0.15);
+  }
+  .banner-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+  .banner-meta {
+    padding: 16px;
+  }
+  .banner-meta .number {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .banner-meta h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 4px 0 8px;
+  }
+  .banner-meta .tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    color: var(--muted);
+  }
+  .tag.flow { background: rgba(103,202,255,0.15); color: var(--secondary); }
+  .tag.dna { background: rgba(167,255,251,0.15); color: var(--accent); }
+  .banner-meta .hypothesis {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .star-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(255,198,28,0.2);
+    color: var(--gold);
+    font-weight: 700;
+    margin-left: 6px;
+  }
+
+  /* Quality Table */
+  .quality-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .quality-table th {
+    background: #1f2937;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .quality-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #1f2937;
+    font-size: 0.9rem;
+  }
+  .quality-table tr:last-child td { border-bottom: none; }
+
+  /* Test Strategy */
+  .test-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #1f2937;
+    margin-bottom: 16px;
+  }
+  .test-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .test-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid #1f2937;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 1.6rem; }
+    .hero .stats-row { gap: 20px; }
+    .stat-box .num { font-size: 1.6rem; }
+    .banner-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<div class="hero">
+  <h1>MARKETING DIVE</h1>
+  <div class="subtitle">Banner Park v9.0 — Marketing Intelligence Report</div>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="num">20</div>
+      <div class="label">Banners</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">4</div>
+      <div class="label">Hook Vectors</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">4</div>
+      <div class="label">Eye-Flow Types</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">20/20</div>
+      <div class="label">Quality Pass</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">8</div>
+      <div class="label">5-Star KV</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ========== STRATEGY ========== -->
+<div class="section">
+  <h2 class="section-title">Strategy Overview</h2>
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <h3>Product</h3>
+      <p>MARKETING DIVE — マーケティング適性テスト</p>
+      <div class="detail">適性テストを通じてマーケティングの世界へ導く「招待状」</div>
+    </div>
+    <div class="strategy-card">
+      <h3>Concept</h3>
+      <p>招待状</p>
+      <div class="detail">パラダイムシフト: 適性テスト → 招待状。愛を根底に。</div>
+    </div>
+    <div class="strategy-card">
+      <h3>N1 Persona</h3>
+      <p>フォロワーマーケター（30代男性）</p>
+      <div class="detail">ENFP / ADHD気味 / 発想力を持て余す / 大企業勤務 / 年収400-600万</div>
+    </div>
+    <div class="strategy-card">
+      <h3>Platform</h3>
+      <p>Meta（Instagram / Facebook）</p>
+      <div class="detail">リード獲得 / 1080×1080 (1:1)</div>
+    </div>
+    <div class="strategy-card">
+      <h3>CTA</h3>
+      <p>無料で適性を診断する</p>
+      <div class="detail">BC1 LP獲得型 / 無料 / 3分で完了</div>
+    </div>
+    <div class="strategy-card">
+      <h3>World View</h3>
+      <p>深海 × RPG × ファンタジー × 招待状</p>
+      <div class="detail">暗い深海（N1の現状）× 光る招待状（DIVE）の対比</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HOOK 1: 歓迎フック ========== -->
+<div class="section">
+  <h2 class="section-title">Banner Portfolio</h2>
+
+  <div class="hook-group">
+    <span class="hook-label hook-welcome">歓迎フック — 「迎えにきた」愛で引く</span>
+    <div class="banner-grid">
+
+      <div class="banner-card">
+        <img src="banner_01.png" alt="Banner 01" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#01 <span class="star-badge">★★★★</span></div>
+          <h4>あなたを、迎えにきた</h4>
+          <div class="tags">
+            <span class="tag flow">Z型</span>
+            <span class="tag dna">BN-E ライフスタイル</span>
+          </div>
+          <div class="hypothesis">愛ベースの歓迎メッセージはN1のCTRを最大化するか</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_02.png" alt="Banner 02" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#02 <span class="star-badge">★★★★</span></div>
+          <h4>待ってた。同じ炎の人</h4>
+          <div class="tags">
+            <span class="tag flow">F型</span>
+            <span class="tag dna">BN-A ヒーロー型</span>
+          </div>
+          <div class="hypothesis">仲間意識フックは孤独感を持つN1に刺さるか</div>
+        </div>
+      </div>
+
+      <div class="banner-card star5">
+        <img src="banner_03.png" alt="Banner 03" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#03 <span class="star-badge">★★★★★</span></div>
+          <h4>おかえり、ここが居場所</h4>
+          <div class="tags">
+            <span class="tag flow">中央集中型</span>
+            <span class="tag dna">BN-A ヒーロー型</span>
+          </div>
+          <div class="hypothesis">帰属意識×招待状KVの組み合わせ最適化</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_04.png" alt="Banner 04" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#04 <span class="star-badge">★★★★</span></div>
+          <h4>ようこそ、この世界へ</h4>
+          <div class="tags">
+            <span class="tag flow">対角線型</span>
+            <span class="tag dna">BN-E ライフスタイル</span>
+          </div>
+          <div class="hypothesis">RPGゲート型KVはファンタジー好きN1のCTRを上げるか</div>
+        </div>
+      </div>
+
+      <div class="banner-card star5">
+        <img src="banner_05.png" alt="Banner 05" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#05 <span class="star-badge">★★★★★</span></div>
+          <h4>あなたの席、ここにある</h4>
+          <div class="tags">
+            <span class="tag flow">中央集中型</span>
+            <span class="tag dna">BN-D 全面型</span>
+          </div>
+          <div class="hypothesis">VIP席メタファーは「特別感」でCVR向上するか</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOOK 2: 適性フック -->
+  <div class="hook-group">
+    <span class="hook-label hook-aptitude">適性フック — 「眠ってる才能」で好奇心</span>
+    <div class="banner-grid">
+
+      <div class="banner-card star5">
+        <img src="banner_06.png" alt="Banner 06" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#06 <span class="star-badge">★★★★★</span></div>
+          <h4>あなたの才能、招待します</h4>
+          <div class="tags">
+            <span class="tag flow">Z型</span>
+            <span class="tag dna">BN-A ヒーロー型</span>
+          </div>
+          <div class="hypothesis">コンセプト直球×封蝋招待状KVの訴求力</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_07.png" alt="Banner 07" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#07 <span class="star-badge">★★★★</span></div>
+          <h4>眠れる才能、起こしにきた</h4>
+          <div class="tags">
+            <span class="tag flow">F型</span>
+            <span class="tag dna">BN-E ライフスタイル</span>
+          </div>
+          <div class="hypothesis">眠り×覚醒の物語構造がエンゲージメントを上げるか</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_08.png" alt="Banner 08" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#08 <span class="star-badge">★★★★</span></div>
+          <h4>3分で才能が目覚める</h4>
+          <div class="tags">
+            <span class="tag flow">対角線型</span>
+            <span class="tag dna">BN-A ヒーロー型</span>
+          </div>
+          <div class="hypothesis">具体数字×砂時計KVの緊急性がCTR向上するか</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_09.png" alt="Banner 09" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#09 <span class="star-badge">★★★★</span></div>
+          <h4>才能は、証明できる</h4>
+          <div class="tags">
+            <span class="tag flow">中央集中型</span>
+            <span class="tag dna">BN-D 全面型</span>
+          </div>
+          <div class="hypothesis">証明×覚醒ビジュアルは信頼性でCVR向上するか</div>
+        </div>
+      </div>
+
+      <div class="banner-card star5">
+        <img src="banner_10.png" alt="Banner 10" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#10 <span class="star-badge">★★★★★</span></div>
+          <h4>隠れた適性、見つけよう</h4>
+          <div class="tags">
+            <span class="tag flow">F型</span>
+            <span class="tag dna">BN-E ライフスタイル</span>
+          </div>
+          <div class="hypothesis">宝箱探索KVは冒険心を刺激してCTR向上するか</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOOK 3: 面白さフック -->
+  <div class="hook-group">
+    <span class="hook-label hook-fun">面白さフック — 「最高に面白い入口」でワクワク</span>
+    <div class="banner-grid">
+
+      <div class="banner-card">
+        <img src="banner_11.png" alt="Banner 11" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#11 <span class="star-badge">★★★★</span></div>
+          <h4>面白いほうへ、おいで</h4>
+          <div class="tags">
+            <span class="tag flow">Z型</span>
+            <span class="tag dna">BN-C UGC風</span>
+          </div>
+          <div class="hypothesis">アニメ風ポップKVはInstagramネイティブにCTR向上するか</div>
+        </div>
+      </div>
+
+      <div class="banner-card star5">
+        <img src="banner_12.png" alt="Banner 12" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#12 <span class="star-badge">★★★★★</span></div>
+          <h4>最高に面白い入口</h4>
+          <div class="tags">
+            <span class="tag flow">中央集中型</span>
+            <span class="tag dna">BN-A ヒーロー型</span>
+          </div>
+          <div class="hypothesis">扉メタファー×金枠KVはクリック意欲を最大化するか</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_13.png" alt="Banner 13" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#13 <span class="star-badge">★★★★</span></div>
+          <h4>冒険の入口、見つけた</h4>
+          <div class="tags">
+            <span class="tag flow">対角線型</span>
+            <span class="tag dna">BN-E ライフスタイル</span>
+          </div>
+          <div class="hypothesis">冒険者シルエット×光のゲートでN1の冒険心を引くか</div>
+        </div>
+      </div>
+
+      <div class="banner-card star5">
+        <img src="banner_14.png" alt="Banner 14" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#14 <span class="star-badge">★★★★★</span></div>
+          <h4>退屈、終わりにしない？</h4>
+          <div class="tags">
+            <span class="tag flow">F型</span>
+            <span class="tag dna">BN-B ビフォーアフター</span>
+          </div>
+          <div class="hypothesis">オフィス→海中世界のBefore/After分割がCTR最強か</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_15.png" alt="Banner 15" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#15 <span class="star-badge">★★★★</span></div>
+          <h4>ここから、始まる</h4>
+          <div class="tags">
+            <span class="tag flow">対角線型</span>
+            <span class="tag dna">BN-E ライフスタイル</span>
+          </div>
+          <div class="hypothesis">上向き光柱KVは「新しい始まり」感でCVR向上するか</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOOK 4: 共感フック -->
+  <div class="hook-group">
+    <span class="hook-label hook-empathy">共感フック — 「発想力、持て余してない？」でN1の痛み</span>
+    <div class="banner-grid">
+
+      <div class="banner-card star5">
+        <img src="banner_16.png" alt="Banner 16" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#16 <span class="star-badge">★★★★★</span></div>
+          <h4>発想力、持て余してない？</h4>
+          <div class="tags">
+            <span class="tag flow">Z型</span>
+            <span class="tag dna">BN-E ライフスタイル</span>
+          </div>
+          <div class="hypothesis">N1のpainPoint直撃×バブル閉塞感KVがCTR最強か</div>
+        </div>
+      </div>
+
+      <div class="banner-card star5">
+        <img src="banner_17.png" alt="Banner 17" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#17 <span class="star-badge">★★★★★</span></div>
+          <h4>このままでいいの？</h4>
+          <div class="tags">
+            <span class="tag flow">中央集中型</span>
+            <span class="tag dna">BN-D 全面型</span>
+          </div>
+          <div class="hypothesis">ミニマル問いかけ×沈むシルエットが最も深く刺さるか</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_18.png" alt="Banner 18" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#18 <span class="star-badge">★★★★</span></div>
+          <h4>才能、くすぶってない？</h4>
+          <div class="tags">
+            <span class="tag flow">F型</span>
+            <span class="tag dna">BN-A ヒーロー型</span>
+          </div>
+          <div class="hypothesis">くすぶる炎メタファーが才能の持て余し感を可視化するか</div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <img src="banner_19.png" alt="Banner 19" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#19 <span class="star-badge">★★★★</span></div>
+          <h4>もったいない才能がある</h4>
+          <div class="tags">
+            <span class="tag flow">対角線型</span>
+            <span class="tag dna">BN-E ライフスタイル</span>
+          </div>
+          <div class="hypothesis">海底ダイヤ原石KVが「まだ見つかってない価値」を訴求するか</div>
+        </div>
+      </div>
+
+      <div class="banner-card star5">
+        <img src="banner_20.png" alt="Banner 20" loading="lazy">
+        <div class="banner-meta">
+          <div class="number">#20 <span class="star-badge">★★★★★</span></div>
+          <h4>本当の自分、試してみない？</h4>
+          <div class="tags">
+            <span class="tag flow">Z型</span>
+            <span class="tag dna">BN-A ヒーロー型</span>
+          </div>
+          <div class="hypothesis">鏡の中の未来の自分KVが自己変革欲を引き出すか</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========== QUALITY VERIFICATION ========== -->
+<div class="section">
+  <h2 class="section-title">Quality Verification</h2>
+  <div style="overflow-x: auto;">
+    <table class="quality-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>ヘッドライン</th>
+          <th>フック</th>
+          <th>視線誘導</th>
+          <th>テキスト可読性</th>
+          <th>KVスコア</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>01</td><td>あなたを、迎えにきた</td><td>歓迎</td><td>Z型</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr><td>02</td><td>待ってた。同じ炎の人</td><td>歓迎</td><td>F型</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>03</td><td>おかえり、ここが居場所</td><td>歓迎</td><td>中央集中</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+        <tr><td>04</td><td>ようこそ、この世界へ</td><td>歓迎</td><td>対角線</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>05</td><td>あなたの席、ここにある</td><td>歓迎</td><td>中央集中</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>06</td><td>あなたの才能、招待します</td><td>適性</td><td>Z型</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+        <tr><td>07</td><td>眠れる才能、起こしにきた</td><td>適性</td><td>F型</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr><td>08</td><td>3分で才能が目覚める</td><td>適性</td><td>対角線</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr><td>09</td><td>才能は、証明できる</td><td>適性</td><td>中央集中</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>10</td><td>隠れた適性、見つけよう</td><td>適性</td><td>F型</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+        <tr><td>11</td><td>面白いほうへ、おいで</td><td>面白さ</td><td>Z型</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>12</td><td>最高に面白い入口</td><td>面白さ</td><td>中央集中</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+        <tr><td>13</td><td>冒険の入口、見つけた</td><td>面白さ</td><td>対角線</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>14</td><td>退屈、終わりにしない？</td><td>面白さ</td><td>F型</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+        <tr><td>15</td><td>ここから、始まる</td><td>面白さ</td><td>対角線</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>16</td><td>発想力、持て余してない？</td><td>共感</td><td>Z型</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>17</td><td>このままでいいの？</td><td>共感</td><td>中央集中</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+        <tr><td>18</td><td>才能、くすぶってない？</td><td>共感</td><td>F型</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr><td>19</td><td>もったいない才能がある</td><td>共感</td><td>対角線</td><td style="color:#22c55e;">✅ OK</td><td>★★★★</td></tr>
+        <tr style="background:rgba(255,198,28,0.05);"><td>20</td><td>本当の自分、試してみない？</td><td>共感</td><td>Z型</td><td style="color:#22c55e;">✅ OK</td><td style="color:var(--gold);">★★★★★</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ========== TEST STRATEGY ========== -->
+<div class="section">
+  <h2 class="section-title">A/B Test Strategy</h2>
+
+  <div class="test-card">
+    <h4>Round 1: フック勝者決定（4フック×2枚 = 8枚）</h4>
+    <p>各フックから★5を1枚 + ★4を1枚。8枚でCTR比較。日予算: ¥3,000/枚 × 3日 = ¥72,000。<br>
+    推奨: #03 vs #05 / #06 vs #10 / #12 vs #14 / #16 vs #17</p>
+  </div>
+
+  <div class="test-card">
+    <h4>Round 2: 勝者フック深掘り（勝者フック5枚全投入）</h4>
+    <p>Round 1で最もCTRが高いフックの5枚全てを投入。視線誘導パターン別の勝者を特定。<br>
+    日予算: ¥2,000/枚 × 5日 = ¥50,000</p>
+  </div>
+
+  <div class="test-card">
+    <h4>Round 3: スケール（勝者3枚 × 拡大）</h4>
+    <p>Round 2の上位3枚でCPA最適化配信。日予算: ¥10,000/枚 × 7日 = ¥210,000</p>
+  </div>
+</div>
+
+<!-- ========== NEXT ACTIONS ========== -->
+<div class="section">
+  <h2 class="section-title">Next Actions</h2>
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <h3>Immediate</h3>
+      <p>Meta広告マネージャにアップロード</p>
+      <div class="detail">20枚をキャンペーンに設定。Round 1のA/Bテスト開始</div>
+    </div>
+    <div class="strategy-card">
+      <h3>Week 1</h3>
+      <p>CTRデータ収集 → フック勝者特定</p>
+      <div class="detail">3日間のデータで最強フックを判定。低CTRバナーを停止</div>
+    </div>
+    <div class="strategy-card">
+      <h3>Week 2</h3>
+      <p>勝者フック深掘り → 視線誘導最適化</p>
+      <div class="detail">勝者フックの5枚全投入。Z型/F型/中央集中/対角線の勝者特定</div>
+    </div>
+    <div class="strategy-card">
+      <h3>Week 3+</h3>
+      <p>スケール配信 → v10進化</p>
+      <div class="detail">勝者3枚でCPA最適化。データをv10のBanner Parkにフィードバック</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>MARKETING DIVE — Banner Park v9.0 Intelligence Report</p>
+  <p>Generated: 2026-03-11 | Strategy: marketing-dive-banner-strategy.json</p>
+  <p>20 banners × 4 hooks × 4 eye-flows | AI Park Brain</p>
+</div>
+
+</body>
+</html>

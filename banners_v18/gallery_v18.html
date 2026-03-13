@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>MARKETING DIVE v18 — 個性特化版 選定ギャラリー</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; padding: 30px 40px; }
+h1 { text-align: center; font-size: 26px; margin-bottom: 6px; letter-spacing: 2px; }
+.subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 40px; }
+
+.version-section { margin-bottom: 50px; }
+.version-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.version-title { font-size: 18px; padding-left: 10px; border-left: 3px solid; }
+.version-title.a { color: #FF6B6B; border-color: #FF6B6B; }
+.version-title.b { color: #00d4ff; border-color: #00d4ff; }
+.version-title.c { color: #FFC61C; border-color: #FFC61C; }
+.version-count { font-size: 12px; color: #666; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.card { background: #141414; border-radius: 6px; overflow: hidden; transition: all 0.3s; position: relative; }
+.card:hover { transform: scale(1.02); }
+.card img { width: 100%; display: block; cursor: pointer; transition: filter 0.3s; }
+.card .label { padding: 8px 12px; font-size: 11px; color: #aaa; display: flex; justify-content: space-between; align-items: center; }
+.card .label .id { color: #00d4ff; font-weight: bold; }
+.card .label .concept { color: #666; font-style: italic; }
+
+/* Selection states */
+.card .vote-btns { display: flex; gap: 6px; }
+.card .vote-btn { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #333; background: transparent; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; color: #666; }
+.card .vote-btn:hover { border-color: #888; color: #fff; }
+.card .vote-btn.active-yes { border-color: #00d4ff; background: #00d4ff; color: #0a0a0a; }
+.card .vote-btn.active-no { border-color: #ff4466; background: #ff4466; color: #fff; }
+.card.rejected { opacity: 1; }
+.card.rejected img { filter: brightness(0.25) grayscale(0.8); }
+.card.rejected .stamp { display: flex; }
+.card.selected .stamp-yes { display: flex; }
+.card .stamp { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); font-size: 48px; font-weight: 900; letter-spacing: 4px; padding: 8px 24px; border-radius: 8px; pointer-events: none; z-index: 10; }
+.card .stamp.stamp-no { border: 4px solid rgba(255,68,102,0.7); color: rgba(255,68,102,0.7); }
+.card .stamp.stamp-yes { display: none; border: 4px solid rgba(0,212,255,0.7); color: rgba(0,212,255,0.7); }
+
+/* Counter */
+.counter { position: fixed; bottom: 20px; right: 20px; background: #1a1a1a; border-radius: 8px; padding: 12px 16px; z-index: 100; font-size: 13px; line-height: 1.8; }
+.counter .c-yes { color: #00d4ff; }
+.counter .c-no { color: #ff4466; }
+.counter .c-pending { color: #888; }
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; cursor: zoom-out; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+.lightbox .nav { color: #fff; font-size: 13px; margin-top: 12px; }
+.lightbox .nav span { color: #00d4ff; }
+
+/* TOC Nav */
+.toc { position: fixed; top: 20px; right: 20px; background: #1a1a1a; border-radius: 8px; padding: 12px 16px; z-index: 100; font-size: 12px; }
+.toc a { color: #00d4ff; text-decoration: none; display: block; margin: 4px 0; }
+.toc a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="toc">
+<a href="#a">A (8)</a>
+<a href="#b">B (7)</a>
+<a href="#c">C (6)</a>
+</div>
+
+<h1>MARKETING DIVE v18 — 選定ギャラリー</h1>
+<p class="subtitle">個性特化版 ｜ 計21枚 ｜ クリックで拡大 ｜ ○ ✕ で選定</p>
+
+<!-- A: その「退屈」、才能だ。 -->
+<div class="version-section" id="a">
+<div class="version-header">
+<h2 class="version-title a">A: その「退屈」、才能だ。</h2>
+<span class="version-count">エネルギー・覚醒系 — 8枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="v18_A01_v10-07.png" onclick="openLB(this,'A01')"><div class="label"><span class="id">A01</span><span class="concept">RAINBOW AWAKENING</span></div></div>
+<div class="card"><img src="v18_A02_v10-08.png" onclick="openLB(this,'A02')"><div class="label"><span class="id">A02</span><span class="concept">TYPOGRAPHY EXPLOSION</span></div></div>
+<div class="card"><img src="v18_A03_v10-10.png" onclick="openLB(this,'A03')"><div class="label"><span class="id">A03</span><span class="concept">GRID SHATTER / EDITORIAL</span></div></div>
+<div class="card"><img src="v18_A04_v12-01.png" onclick="openLB(this,'A04')"><div class="label"><span class="id">A04</span><span class="concept">FLAME IN THE DARK</span></div></div>
+<div class="card"><img src="v18_A05_v12-07.png" onclick="openLB(this,'A05')"><div class="label"><span class="id">A05</span><span class="concept">COLLAGE BURST</span></div></div>
+<div class="card"><img src="v18_A06_v13-01.png" onclick="openLB(this,'A06')"><div class="label"><span class="id">A06</span><span class="concept">UNDER BLUE</span></div></div>
+<div class="card"><img src="v18_A07_v13-08.png" onclick="openLB(this,'A07')"><div class="label"><span class="id">A07</span><span class="concept">CAMPFIRE IN THE DEEP</span></div></div>
+<div class="card"><img src="v18_A08_v15-01.png" onclick="openLB(this,'A08')"><div class="label"><span class="id">A08</span><span class="concept">LOGOTYPE DESIGN / 作字</span></div></div>
+</div>
+</div>
+
+<!-- B: 潜入 おもしろい世界へ -->
+<div class="version-section" id="b">
+<div class="version-header">
+<h2 class="version-title b">B: 潜入 おもしろい世界へ</h2>
+<span class="version-count">海・冒険系 — 7枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="v18_B01_v9-04.png" onclick="openLB(this,'B01')"><div class="label"><span class="id">B01</span><span class="concept">THE GATE</span></div></div>
+<div class="card"><img src="v18_B02_v9-13.png" onclick="openLB(this,'B02')"><div class="label"><span class="id">B02</span><span class="concept">THE DIVER</span></div></div>
+<div class="card"><img src="v18_B03_v10-17.png" onclick="openLB(this,'B03')"><div class="label"><span class="id">B03</span><span class="concept">MINIMAL DEPTH</span></div></div>
+<div class="card"><img src="v18_B04_v12-09.png" onclick="openLB(this,'B04')"><div class="label"><span class="id">B04</span><span class="concept">OCEAN WORLD COLLAGE</span></div></div>
+<div class="card"><img src="v18_B05_v14-01.png" onclick="openLB(this,'B05')"><div class="label"><span class="id">B05</span><span class="concept">OCEAN INSIDE LETTERS</span></div></div>
+<div class="card"><img src="v18_B06_v15-03.png" onclick="openLB(this,'B06')"><div class="label"><span class="id">B06</span><span class="concept">TYPOGRAPHIC TAKEOVER</span></div></div>
+<div class="card"><img src="v18_B07_v15d-06.png" onclick="openLB(this,'B07')"><div class="label"><span class="id">B07</span><span class="concept">OCEAN FAIRY / SPIRIT GUIDE</span></div></div>
+</div>
+</div>
+
+<!-- C: あなたを、迎えにきた。 -->
+<div class="version-section" id="c">
+<div class="version-header">
+<h2 class="version-title c">C: あなたを、迎えにきた。</h2>
+<span class="version-count">人物・温かみ系 — 6枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="v18_C01_v10-01.png" onclick="openLB(this,'C01')"><div class="label"><span class="id">C01</span><span class="concept">THE REACHING HAND</span></div></div>
+<div class="card"><img src="v18_C02_v10-02.png" onclick="openLB(this,'C02')"><div class="label"><span class="id">C02</span><span class="concept">UNDERWATER LIBRARY</span></div></div>
+<div class="card"><img src="v18_C03_v12-05.png" onclick="openLB(this,'C03')"><div class="label"><span class="id">C03</span><span class="concept">LIGHT DESCENDING</span></div></div>
+<div class="card"><img src="v18_C04_v13-06.png" onclick="openLB(this,'C04')"><div class="label"><span class="id">C04</span><span class="concept">MEETING AT THE WATER'S EDGE</span></div></div>
+<div class="card"><img src="v18_C05_v14-09.png" onclick="openLB(this,'C05')"><div class="label"><span class="id">C05</span><span class="concept">WORLD WITHIN</span></div></div>
+<div class="card"><img src="v18_C06_v15c-01.png" onclick="openLB(this,'C06')"><div class="label"><span class="id">C06</span><span class="concept">THE EYE THAT FOUND YOU</span></div></div>
+</div>
+</div>
+
+<!-- Counter -->
+<div class="counter" id="counter">
+<div><span class="c-yes">&#9675; アリ: 0</span></div>
+<div><span class="c-no">&#10005; ナシ: 0</span></div>
+<div><span class="c-pending">&#8212; 未選定: 21</span></div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+<img id="lbImg" src="">
+<div class="nav" id="lbNav"></div>
+</div>
+
+<script>
+const STORAGE_KEY = 'mdive_selection_v18';
+let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+document.querySelectorAll('.card').forEach((card, i) => {
+  const id = card.querySelector('.id')?.textContent || ('card-' + i);
+  card.dataset.cardId = id;
+
+  const stampNo = document.createElement('div');
+  stampNo.className = 'stamp stamp-no';
+  stampNo.textContent = 'NO';
+  card.appendChild(stampNo);
+
+  const stampYes = document.createElement('div');
+  stampYes.className = 'stamp stamp-yes';
+  stampYes.textContent = 'OK';
+  card.appendChild(stampYes);
+
+  const label = card.querySelector('.label');
+  const btnWrap = document.createElement('div');
+  btnWrap.className = 'vote-btns';
+
+  const btnYes = document.createElement('button');
+  btnYes.className = 'vote-btn btn-yes';
+  btnYes.textContent = '\u25CB';
+  btnYes.title = 'アリ';
+  btnYes.onclick = (e) => { e.stopPropagation(); vote(card, id, 'yes'); };
+
+  const btnNo = document.createElement('button');
+  btnNo.className = 'vote-btn btn-no';
+  btnNo.textContent = '\u2715';
+  btnNo.title = 'ナシ';
+  btnNo.onclick = (e) => { e.stopPropagation(); vote(card, id, 'no'); };
+
+  btnWrap.appendChild(btnYes);
+  btnWrap.appendChild(btnNo);
+  label.appendChild(btnWrap);
+
+  if (state[id]) applyState(card, state[id]);
+});
+
+function vote(card, id, choice) {
+  const current = state[id];
+  if (current === choice) {
+    delete state[id];
+    card.classList.remove('selected', 'rejected');
+    card.querySelector('.btn-yes').classList.remove('active-yes');
+    card.querySelector('.btn-no').classList.remove('active-no');
+  } else {
+    state[id] = choice;
+    applyState(card, choice);
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  updateCounter();
+}
+
+function applyState(card, choice) {
+  card.classList.remove('selected', 'rejected');
+  card.querySelector('.btn-yes').classList.remove('active-yes');
+  card.querySelector('.btn-no').classList.remove('active-no');
+  if (choice === 'yes') {
+    card.classList.add('selected');
+    card.querySelector('.btn-yes').classList.add('active-yes');
+  } else if (choice === 'no') {
+    card.classList.add('rejected');
+    card.querySelector('.btn-no').classList.add('active-no');
+  }
+}
+
+function updateCounter() {
+  const total = document.querySelectorAll('.card').length;
+  const yes = Object.values(state).filter(v => v === 'yes').length;
+  const no = Object.values(state).filter(v => v === 'no').length;
+  const pending = total - yes - no;
+  document.getElementById('counter').innerHTML =
+    '<div><span class="c-yes">&#9675; アリ: ' + yes + '</span></div>' +
+    '<div><span class="c-no">&#10005; ナシ: ' + no + '</span></div>' +
+    '<div><span class="c-pending">&#8212; 未選定: ' + pending + '</span></div>';
+}
+updateCounter();
+
+function openLB(el, label) {
+  document.getElementById('lb').classList.add('active');
+  document.getElementById('lbImg').src = el.src;
+  document.getElementById('lbNav').innerHTML = '<span>' + label + '</span>';
+}
+function closeLB() { document.getElementById('lb').classList.remove('active'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+</script>
+</body>
+</html>

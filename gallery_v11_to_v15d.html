@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>MARKETING DIVE — v9〜v15d 全バナー選定ギャラリー</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; padding: 30px 40px; }
+h1 { text-align: center; font-size: 26px; margin-bottom: 6px; letter-spacing: 2px; }
+.subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 40px; }
+.version-section { margin-bottom: 50px; }
+.version-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.version-title { font-size: 18px; color: #00d4ff; padding-left: 10px; border-left: 3px solid #00d4ff; }
+.version-count { font-size: 12px; color: #666; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.card { background: #141414; border-radius: 6px; overflow: hidden; transition: all 0.3s; position: relative; }
+.card:hover { transform: scale(1.02); }
+.card img { width: 100%; display: block; cursor: pointer; transition: filter 0.3s; }
+.card .label { padding: 8px 12px; font-size: 11px; color: #aaa; display: flex; justify-content: space-between; align-items: center; }
+.card .label .id { color: #00d4ff; font-weight: bold; }
+
+/* Selection states */
+.card .vote-btns { display: flex; gap: 6px; }
+.card .vote-btn { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #333; background: transparent; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; color: #666; }
+.card .vote-btn:hover { border-color: #888; color: #fff; }
+.card .vote-btn.active-yes { border-color: #00d4ff; background: #00d4ff; color: #0a0a0a; }
+.card .vote-btn.active-no { border-color: #ff4466; background: #ff4466; color: #fff; }
+.card.rejected { opacity: 1; }
+.card.rejected img { filter: brightness(0.25) grayscale(0.8); }
+.card.rejected .stamp { display: flex; }
+.card.selected .stamp-yes { display: flex; }
+.card .stamp { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); font-size: 48px; font-weight: 900; letter-spacing: 4px; padding: 8px 24px; border-radius: 8px; pointer-events: none; z-index: 10; }
+.card .stamp.stamp-no { border: 4px solid rgba(255,68,102,0.7); color: rgba(255,68,102,0.7); }
+.card .stamp.stamp-yes { display: none; border: 4px solid rgba(0,212,255,0.7); color: rgba(0,212,255,0.7); }
+
+/* Counter */
+.counter { position: fixed; bottom: 20px; right: 20px; background: #1a1a1a; border-radius: 8px; padding: 12px 16px; z-index: 100; font-size: 13px; line-height: 1.8; }
+.counter .c-yes { color: #00d4ff; }
+.counter .c-no { color: #ff4466; }
+.counter .c-pending { color: #888; }
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; cursor: zoom-out; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+.lightbox .nav { color: #fff; font-size: 13px; margin-top: 12px; }
+.lightbox .nav span { color: #00d4ff; }
+
+/* Nav */
+.toc { position: fixed; top: 20px; right: 20px; background: #1a1a1a; border-radius: 8px; padding: 12px 16px; z-index: 100; font-size: 12px; }
+.toc a { color: #00d4ff; text-decoration: none; display: block; margin: 4px 0; }
+.toc a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="toc">
+<a href="#v9">v9 (20)</a>
+<a href="#v10">v10 (20)</a>
+<a href="#v10_1">v10.1 (12)</a>
+<a href="#v11">v11 (10)</a>
+<a href="#v12">v12 (10)</a>
+<a href="#v13">v13 (10)</a>
+<a href="#v14">v14 (10)</a>
+<a href="#v15">v15 (10)</a>
+<a href="#v15b">v15b (6)</a>
+<a href="#v15c">v15c (6)</a>
+<a href="#v15d">v15d (6)</a>
+</div>
+
+<h1>MARKETING DIVE — v9〜v15d 全バナー選定</h1>
+<p class="subtitle">計120枚 ｜ クリックで拡大</p>
+
+<!-- v9 -->
+<div class="version-section" id="v9">
+<div class="version-header">
+<h2 class="version-title">v9</h2>
+<span class="version-count">20枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v9/banner_01.png" onclick="openLB(this,'v9 #01')"><div class="label"><span class="id">v9-01</span></div></div>
+<div class="card"><img src="banners_v9/banner_02.png" onclick="openLB(this,'v9 #02')"><div class="label"><span class="id">v9-02</span></div></div>
+<div class="card"><img src="banners_v9/banner_03.png" onclick="openLB(this,'v9 #03')"><div class="label"><span class="id">v9-03</span></div></div>
+<div class="card"><img src="banners_v9/banner_04.png" onclick="openLB(this,'v9 #04')"><div class="label"><span class="id">v9-04</span></div></div>
+<div class="card"><img src="banners_v9/banner_05.png" onclick="openLB(this,'v9 #05')"><div class="label"><span class="id">v9-05</span></div></div>
+<div class="card"><img src="banners_v9/banner_06.png" onclick="openLB(this,'v9 #06')"><div class="label"><span class="id">v9-06</span></div></div>
+<div class="card"><img src="banners_v9/banner_07.png" onclick="openLB(this,'v9 #07')"><div class="label"><span class="id">v9-07</span></div></div>
+<div class="card"><img src="banners_v9/banner_08.png" onclick="openLB(this,'v9 #08')"><div class="label"><span class="id">v9-08</span></div></div>
+<div class="card"><img src="banners_v9/banner_09.png" onclick="openLB(this,'v9 #09')"><div class="label"><span class="id">v9-09</span></div></div>
+<div class="card"><img src="banners_v9/banner_10.png" onclick="openLB(this,'v9 #10')"><div class="label"><span class="id">v9-10</span></div></div>
+<div class="card"><img src="banners_v9/banner_11.png" onclick="openLB(this,'v9 #11')"><div class="label"><span class="id">v9-11</span></div></div>
+<div class="card"><img src="banners_v9/banner_12.png" onclick="openLB(this,'v9 #12')"><div class="label"><span class="id">v9-12</span></div></div>
+<div class="card"><img src="banners_v9/banner_13.png" onclick="openLB(this,'v9 #13')"><div class="label"><span class="id">v9-13</span></div></div>
+<div class="card"><img src="banners_v9/banner_14.png" onclick="openLB(this,'v9 #14')"><div class="label"><span class="id">v9-14</span></div></div>
+<div class="card"><img src="banners_v9/banner_15.png" onclick="openLB(this,'v9 #15')"><div class="label"><span class="id">v9-15</span></div></div>
+<div class="card"><img src="banners_v9/banner_16.png" onclick="openLB(this,'v9 #16')"><div class="label"><span class="id">v9-16</span></div></div>
+<div class="card"><img src="banners_v9/banner_17.png" onclick="openLB(this,'v9 #17')"><div class="label"><span class="id">v9-17</span></div></div>
+<div class="card"><img src="banners_v9/banner_18.png" onclick="openLB(this,'v9 #18')"><div class="label"><span class="id">v9-18</span></div></div>
+<div class="card"><img src="banners_v9/banner_19.png" onclick="openLB(this,'v9 #19')"><div class="label"><span class="id">v9-19</span></div></div>
+<div class="card"><img src="banners_v9/banner_20.png" onclick="openLB(this,'v9 #20')"><div class="label"><span class="id">v9-20</span></div></div>
+</div>
+</div>
+
+<!-- v10 -->
+<div class="version-section" id="v10">
+<div class="version-header">
+<h2 class="version-title">v10</h2>
+<span class="version-count">20枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v10/banner_01.png" onclick="openLB(this,'v10 #01')"><div class="label"><span class="id">v10-01</span></div></div>
+<div class="card"><img src="banners_v10/banner_02.png" onclick="openLB(this,'v10 #02')"><div class="label"><span class="id">v10-02</span></div></div>
+<div class="card"><img src="banners_v10/banner_03.png" onclick="openLB(this,'v10 #03')"><div class="label"><span class="id">v10-03</span></div></div>
+<div class="card"><img src="banners_v10/banner_04.png" onclick="openLB(this,'v10 #04')"><div class="label"><span class="id">v10-04</span></div></div>
+<div class="card"><img src="banners_v10/banner_05.png" onclick="openLB(this,'v10 #05')"><div class="label"><span class="id">v10-05</span></div></div>
+<div class="card"><img src="banners_v10/banner_06.png" onclick="openLB(this,'v10 #06')"><div class="label"><span class="id">v10-06</span></div></div>
+<div class="card"><img src="banners_v10/banner_07.png" onclick="openLB(this,'v10 #07')"><div class="label"><span class="id">v10-07</span></div></div>
+<div class="card"><img src="banners_v10/banner_08.png" onclick="openLB(this,'v10 #08')"><div class="label"><span class="id">v10-08</span></div></div>
+<div class="card"><img src="banners_v10/banner_09.png" onclick="openLB(this,'v10 #09')"><div class="label"><span class="id">v10-09</span></div></div>
+<div class="card"><img src="banners_v10/banner_10.png" onclick="openLB(this,'v10 #10')"><div class="label"><span class="id">v10-10</span></div></div>
+<div class="card"><img src="banners_v10/banner_11.png" onclick="openLB(this,'v10 #11')"><div class="label"><span class="id">v10-11</span></div></div>
+<div class="card"><img src="banners_v10/banner_12.png" onclick="openLB(this,'v10 #12')"><div class="label"><span class="id">v10-12</span></div></div>
+<div class="card"><img src="banners_v10/banner_13.png" onclick="openLB(this,'v10 #13')"><div class="label"><span class="id">v10-13</span></div></div>
+<div class="card"><img src="banners_v10/banner_14.png" onclick="openLB(this,'v10 #14')"><div class="label"><span class="id">v10-14</span></div></div>
+<div class="card"><img src="banners_v10/banner_15.png" onclick="openLB(this,'v10 #15')"><div class="label"><span class="id">v10-15</span></div></div>
+<div class="card"><img src="banners_v10/banner_16.png" onclick="openLB(this,'v10 #16')"><div class="label"><span class="id">v10-16</span></div></div>
+<div class="card"><img src="banners_v10/banner_17.png" onclick="openLB(this,'v10 #17')"><div class="label"><span class="id">v10-17</span></div></div>
+<div class="card"><img src="banners_v10/banner_18.png" onclick="openLB(this,'v10 #18')"><div class="label"><span class="id">v10-18</span></div></div>
+<div class="card"><img src="banners_v10/banner_19.png" onclick="openLB(this,'v10 #19')"><div class="label"><span class="id">v10-19</span></div></div>
+<div class="card"><img src="banners_v10/banner_20.png" onclick="openLB(this,'v10 #20')"><div class="label"><span class="id">v10-20</span></div></div>
+</div>
+</div>
+
+<!-- v10.1 -->
+<div class="version-section" id="v10_1">
+<div class="version-header">
+<h2 class="version-title">v10.1 — バリエーション</h2>
+<span class="version-count">12枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v10_1/var_01.png" onclick="openLB(this,'v10.1 #01')"><div class="label"><span class="id">v10.1-01</span></div></div>
+<div class="card"><img src="banners_v10_1/var_02.png" onclick="openLB(this,'v10.1 #02')"><div class="label"><span class="id">v10.1-02</span></div></div>
+<div class="card"><img src="banners_v10_1/var_03.png" onclick="openLB(this,'v10.1 #03')"><div class="label"><span class="id">v10.1-03</span></div></div>
+<div class="card"><img src="banners_v10_1/var_04.png" onclick="openLB(this,'v10.1 #04')"><div class="label"><span class="id">v10.1-04</span></div></div>
+<div class="card"><img src="banners_v10_1/var_05.png" onclick="openLB(this,'v10.1 #05')"><div class="label"><span class="id">v10.1-05</span></div></div>
+<div class="card"><img src="banners_v10_1/var_06.png" onclick="openLB(this,'v10.1 #06')"><div class="label"><span class="id">v10.1-06</span></div></div>
+<div class="card"><img src="banners_v10_1/var_07.png" onclick="openLB(this,'v10.1 #07')"><div class="label"><span class="id">v10.1-07</span></div></div>
+<div class="card"><img src="banners_v10_1/var_08.png" onclick="openLB(this,'v10.1 #08')"><div class="label"><span class="id">v10.1-08</span></div></div>
+<div class="card"><img src="banners_v10_1/var_09.png" onclick="openLB(this,'v10.1 #09')"><div class="label"><span class="id">v10.1-09</span></div></div>
+<div class="card"><img src="banners_v10_1/var_10.png" onclick="openLB(this,'v10.1 #10')"><div class="label"><span class="id">v10.1-10</span></div></div>
+<div class="card"><img src="banners_v10_1/var_11.png" onclick="openLB(this,'v10.1 #11')"><div class="label"><span class="id">v10.1-11</span></div></div>
+<div class="card"><img src="banners_v10_1/var_12.png" onclick="openLB(this,'v10.1 #12')"><div class="label"><span class="id">v10.1-12</span></div></div>
+</div>
+</div>
+
+<!-- v11 -->
+<div class="version-section" id="v11">
+<div class="version-header">
+<h2 class="version-title">v11 — 招待状 × 深海ファンタジー</h2>
+<span class="version-count">10枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v11/v11_01_invitation_premium.png" onclick="openLB(this,'v11 #01')"><div class="label"><span class="id">v11-01</span>invitation premium</div></div>
+<div class="card"><img src="banners_v11/v11_02_invitation_callout.png" onclick="openLB(this,'v11 #02')"><div class="label"><span class="id">v11-02</span>invitation callout</div></div>
+<div class="card"><img src="banners_v11/v11_03_deepsea_fantasy.png" onclick="openLB(this,'v11 #03')"><div class="label"><span class="id">v11-03</span>deepsea fantasy</div></div>
+<div class="card"><img src="banners_v11/v11_04_deepsea_awakening.png" onclick="openLB(this,'v11 #04')"><div class="label"><span class="id">v11-04</span>deepsea awakening</div></div>
+<div class="card"><img src="banners_v11/v11_05_shimmering_surface.png" onclick="openLB(this,'v11 #05')"><div class="label"><span class="id">v11-05</span>shimmering surface</div></div>
+<div class="card"><img src="banners_v11/v11_06_starlit_proof.png" onclick="openLB(this,'v11 #06')"><div class="label"><span class="id">v11-06</span>starlit proof</div></div>
+<div class="card"><img src="banners_v11/v11_07_collage_bold.png" onclick="openLB(this,'v11 #07')"><div class="label"><span class="id">v11-07</span>collage bold</div></div>
+<div class="card"><img src="banners_v11/v11_08_graphic_energy.png" onclick="openLB(this,'v11 #08')"><div class="label"><span class="id">v11-08</span>graphic energy</div></div>
+<div class="card"><img src="banners_v11/v11_09_typo_minimal.png" onclick="openLB(this,'v11 #09')"><div class="label"><span class="id">v11-09</span>typo minimal</div></div>
+<div class="card"><img src="banners_v11/v11_10_gentle_typo.png" onclick="openLB(this,'v11 #10')"><div class="label"><span class="id">v11-10</span>gentle typo</div></div>
+</div>
+</div>
+
+<!-- v12 -->
+<div class="version-section" id="v12">
+<div class="version-header">
+<h2 class="version-title">v12 — エネルギー × エディトリアル</h2>
+<span class="version-count">10枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v12/v12_01_energy_burst.png" onclick="openLB(this,'v12 #01')"><div class="label"><span class="id">v12-01</span>energy burst</div></div>
+<div class="card"><img src="banners_v12/v12_02_collage_impact.png" onclick="openLB(this,'v12 #02')"><div class="label"><span class="id">v12-02</span>collage impact</div></div>
+<div class="card"><img src="banners_v12/v12_03_painterly_storm.png" onclick="openLB(this,'v12 #03')"><div class="label"><span class="id">v12-03</span>painterly storm</div></div>
+<div class="card"><img src="banners_v12/v12_04_dark_editorial.png" onclick="openLB(this,'v12 #04')"><div class="label"><span class="id">v12-04</span>dark editorial</div></div>
+<div class="card"><img src="banners_v12/v12_05_vivid_blue_invitation.png" onclick="openLB(this,'v12 #05')"><div class="label"><span class="id">v12-05</span>vivid blue invitation</div></div>
+<div class="card"><img src="banners_v12/v12_06_water_surface_typo.png" onclick="openLB(this,'v12 #06')"><div class="label"><span class="id">v12-06</span>water surface typo</div></div>
+<div class="card"><img src="banners_v12/v12_07_grid_shatter.png" onclick="openLB(this,'v12 #07')"><div class="label"><span class="id">v12-07</span>grid shatter</div></div>
+<div class="card"><img src="banners_v12/v12_08_typo_weapon.png" onclick="openLB(this,'v12 #08')"><div class="label"><span class="id">v12-08</span>typo weapon</div></div>
+<div class="card"><img src="banners_v12/v12_09_blue_ocean_collage.png" onclick="openLB(this,'v12 #09')"><div class="label"><span class="id">v12-09</span>blue ocean collage</div></div>
+<div class="card"><img src="banners_v12/v12_10_light_ocean_possibility.png" onclick="openLB(this,'v12 #10')"><div class="label"><span class="id">v12-10</span>light ocean possibility</div></div>
+</div>
+</div>
+
+<!-- v13 -->
+<div class="version-section" id="v13">
+<div class="version-header">
+<h2 class="version-title">v13 — 世界観 × ダイナミック構図</h2>
+<span class="version-count">10枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v13/v13_01_under_blue_world.png" onclick="openLB(this,'v13 #01')"><div class="label"><span class="id">v13-01</span>under blue world</div></div>
+<div class="card"><img src="banners_v13/v13_02_reaching_hands.png" onclick="openLB(this,'v13 #02')"><div class="label"><span class="id">v13-02</span>reaching hands</div></div>
+<div class="card"><img src="banners_v13/v13_03_editorial_dive.png" onclick="openLB(this,'v13 #03')"><div class="label"><span class="id">v13-03</span>editorial dive</div></div>
+<div class="card"><img src="banners_v13/v13_04_dynamic_flight.png" onclick="openLB(this,'v13 #04')"><div class="label"><span class="id">v13-04</span>dynamic flight</div></div>
+<div class="card"><img src="banners_v13/v13_05_bioluminescent_city.png" onclick="openLB(this,'v13 #05')"><div class="label"><span class="id">v13-05</span>bioluminescent city</div></div>
+<div class="card"><img src="banners_v13/v13_06_water_surface_sparkle.png" onclick="openLB(this,'v13 #06')"><div class="label"><span class="id">v13-06</span>water surface sparkle</div></div>
+<div class="card"><img src="banners_v13/v13_07_color_contrast_split.png" onclick="openLB(this,'v13 #07')"><div class="label"><span class="id">v13-07</span>color contrast split</div></div>
+<div class="card"><img src="banners_v13/v13_08_flame_in_deep.png" onclick="openLB(this,'v13 #08')"><div class="label"><span class="id">v13-08</span>flame in deep</div></div>
+<div class="card"><img src="banners_v13/v13_09_ocean_blue_collage.png" onclick="openLB(this,'v13 #09')"><div class="label"><span class="id">v13-09</span>ocean blue collage</div></div>
+<div class="card"><img src="banners_v13/v13_10_horizon_possibility.png" onclick="openLB(this,'v13 #10')"><div class="label"><span class="id">v13-10</span>horizon possibility</div></div>
+</div>
+</div>
+
+<!-- v14 -->
+<div class="version-section" id="v14">
+<div class="version-header">
+<h2 class="version-title">v14 — タイポグラフィ実験</h2>
+<span class="version-count">10枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v14/v14_01_typo_ocean_inside.png" onclick="openLB(this,'v14 #01')"><div class="label"><span class="id">v14-01</span>typo ocean inside</div></div>
+<div class="card"><img src="banners_v14/v14_02_vertical_deepsea_boy.png" onclick="openLB(this,'v14 #02')"><div class="label"><span class="id">v14-02</span>vertical deepsea boy</div></div>
+<div class="card"><img src="banners_v14/v14_03_giant_single_kanji.png" onclick="openLB(this,'v14 #03')"><div class="label"><span class="id">v14-03</span>giant single kanji</div></div>
+<div class="card"><img src="banners_v14/v14_04_ship_typo_ocean.png" onclick="openLB(this,'v14 #04')"><div class="label"><span class="id">v14-04</span>ship typo ocean</div></div>
+<div class="card"><img src="banners_v14/v14_05_scattered_typo_collage.png" onclick="openLB(this,'v14 #05')"><div class="label"><span class="id">v14-05</span>scattered typo collage</div></div>
+<div class="card"><img src="banners_v14/v14_06_water_reflection_typo.png" onclick="openLB(this,'v14 #06')"><div class="label"><span class="id">v14-06</span>water reflection typo</div></div>
+<div class="card"><img src="banners_v14/v14_07_sakuji_taikutsu.png" onclick="openLB(this,'v14 #07')"><div class="label"><span class="id">v14-07</span>sakuji taikutsu</div></div>
+<div class="card"><img src="banners_v14/v14_08_light_typography.png" onclick="openLB(this,'v14 #08')"><div class="label"><span class="id">v14-08</span>light typography</div></div>
+<div class="card"><img src="banners_v14/v14_09_double_exposure.png" onclick="openLB(this,'v14 #09')"><div class="label"><span class="id">v14-09</span>double exposure</div></div>
+<div class="card"><img src="banners_v14/v14_10_invitation_design.png" onclick="openLB(this,'v14 #10')"><div class="label"><span class="id">v14-10</span>invitation design</div></div>
+</div>
+</div>
+
+<!-- v15 -->
+<div class="version-section" id="v15">
+<div class="version-header">
+<h2 class="version-title">v15 — 可読性強化タイポグラフィ</h2>
+<span class="version-count">10枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v15/v15_01_sakuji_taikutsu_big.png" onclick="openLB(this,'v15 #01')"><div class="label"><span class="id">v15-01</span>sakuji taikutsu big</div></div>
+<div class="card"><img src="banners_v15/v15_02_vertical_boy_clear.png" onclick="openLB(this,'v15 #02')"><div class="label"><span class="id">v15-02</span>vertical boy clear</div></div>
+<div class="card"><img src="banners_v15/v15_03_ocean_inside_letters.png" onclick="openLB(this,'v15 #03')"><div class="label"><span class="id">v15-03</span>ocean inside letters</div></div>
+<div class="card"><img src="banners_v15/v15_04_ship_readable.png" onclick="openLB(this,'v15 #04')"><div class="label"><span class="id">v15-04</span>ship readable</div></div>
+<div class="card"><img src="banners_v15/v15_05_sparkle_surface_clear.png" onclick="openLB(this,'v15 #05')"><div class="label"><span class="id">v15-05</span>sparkle surface clear</div></div>
+<div class="card"><img src="banners_v15/v15_06_blue_gold_split.png" onclick="openLB(this,'v15 #06')"><div class="label"><span class="id">v15-06</span>blue gold split</div></div>
+<div class="card"><img src="banners_v15/v15_07_flame_in_deep.png" onclick="openLB(this,'v15 #07')"><div class="label"><span class="id">v15-07</span>flame in deep</div></div>
+<div class="card"><img src="banners_v15/v15_08_invitation_card.png" onclick="openLB(this,'v15 #08')"><div class="label"><span class="id">v15-08</span>invitation card</div></div>
+<div class="card"><img src="banners_v15/v15_09_editorial_blue.png" onclick="openLB(this,'v15 #09')"><div class="label"><span class="id">v15-09</span>editorial blue</div></div>
+<div class="card"><img src="banners_v15/v15_10_horizon_light.png" onclick="openLB(this,'v15 #10')"><div class="label"><span class="id">v15-10</span>horizon light</div></div>
+</div>
+</div>
+
+<!-- v15b -->
+<div class="version-section" id="v15b">
+<div class="version-header">
+<h2 class="version-title">v15b — キラキラ少女アイコンタクト</h2>
+<span class="version-count">6枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v15b/v15b_01_closeup_eyes.png" onclick="openLB(this,'v15b #01')"><div class="label"><span class="id">v15b-01</span>closeup eyes</div></div>
+<div class="card"><img src="banners_v15b/v15b_02_looking_back.png" onclick="openLB(this,'v15b #02')"><div class="label"><span class="id">v15b-02</span>looking back</div></div>
+<div class="card"><img src="banners_v15b/v15b_03_floating_underwater.png" onclick="openLB(this,'v15b #03')"><div class="label"><span class="id">v15b-03</span>floating underwater</div></div>
+<div class="card"><img src="banners_v15b/v15b_04_reaching_hand.png" onclick="openLB(this,'v15b #04')"><div class="label"><span class="id">v15b-04</span>reaching hand</div></div>
+<div class="card"><img src="banners_v15b/v15b_05_portrait_vertical.png" onclick="openLB(this,'v15b #05')"><div class="label"><span class="id">v15b-05</span>portrait vertical</div></div>
+<div class="card"><img src="banners_v15b/v15b_06_double_exposure.png" onclick="openLB(this,'v15b #06')"><div class="label"><span class="id">v15b-06</span>double exposure</div></div>
+</div>
+</div>
+
+<!-- v15c -->
+<div class="version-section" id="v15c">
+<div class="version-header">
+<h2 class="version-title">v15c — 少女 × LP世界観</h2>
+<span class="version-count">6枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v15c/v15c_01_eyes_closeup.png" onclick="openLB(this,'v15c #01')"><div class="label"><span class="id">v15c-01</span>eyes closeup</div></div>
+<div class="card"><img src="banners_v15c/v15c_02_girl_on_ship.png" onclick="openLB(this,'v15c #02')"><div class="label"><span class="id">v15c-02</span>girl on ship</div></div>
+<div class="card"><img src="banners_v15c/v15c_03_girl_tree_city.png" onclick="openLB(this,'v15c #03')"><div class="label"><span class="id">v15c-03</span>girl tree city</div></div>
+<div class="card"><img src="banners_v15c/v15c_04_girl_flame.png" onclick="openLB(this,'v15c #04')"><div class="label"><span class="id">v15c-04</span>girl flame</div></div>
+<div class="card"><img src="banners_v15c/v15c_05_girl_looking_back.png" onclick="openLB(this,'v15c #05')"><div class="label"><span class="id">v15c-05</span>girl looking back</div></div>
+<div class="card"><img src="banners_v15c/v15c_06_portrait_blend.png" onclick="openLB(this,'v15c #06')"><div class="label"><span class="id">v15c-06</span>portrait blend</div></div>
+</div>
+</div>
+
+<!-- v15d -->
+<div class="version-section" id="v15d">
+<div class="version-header">
+<h2 class="version-title">v15d — 少女 × LP世界 × タイポグラフィ遊び</h2>
+<span class="version-count">6枚</span>
+</div>
+<div class="grid">
+<div class="card"><img src="banners_v15d/v15d_01_eyes_ocean_typo.png" onclick="openLB(this,'v15d #01')"><div class="label"><span class="id">v15d-01</span>eyes ocean typo</div></div>
+<div class="card"><img src="banners_v15d/v15d_02_ship_wave_typo.png" onclick="openLB(this,'v15d #02')"><div class="label"><span class="id">v15d-02</span>ship wave typo</div></div>
+<div class="card"><img src="banners_v15d/v15d_03_city_coral_typo.png" onclick="openLB(this,'v15d #03')"><div class="label"><span class="id">v15d-03</span>city coral typo</div></div>
+<div class="card"><img src="banners_v15d/v15d_04_flame_burning_typo.png" onclick="openLB(this,'v15d #04')"><div class="label"><span class="id">v15d-04</span>flame burning typo</div></div>
+<div class="card"><img src="banners_v15d/v15d_05_lookback_particle_typo.png" onclick="openLB(this,'v15d #05')"><div class="label"><span class="id">v15d-05</span>lookback particle typo</div></div>
+<div class="card"><img src="banners_v15d/v15d_06_blend_dissolve_typo.png" onclick="openLB(this,'v15d #06')"><div class="label"><span class="id">v15d-06</span>blend dissolve typo</div></div>
+</div>
+</div>
+
+<!-- Counter -->
+<div class="counter" id="counter">
+<div><span class="c-yes">&#9675; アリ: 0</span></div>
+<div><span class="c-no">&#10005; ナシ: 0</span></div>
+<div><span class="c-pending">&#8212; 未選定: 120</span></div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+<img id="lbImg" src="">
+<div class="nav" id="lbNav"></div>
+</div>
+
+<script>
+// State stored in localStorage so refreshes keep your choices
+const STORAGE_KEY = 'mdive_selection_v9_v15d';
+let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+// Inject vote buttons + stamps into every card
+document.querySelectorAll('.card').forEach((card, i) => {
+  const id = card.querySelector('.id')?.textContent || ('card-' + i);
+  card.dataset.cardId = id;
+
+  // Add stamps
+  const stampNo = document.createElement('div');
+  stampNo.className = 'stamp stamp-no';
+  stampNo.textContent = 'NO';
+  card.appendChild(stampNo);
+
+  const stampYes = document.createElement('div');
+  stampYes.className = 'stamp stamp-yes';
+  stampYes.textContent = 'OK';
+  card.appendChild(stampYes);
+
+  // Add vote buttons to label
+  const label = card.querySelector('.label');
+  const btnWrap = document.createElement('div');
+  btnWrap.className = 'vote-btns';
+
+  const btnYes = document.createElement('button');
+  btnYes.className = 'vote-btn btn-yes';
+  btnYes.textContent = '\u25CB';
+  btnYes.title = 'アリ';
+  btnYes.onclick = (e) => { e.stopPropagation(); vote(card, id, 'yes'); };
+
+  const btnNo = document.createElement('button');
+  btnNo.className = 'vote-btn btn-no';
+  btnNo.textContent = '\u2715';
+  btnNo.title = 'ナシ';
+  btnNo.onclick = (e) => { e.stopPropagation(); vote(card, id, 'no'); };
+
+  btnWrap.appendChild(btnYes);
+  btnWrap.appendChild(btnNo);
+  label.appendChild(btnWrap);
+
+  // Restore state
+  if (state[id]) applyState(card, state[id]);
+});
+
+function vote(card, id, choice) {
+  const current = state[id];
+  if (current === choice) {
+    // Toggle off
+    delete state[id];
+    card.classList.remove('selected', 'rejected');
+    card.querySelector('.btn-yes').classList.remove('active-yes');
+    card.querySelector('.btn-no').classList.remove('active-no');
+  } else {
+    state[id] = choice;
+    applyState(card, choice);
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  updateCounter();
+}
+
+function applyState(card, choice) {
+  card.classList.remove('selected', 'rejected');
+  card.querySelector('.btn-yes').classList.remove('active-yes');
+  card.querySelector('.btn-no').classList.remove('active-no');
+  if (choice === 'yes') {
+    card.classList.add('selected');
+    card.querySelector('.btn-yes').classList.add('active-yes');
+  } else if (choice === 'no') {
+    card.classList.add('rejected');
+    card.querySelector('.btn-no').classList.add('active-no');
+  }
+}
+
+function updateCounter() {
+  const total = document.querySelectorAll('.card').length;
+  const yes = Object.values(state).filter(v => v === 'yes').length;
+  const no = Object.values(state).filter(v => v === 'no').length;
+  const pending = total - yes - no;
+  document.getElementById('counter').innerHTML =
+    '<div><span class="c-yes">&#9675; アリ: ' + yes + '</span></div>' +
+    '<div><span class="c-no">&#10005; ナシ: ' + no + '</span></div>' +
+    '<div><span class="c-pending">&#8212; 未選定: ' + pending + '</span></div>';
+}
+updateCounter();
+
+// Lightbox
+function openLB(el, label) {
+  document.getElementById('lb').classList.add('active');
+  document.getElementById('lbImg').src = el.src;
+  document.getElementById('lbNav').innerHTML = '<span>' + label + '</span>';
+}
+function closeLB() { document.getElementById('lb').classList.remove('active'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+</script>
+</body>
+</html>
