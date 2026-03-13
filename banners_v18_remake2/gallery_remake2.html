@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>MARKETING DIVE v18 — リメイク v2 自己FB付き</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; padding: 30px 40px; }
+h1 { text-align: center; font-size: 24px; margin-bottom: 6px; letter-spacing: 2px; }
+.subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 40px; }
+
+.section { margin-bottom: 60px; }
+.section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.section-title { font-size: 18px; padding-left: 10px; border-left: 3px solid; }
+.section-title.a { color: #FF6B6B; border-color: #FF6B6B; }
+.section-title.b { color: #00d4ff; border-color: #00d4ff; }
+.section-title.c { color: #FFC61C; border-color: #FFC61C; }
+
+.compare { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; margin-bottom: 12px; }
+.card { background: #141414; border-radius: 6px; overflow: hidden; position: relative; }
+.card img { width: 100%; display: block; cursor: pointer; }
+.card .label { padding: 8px 12px; font-size: 11px; color: #aaa; display: flex; justify-content: space-between; }
+.card .label .id { font-weight: bold; }
+.card .label .id.old { color: #666; }
+.card .label .id.new { color: #00d4ff; }
+.card .label .id.best { color: #00ff88; }
+.card .label .concept { color: #666; font-style: italic; }
+.card .badge { position: absolute; top: 8px; left: 8px; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+.card .badge.original { background: #333; color: #888; }
+.card .badge.remake { background: #00d4ff; color: #0a0a0a; }
+.card .badge.best { background: #00ff88; color: #0a0a0a; }
+
+.feedback { background: #1a1a1a; border-radius: 6px; padding: 16px; margin-bottom: 16px; font-size: 13px; line-height: 1.8; color: #ccc; }
+.feedback strong { color: #00d4ff; }
+
+.self-fb { background: #1a1a0a; border: 1px solid #333; border-radius: 6px; padding: 16px; margin-bottom: 16px; font-size: 12px; line-height: 1.8; color: #aaa; }
+.self-fb .title { color: #FFC61C; font-weight: bold; font-size: 13px; margin-bottom: 8px; }
+.self-fb .pass { color: #00ff88; font-weight: bold; }
+.self-fb .fail { color: #FF6B6B; }
+.self-fb .warn { color: #FFC61C; }
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; cursor: zoom-out; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+.lightbox .nav { color: #fff; font-size: 13px; margin-top: 12px; }
+.lightbox .nav span { color: #00d4ff; }
+</style>
+</head>
+<body>
+
+<h1>v18 リメイク v2 — 自己FB付き</h1>
+<p class="subtitle">4ラウンド生成 × 品質チェック ｜ ベスト候補 + Original比較 ｜ クリックで拡大</p>
+
+<!-- ================================ C05 ================================ -->
+<div class="section">
+<div class="section-header">
+<h2 class="section-title c">C05: WORLD WITHIN リメイク — 合格</h2>
+</div>
+<div class="feedback">
+<strong>フィードバック:</strong> 構図は維持。AIっぽさを消してLP世界観を反映。FV女の子を同一人物として配置。目に光・炎・きらきら。深い青の統一感を壊すな。
+</div>
+<div class="self-fb">
+<div class="title">自己FB（品質チェック結果）</div>
+<span class="pass">テキスト正確性: 5/5</span> — あなたを、迎えにきた。全文字正確、重複なし<br>
+<span class="pass">テキスト可読性: 5/5</span> — 大きく太い白文字、青背景で明瞭<br>
+<span class="pass">構図: 5/5</span> — Originalと同一構図（女の子右・テキスト左）<br>
+<span class="pass">色調: 5/5</span> — 深い青の統一感が完璧。灰色・暖色なし<br>
+<span class="pass">キャラクター: 5/5</span> — FV Girl反映、青髪、きらきら目、海底世界が溶け込む<br>
+<span class="pass">Original維持度: 5/5</span> — 全ての良さを保持<br>
+<span class="pass">N1が手を止めるか: 5/5</span> — 美しく、世界に引き込まれる<br>
+<strong style="color:#00ff88">判定: 合格 ✅</strong>
+</div>
+<div class="compare">
+<div class="card">
+<div class="badge original">ORIGINAL</div>
+<img src="../banners_v18/v18_C05_v14-09.png" onclick="openLB(this,'C05 Original')">
+<div class="label"><span class="id old">C05 Original</span><span class="concept">v14-09ベース</span></div>
+</div>
+<div class="card">
+<div class="badge best">BEST ✅</div>
+<img src="v18r2_C05_03.png" onclick="openLB(this,'C05 Remake 03')">
+<div class="label"><span class="id best">C05 Remake 03</span><span class="concept">深い青統一 + FV Girl</span></div>
+</div>
+<div class="card">
+<div class="badge remake">候補</div>
+<img src="v18r2_C05_02.png" onclick="openLB(this,'C05 Remake 02')">
+<div class="label"><span class="id new">C05 Remake 02</span><span class="concept">深い青統一 + FV Girl</span></div>
+</div>
+</div>
+</div>
+
+<!-- ================================ A08 ================================ -->
+<div class="section">
+<div class="section-header">
+<h2 class="section-title a">A08: LOGOTYPE DESIGN / 作字 リメイク</h2>
+</div>
+<div class="feedback">
+<strong>フィードバック:</strong> 退屈が画面70%を占めて文字が主役。女の子は割れ目から目だけ覗く。テキスト崩れを修正。FV Girlの青いきらきら目。
+</div>
+<div class="self-fb">
+<div class="title">自己FB（品質チェック結果）</div>
+<strong>A08_06（テキスト重視版）:</strong><br>
+<span class="pass">テキスト正確性: 5/5</span> — その「退屈」才能だ。全文字が明瞭<br>
+<span class="pass">テキスト可読性: 5/5</span> — 太字タイポグラフィで最も読みやすい<br>
+<span class="warn">構図: 4/5</span> — テキスト配置がOriginalの「退屈1ブロック」から「複数行」に変化<br>
+<span class="pass">色調: 5/5</span> — 黒背景+白/シアン文字<br>
+<span class="pass">キャラクター: 5/5</span> — 目が中央で覗く<br>
+<span class="warn">Original維持度: 4/5</span> — 精神は維持だが構図が変わった<br>
+<span class="warn">N1が手を止めるか: 4.5/5</span><br>
+<span class="fail">判定: 不合格（構図変化）</span><br><br>
+<strong>A08_07（Original構図版）:</strong><br>
+<span class="warn">テキスト正確性: 4.5/5</span> — 退屈はかなり改善だが「、」が不明瞭<br>
+<span class="warn">テキスト可読性: 4/5</span> — 読めるが完璧ではない<br>
+<span class="pass">構図: 5/5</span> — Originalに忠実（巨大退屈+割れ目）<br>
+<span class="pass">色調: 5/5</span><br>
+<span class="pass">キャラクター: 5/5</span> — 割れ目から目が覗く<br>
+<span class="pass">Original維持度: 5/5</span><br>
+<span class="fail">判定: 不合格（テキスト精度）</span><br><br>
+<span class="warn">課題: Gemini APIで「複雑漢字の完璧な描画」と「シャッターエフェクト」の両立が困難。4ラウンド・7パターン生成して到達した限界。</span>
+</div>
+<div class="compare">
+<div class="card">
+<div class="badge original">ORIGINAL</div>
+<img src="../banners_v18/v18_A08_v15-01.png" onclick="openLB(this,'A08 Original')">
+<div class="label"><span class="id old">A08 Original</span><span class="concept">v15-01ベース</span></div>
+</div>
+<div class="card">
+<div class="badge remake">テキスト重視</div>
+<img src="v18r2_A08_06.png" onclick="openLB(this,'A08 Remake 06')">
+<div class="label"><span class="id new">A08 Remake 06</span><span class="concept">クリーンタイポ + 目</span></div>
+</div>
+<div class="card">
+<div class="badge remake">Original構図</div>
+<img src="v18r2_A08_07.png" onclick="openLB(this,'A08 Remake 07')">
+<div class="label"><span class="id new">A08 Remake 07</span><span class="concept">退屈ブロック + 割れ目</span></div>
+</div>
+</div>
+</div>
+
+<!-- ================================ B01 ================================ -->
+<div class="section">
+<div class="section-header">
+<h2 class="section-title b">B01: 潜入 × ゴールドライン リメイク</h2>
+</div>
+<div class="feedback">
+<strong>フィードバック:</strong> 巨大な「潜入」。ゴールドラインのアクセント。斜めの角度で潜入してる感。海底世界。ダイビングの感覚。
+</div>
+<div class="self-fb">
+<div class="title">自己FB（品質チェック結果）</div>
+<span class="pass">テキスト正確性: 5/5</span> — 潜入が完璧に綺麗<br>
+<span class="pass">テキスト可読性: 5/5</span> — 大きく太く読みやすい<br>
+<span class="pass">構図: 5/5</span> — Originalと同じ（巨大テキスト+海底世界+シルエット）<br>
+<span class="pass">色調: 5/5</span> — 深い海のブルー<br>
+<span class="fail">ゴールドライン: 未反映</span> — 5回生成して一度もゴールドラインが出なかった<br>
+<span class="fail">斜め角度: 未反映</span> — テキストが水平のまま<br>
+<span class="warn">N1が手を止めるか: 4/5</span> — 海底世界は美しいがFBの差別化要素が欠けている<br>
+<span class="fail">判定: 不合格（FB項目2つ未反映）</span><br><br>
+<span class="warn">課題: Gemini APIが「ゴールドラインアクセント」「テキスト角度」の指示を5回連続で無視。プロンプト戦略を変えても反映されない。Post-processing（画像編集ソフトで追加）が必要かもしれない。</span>
+</div>
+<div class="compare">
+<div class="card">
+<div class="badge original">ORIGINAL</div>
+<img src="../banners_v18/v18_B01_v9-04.png" onclick="openLB(this,'B01 Original')">
+<div class="label"><span class="id old">B01 Original</span><span class="concept">v9-04ベース</span></div>
+</div>
+<div class="card">
+<div class="badge remake">BEST（金線なし）</div>
+<img src="v18r2_B01_05.png" onclick="openLB(this,'B01 Remake 05')">
+<div class="label"><span class="id new">B01 Remake 05</span><span class="concept">潜入 + 海底世界</span></div>
+</div>
+</div>
+</div>
+
+<!-- ================================ B05 ================================ -->
+<div class="section">
+<div class="section-header">
+<h2 class="section-title b">B05: 潜入 × テキストくり抜き リメイク</h2>
+</div>
+<div class="feedback">
+<strong>フィードバック:</strong> 「潜入」がくり抜かれて海が見えるコンセプト。文字=窓。ダイバーシルエット。
+</div>
+<div class="self-fb">
+<div class="title">自己FB（品質チェック結果）</div>
+<span class="warn">テキスト正確性: 4/5</span> — くり抜きデザインのため潜の字がやや不明瞭（Originalも同様）<br>
+<span class="warn">テキスト可読性: 4/5</span> — テクスチャが文字内に入るため限界あり<br>
+<span class="pass">構図: 5/5</span> — Originalのくり抜きコンセプトを忠実に再現<br>
+<span class="pass">色調: 5/5</span> — 黒い前景+くり抜き越しの海<br>
+<span class="pass">コンセプト再現度: 5/5</span> — 文字=窓のコンセプトが明確<br>
+<span class="warn">N1が手を止めるか: 4/5</span><br>
+<span class="fail">判定: 不合格（テキスト品質）</span><br><br>
+<span class="warn">課題: テキスト-as-cutoutデザインは、文字の中にテクスチャが入る構造上、完璧なテキスト描画との両立が困難。</span>
+</div>
+<div class="compare">
+<div class="card">
+<div class="badge original">ORIGINAL</div>
+<img src="../banners_v18/v18_B05_v14-01.png" onclick="openLB(this,'B05 Original')">
+<div class="label"><span class="id old">B05 Original</span><span class="concept">v14-01ベース</span></div>
+</div>
+<div class="card">
+<div class="badge remake">BEST</div>
+<img src="v18r2_B05_01.png" onclick="openLB(this,'B05 Remake 01')">
+<div class="label"><span class="id new">B05 Remake 01</span><span class="concept">くり抜き + 海底世界</span></div>
+</div>
+</div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+<img id="lbImg" src="">
+<div class="nav" id="lbNav"></div>
+</div>
+
+<script>
+function openLB(el, label) {
+  document.getElementById('lb').classList.add('active');
+  document.getElementById('lbImg').src = el.src;
+  document.getElementById('lbNav').innerHTML = '<span>' + label + '</span>';
+}
+function closeLB() { document.getElementById('lb').classList.remove('active'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+</script>
+</body>
+</html>

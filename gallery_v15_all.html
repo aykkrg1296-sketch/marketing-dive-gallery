@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>MARKETING DIVE — v15 全バージョン一覧</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; padding: 40px; }
+h1 { text-align: center; font-size: 28px; margin-bottom: 10px; letter-spacing: 2px; }
+.subtitle { text-align: center; color: #888; font-size: 14px; margin-bottom: 50px; }
+.version-section { margin-bottom: 60px; }
+.version-title { font-size: 20px; color: #00d4ff; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #00d4ff; }
+.version-desc { color: #999; font-size: 13px; margin-bottom: 20px; padding-left: 15px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; }
+.card { background: #141414; border-radius: 8px; overflow: hidden; transition: transform 0.2s; }
+.card:hover { transform: scale(1.02); }
+.card img { width: 100%; display: block; cursor: pointer; }
+.card .label { padding: 10px 14px; font-size: 12px; color: #aaa; }
+.card .label span { color: #00d4ff; }
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+</style>
+</head>
+<body>
+
+<h1>MARKETING DIVE — v15 全バージョン一覧</h1>
+<p class="subtitle">v15（10枚）→ v15b（6枚）→ v15c（6枚）→ v15d（6枚）｜計28枚</p>
+
+<!-- v15 -->
+<div class="version-section">
+<h2 class="version-title">v15 — タイポグラフィ × 可読性重視（10枚）</h2>
+<p class="version-desc">海テクスチャ文字、縦組み、エディトリアル、招待状など多様なアプローチ</p>
+<div class="grid">
+<div class="card"><img src="banners_v15/v15_01_sakuji_taikutsu_big.png" onclick="openLB(this)"><div class="label"><span>#01</span> 作字・退屈ビッグ</div></div>
+<div class="card"><img src="banners_v15/v15_02_vertical_boy_clear.png" onclick="openLB(this)"><div class="label"><span>#02</span> 縦組み・少年クリア</div></div>
+<div class="card"><img src="banners_v15/v15_03_ocean_inside_letters.png" onclick="openLB(this)"><div class="label"><span>#03</span> 海テクスチャ文字</div></div>
+<div class="card"><img src="banners_v15/v15_04_ship_readable.png" onclick="openLB(this)"><div class="label"><span>#04</span> 帆船・可読性</div></div>
+<div class="card"><img src="banners_v15/v15_05_sparkle_surface_clear.png" onclick="openLB(this)"><div class="label"><span>#05</span> 水面キラキラ・クリア</div></div>
+<div class="card"><img src="banners_v15/v15_06_blue_gold_split.png" onclick="openLB(this)"><div class="label"><span>#06</span> ブルー×ゴールド分割</div></div>
+<div class="card"><img src="banners_v15/v15_07_flame_in_deep.png" onclick="openLB(this)"><div class="label"><span>#07</span> 炎・ディープ</div></div>
+<div class="card"><img src="banners_v15/v15_08_invitation_card.png" onclick="openLB(this)"><div class="label"><span>#08</span> 招待状カード</div></div>
+<div class="card"><img src="banners_v15/v15_09_editorial_blue.png" onclick="openLB(this)"><div class="label"><span>#09</span> エディトリアル・ブルー</div></div>
+<div class="card"><img src="banners_v15/v15_10_horizon_light.png" onclick="openLB(this)"><div class="label"><span>#10</span> ホライゾン・ライト</div></div>
+</div>
+</div>
+
+<!-- v15b -->
+<div class="version-section">
+<h2 class="version-title">v15b — キラキラ少女アイコンタクト（6枚）</h2>
+<p class="version-desc">少女の目・表情をヒーローにした構成</p>
+<div class="grid">
+<div class="card"><img src="banners_v15b/v15b_01_closeup_eyes.png" onclick="openLB(this)"><div class="label"><span>#01</span> 瞳クローズアップ</div></div>
+<div class="card"><img src="banners_v15b/v15b_02_looking_back.png" onclick="openLB(this)"><div class="label"><span>#02</span> 振り向き</div></div>
+<div class="card"><img src="banners_v15b/v15b_03_floating_underwater.png" onclick="openLB(this)"><div class="label"><span>#03</span> 水中フローティング</div></div>
+<div class="card"><img src="banners_v15b/v15b_04_reaching_hand.png" onclick="openLB(this)"><div class="label"><span>#04</span> 手を差し伸べる</div></div>
+<div class="card"><img src="banners_v15b/v15b_05_portrait_vertical.png" onclick="openLB(this)"><div class="label"><span>#05</span> ポートレート縦</div></div>
+<div class="card"><img src="banners_v15b/v15b_06_double_exposure.png" onclick="openLB(this)"><div class="label"><span>#06</span> 二重露光</div></div>
+</div>
+</div>
+
+<!-- v15c -->
+<div class="version-section">
+<h2 class="version-title">v15c — 少女 × LP世界観（6枚）</h2>
+<p class="version-desc">LPの青髪キラキラ少女 + 海中都市・帆船・炎の世界</p>
+<div class="grid">
+<div class="card"><img src="banners_v15c/v15c_01_eyes_closeup.png" onclick="openLB(this)"><div class="label"><span>#01</span> 瞳クローズアップ × LP世界</div></div>
+<div class="card"><img src="banners_v15c/v15c_02_girl_on_ship.png" onclick="openLB(this)"><div class="label"><span>#02</span> 少女 × 帆船</div></div>
+<div class="card"><img src="banners_v15c/v15c_03_girl_tree_city.png" onclick="openLB(this)"><div class="label"><span>#03</span> 少女 × 海中都市</div></div>
+<div class="card"><img src="banners_v15c/v15c_04_girl_flame.png" onclick="openLB(this)"><div class="label"><span>#04</span> 少女 × 炎</div></div>
+<div class="card"><img src="banners_v15c/v15c_05_girl_looking_back.png" onclick="openLB(this)"><div class="label"><span>#05</span> 振り向き少女</div></div>
+<div class="card"><img src="banners_v15c/v15c_06_portrait_blend.png" onclick="openLB(this)"><div class="label"><span>#06</span> ポートレートブレンド</div></div>
+</div>
+</div>
+
+<!-- v15d -->
+<div class="version-section">
+<h2 class="version-title">v15d — 少女 × LP世界 × タイポグラフィ遊び（6枚）</h2>
+<p class="version-desc">三要素融合：少女ポートレート + LP世界観 + クリエイティブ文字演出</p>
+<div class="grid">
+<div class="card"><img src="banners_v15d/v15d_01_eyes_ocean_typo.png" onclick="openLB(this)"><div class="label"><span>#01</span> 瞳 × 海テクスチャ文字</div></div>
+<div class="card"><img src="banners_v15d/v15d_02_ship_wave_typo.png" onclick="openLB(this)"><div class="label"><span>#02</span> 帆船 × 波うねりタイポ</div></div>
+<div class="card"><img src="banners_v15d/v15d_03_city_coral_typo.png" onclick="openLB(this)"><div class="label"><span>#03</span> 海中都市 × 珊瑚タイポ</div></div>
+<div class="card"><img src="banners_v15d/v15d_04_flame_burning_typo.png" onclick="openLB(this)"><div class="label"><span>#04</span> 炎 × 燃焼タイポ</div></div>
+<div class="card"><img src="banners_v15d/v15d_05_lookback_particle_typo.png" onclick="openLB(this)"><div class="label"><span>#05</span> 振り向き × 光粒子タイポ</div></div>
+<div class="card"><img src="banners_v15d/v15d_06_blend_dissolve_typo.png" onclick="openLB(this)"><div class="label"><span>#06</span> ブレンド × 溶けるタイポ</div></div>
+</div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+<img id="lbImg" src="">
+</div>
+
+<script>
+function openLB(el) { document.getElementById('lb').classList.add('active'); document.getElementById('lbImg').src = el.src; }
+function closeLB() { document.getElementById('lb').classList.remove('active'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+</script>
+</body>
+</html>
