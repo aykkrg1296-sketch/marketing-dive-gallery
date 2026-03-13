@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>MARKETING DIVE v18 — A08 / C05 リメイク</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; padding: 30px 40px; }
+h1 { text-align: center; font-size: 24px; margin-bottom: 6px; letter-spacing: 2px; }
+.subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 40px; }
+
+.section { margin-bottom: 50px; }
+.section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.section-title { font-size: 18px; padding-left: 10px; border-left: 3px solid; }
+.section-title.a { color: #FF6B6B; border-color: #FF6B6B; }
+.section-title.c { color: #FFC61C; border-color: #FFC61C; }
+.section-desc { font-size: 12px; color: #666; }
+
+.compare { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 16px; margin-bottom: 12px; }
+.card { background: #141414; border-radius: 6px; overflow: hidden; position: relative; }
+.card img { width: 100%; display: block; cursor: pointer; }
+.card .label { padding: 8px 12px; font-size: 11px; color: #aaa; display: flex; justify-content: space-between; }
+.card .label .id { font-weight: bold; }
+.card .label .id.old { color: #666; }
+.card .label .id.new { color: #00d4ff; }
+.card .label .concept { color: #666; font-style: italic; }
+.card .badge { position: absolute; top: 8px; left: 8px; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+.card .badge.original { background: #333; color: #888; }
+.card .badge.remake { background: #00d4ff; color: #0a0a0a; }
+
+.feedback { background: #1a1a1a; border-radius: 6px; padding: 16px; margin-bottom: 24px; font-size: 13px; line-height: 1.8; color: #ccc; }
+.feedback strong { color: #00d4ff; }
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; cursor: zoom-out; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+.lightbox .nav { color: #fff; font-size: 13px; margin-top: 12px; }
+.lightbox .nav span { color: #00d4ff; }
+</style>
+</head>
+<body>
+
+<h1>v18 リメイク — A08 / C05</h1>
+<p class="subtitle">ぎいちゃんフィードバック反映 ｜ 計4枚 ｜ クリックで拡大</p>
+
+<!-- A08 -->
+<div class="section">
+<div class="section-header">
+<h2 class="section-title a">A08: LOGOTYPE DESIGN / 作字 リメイク</h2>
+</div>
+<div class="feedback">
+<strong>フィードバック:</strong> 中心の女の子をLPのFV女の子（青髪・きらきら目）に変更。テキスト「その「退屈」、才能だ。」の崩れを修正。
+</div>
+<div class="compare">
+<div class="card">
+<div class="badge original">ORIGINAL</div>
+<img src="../banners_v18/v18_A08_v15-01.png" onclick="openLB(this,'A08 Original')">
+<div class="label"><span class="id old">A08 Original</span><span class="concept">v15-01ベース</span></div>
+</div>
+<div class="card">
+<div class="badge remake">REMAKE 01</div>
+<img src="v18r_A08_01.png" onclick="openLB(this,'A08 Remake 01')">
+<div class="label"><span class="id new">A08 Remake 01</span><span class="concept">FV Girl + 作字</span></div>
+</div>
+<div class="card">
+<div class="badge remake">REMAKE 02</div>
+<img src="v18r_A08_02.png" onclick="openLB(this,'A08 Remake 02')">
+<div class="label"><span class="id new">A08 Remake 02</span><span class="concept">FV Girl + 作字</span></div>
+</div>
+</div>
+</div>
+
+<!-- C05 -->
+<div class="section">
+<div class="section-header">
+<h2 class="section-title c">C05: WORLD WITHIN リメイク</h2>
+</div>
+<div class="feedback">
+<strong>フィードバック:</strong> 構図は維持。AIっぽさを消してLP世界観（町並みの移り変わり、水中、需要と供給を繋ぐ）を反映。FV女の子を同一人物として配置。目に光・炎・きらきら。
+</div>
+<div class="compare">
+<div class="card">
+<div class="badge original">ORIGINAL</div>
+<img src="../banners_v18/v18_C05_v14-09.png" onclick="openLB(this,'C05 Original')">
+<div class="label"><span class="id old">C05 Original</span><span class="concept">v14-09ベース</span></div>
+</div>
+<div class="card">
+<div class="badge remake">REMAKE 01</div>
+<img src="v18r_C05_01.png" onclick="openLB(this,'C05 Remake 01')">
+<div class="label"><span class="id new">C05 Remake 01</span><span class="concept">LP世界観 + FV Girl</span></div>
+</div>
+<div class="card">
+<div class="badge remake">REMAKE 02</div>
+<img src="v18r_C05_02.png" onclick="openLB(this,'C05 Remake 02')">
+<div class="label"><span class="id new">C05 Remake 02</span><span class="concept">LP世界観 + FV Girl</span></div>
+</div>
+</div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+<img id="lbImg" src="">
+<div class="nav" id="lbNav"></div>
+</div>
+
+<script>
+function openLB(el, label) {
+  document.getElementById('lb').classList.add('active');
+  document.getElementById('lbImg').src = el.src;
+  document.getElementById('lbNav').innerHTML = '<span>' + label + '</span>';
+}
+function closeLB() { document.getElementById('lb').classList.remove('active'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+</script>
+</body>
+</html>
