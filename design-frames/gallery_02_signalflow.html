@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<title>SIGNALFLOW — Design Frames 02</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0a1628;color:#e8f4fd;font-family:'DM Sans','Noto Sans JP',sans-serif;font-weight:400;}
+.hero{padding:60px 40px;text-align:center;}
+.hero h1{font-size:52px;font-weight:900;color:#67CAFF;letter-spacing:12px;}
+.hero p{font-size:17px;margin-top:14px;color:#e8f4fd;font-weight:300;}
+.hero .meta{display:flex;justify-content:center;gap:14px;margin-top:14px;}
+.hero .badge{font-size:10px;padding:4px 14px;border-radius:20px;border:1px solid #1058C444;color:#67CAFF;letter-spacing:2px;}
+.grid{max-width:1200px;margin:0 auto;padding:20px 24px 60px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.card{background:#0f2040;border-radius:16px;overflow:hidden;border:1px solid #1058C433;transition:all .2s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(16,88,196,.2);}
+.img-wrap{aspect-ratio:1;overflow:hidden;background:#0a1628;}
+.img-wrap img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;}
+.info{padding:14px 18px;display:flex;flex-direction:column;gap:2px;}
+.label{font-size:11px;color:#67CAFF;letter-spacing:4px;font-weight:700;}
+.title{font-size:13px;color:#e8f4fd;}
+.desc{font-size:10px;color:#5a8ab5;}
+.zo{display:none;position:fixed;inset:0;background:rgba(10,22,40,.95);z-index:1000;cursor:zoom-out;justify-content:center;align-items:center;}
+.zo.on{display:flex;}.zo img{max-width:90%;max-height:90%;border-radius:12px;}
+.ft{text-align:center;padding:30px;font-size:9px;letter-spacing:4px;color:#1058C4;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}}
+</style></head><body>
+<div class="hero">
+  <h1>SIGNALFLOW</h1>
+  <p>「データは語っている。聞こえているか。」</p>
+  <div class="meta">
+    <span class="badge">gemini-3.1-flash</span>
+    <span class="badge">TEXT 100% ACCURATE</span>
+    <span class="badge">MALE / HARD</span>
+  </div>
+</div>
+<div class="grid">
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_A1_dashboard.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">A1</span><span class="title">Dashboard</span><span class="desc">ホログラフィックなダッシュボードUI。データが光る。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_A2_dataflow.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">A2</span><span class="title">Data Flow</span><span class="desc">光の粒子が流れるデータストリーム。池田亮司的。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_B1_grid.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">B1</span><span class="title">Swiss Grid</span><span class="desc">スイスデザイン。精密なグリッドと幾何学。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_B2_signal.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">B2</span><span class="title">Signal Pulse</span><span class="desc">シグナル波形。一本のラインが語る。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_C1_executive.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">C1</span><span class="title">Executive</span><span class="desc">データを見つめるビジネスマン。権威と信頼。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_C2_meeting.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">C2</span><span class="title">Team Meeting</span><span class="desc">ガラスの会議室。チームでデータを読む。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_D1_minimal.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">D1</span><span class="title">Minimal Signal</span><span class="desc">1つの光点。最大の余白。シグナルの原点。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_D2_split.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">D2</span><span class="title">Split Data</span><span class="desc">テキスト×データビジュアルの2分割。</span></div></div>
+</div>
+<div class="section-divider" style="max-width:1200px;margin:0 auto;padding:10px 24px 20px;"><h2 style="font-size:28px;font-weight:900;color:#67CAFF;letter-spacing:6px;text-align:center;border-top:1px solid #1058C433;padding-top:40px;">VISUAL × TYPOGRAPHY</h2><p style="text-align:center;font-size:13px;margin-top:8px;color:#5a8ab5;">データを可視化するタイポグラフィ</p></div>
+<div class="grid">
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_A1t_dashboard_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">A1t</span><span class="title">Dashboard × Size Contrast</span><span class="desc">「データ」が巨大。挑発的なサイズ感。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_A2t_dataflow_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">A2t</span><span class="title">Data Flow × Light Text</span><span class="desc">文字がデータ粒子で構成される。テキスト=データ。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_B1t_grid_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">B1t</span><span class="title">Grid × Cell Text</span><span class="desc">各単語がグリッドセルに。構造からの逸脱。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_B2t_signal_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">B2t</span><span class="title">Signal × Wave Text</span><span class="desc">テキストが波形に沿って上下する。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_C1t_exec_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">C1t</span><span class="title">Executive × Challenge</span><span class="desc">「聞こえているか。」が挑発。直接対峙。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_C2t_meeting_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">C2t</span><span class="title">Meeting × Vertical</span><span class="desc">縦書きエディトリアル。雑誌のような構成。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_D1t_minimal_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">D1t</span><span class="title">Minimal × Giant Text</span><span class="desc">テキストが全て。巨大な白文字×1つの光点。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_02_signalflow/sf_D2t_split_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">D2t</span><span class="title">Split × Color Text</span><span class="desc">左右でカラーが反転。データ→インサイト。</span></div></div>
+</div>
+<div class="zo" id="zo" onclick="this.classList.remove('on')"><img id="zi"></div>
+<div class="ft">DOCKING DESIGN SYSTEM — DESIGN FRAMES 02 SIGNALFLOW — gemini-3.1-flash-image-preview — 2026-03-18</div>
+<script>function openZoom(s){document.getElementById('zi').src=s;document.getElementById('zo').classList.add('on');}</script>
+</body></html>

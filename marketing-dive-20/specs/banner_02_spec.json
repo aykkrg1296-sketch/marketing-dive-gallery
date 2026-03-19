@@ -1,0 +1,8 @@
+{
+  "bannerIndex": 2,
+  "hypothesis": "結果提示×スコア表示 — 点数で具体的結果をイメージさせる",
+  "hookAngle": "結果提示",
+  "gazeFlow": "F型",
+  "typographyPattern": "数字ドカン×囲み",
+  "layout": "score_display"
+}

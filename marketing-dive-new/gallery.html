@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARKETING DIVE — バナー20枚ギャラリー</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0e1a;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+    padding: 40px 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #67CAFF, #A7FFFB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    text-align: center;
+    color: #67CAFF;
+    font-size: 14px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+  }
+  .stats {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: rgba(16,88,196,0.2);
+    border: 1px solid rgba(103,202,255,0.3);
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 13px;
+  }
+  .stat strong { color: #FFC61C; font-size: 18px; }
+  .hook-section {
+    margin-bottom: 50px;
+  }
+  .hook-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-left: 16px;
+    border-left: 4px solid #FF6600;
+  }
+  .hook-title .emoji { margin-right: 8px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(16,88,196,0.3);
+  }
+  .card img {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+  }
+  .card-info {
+    padding: 16px;
+  }
+  .card-num {
+    font-size: 11px;
+    color: #FF6600;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .card-headline {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .card-type {
+    font-size: 12px;
+    color: #67CAFF;
+    margin-bottom: 4px;
+  }
+  .card-hypothesis {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+  /* lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+  }
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<h1>MARKETING DIVE バナー 20枚</h1>
+<p class="subtitle">パクさんリファレンス型 × strategy.json × Nano Banana Pro</p>
+
+<div class="stats">
+  <div class="stat">生成数 <strong>20</strong>/20</div>
+  <div class="stat">フック <strong>4</strong>種類</div>
+  <div class="stat">コンセプト <strong>招待状</strong></div>
+  <div class="stat">モデル <strong>Gemini 3 Pro</strong></div>
+</div>
+
+<!-- 歓迎フック -->
+<div class="hook-section">
+  <h2 class="hook-title">歓迎フック — 「迎えにきた」愛で引く</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="banners/banner_01.png" onclick="openLB(this)" alt="Banner 01">
+      <div class="card-info">
+        <div class="card-num">#01</div>
+        <div class="card-headline">あなたを、迎えにきた</div>
+        <div class="card-type">感情直撃×深海KV型</div>
+        <div class="card-hypothesis">愛ベースの感情直撃コピーは夜のSNSスクロールでCTR最高値を出すか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_02.png" onclick="openLB(this)" alt="Banner 02">
+      <div class="card-info">
+        <div class="card-num">#02</div>
+        <div class="card-headline">ようこそ、この世界へ</div>
+        <div class="card-type">RPGゲート×冒険型</div>
+        <div class="card-hypothesis">RPGゲーム世界観はENFPのワクワク感を刺激してCTRを上げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_03.png" onclick="openLB(this)" alt="Banner 03">
+      <div class="card-info">
+        <div class="card-num">#03</div>
+        <div class="card-headline">この招待状は、あなた宛て</div>
+        <div class="card-type">招待状クローズアップ×直球型</div>
+        <div class="card-hypothesis">コンセプト直球の招待状ビジュアルは認知獲得コストを下げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_04.png" onclick="openLB(this)" alt="Banner 04">
+      <div class="card-info">
+        <div class="card-num">#04</div>
+        <div class="card-headline">待ってたよ</div>
+        <div class="card-type">ミニマル感情×波紋型</div>
+        <div class="card-hypothesis">極短コピー×余白多めのミニマルデザインはスクロール停止率を上げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_05.png" onclick="openLB(this)" alt="Banner 05">
+      <div class="card-info">
+        <div class="card-num">#05</div>
+        <div class="card-headline">あなたの席、空けてある</div>
+        <div class="card-type">コミュニティ×空席演出型</div>
+        <div class="card-hypothesis">所属欲求に訴えるコピーはN1のADHD的孤独感に刺さるか</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 適性フック -->
+<div class="hook-section">
+  <h2 class="hook-title">適性フック — 「眠ってる才能」で好奇心</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="banners/banner_06.png" onclick="openLB(this)" alt="Banner 06">
+      <div class="card-info">
+        <div class="card-num">#06</div>
+        <div class="card-headline">あなたの才能、招待します</div>
+        <div class="card-type">才能開花×クリスタル型</div>
+        <div class="card-hypothesis">才能×招待状の掛け合わせコピーはテスト開始率を上げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_07.png" onclick="openLB(this)" alt="Banner 07">
+      <div class="card-info">
+        <div class="card-num">#07</div>
+        <div class="card-headline">眠れる才能、起こしにきた</div>
+        <div class="card-type">覚醒×石像ひび割れ型</div>
+        <div class="card-hypothesis">覚醒メタファーのダイナミックKVはスクロール停止率を上げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_08.png" onclick="openLB(this)" alt="Banner 08">
+      <div class="card-info">
+        <div class="card-num">#08</div>
+        <div class="card-headline">3分で、才能が目覚める</div>
+        <div class="card-type">数字インパクト×タイポグラフィ型</div>
+        <div class="card-hypothesis">具体的時間「3分」の提示はCVR（テスト開始率）を上げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_09.png" onclick="openLB(this)" alt="Banner 09">
+      <div class="card-info">
+        <div class="card-num">#09</div>
+        <div class="card-headline">その直感、マーケの才能です</div>
+        <div class="card-type">肯定×脳スキャン型</div>
+        <div class="card-hypothesis">「あなたは既に才能がある」肯定はN1の自己肯定感に刺さるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_10.png" onclick="openLB(this)" alt="Banner 10">
+      <div class="card-info">
+        <div class="card-num">#10</div>
+        <div class="card-headline">才能は、見つけた人のもの</div>
+        <div class="card-type">宝探し×RPG冒険型</div>
+        <div class="card-hypothesis">宝箱メタファーはRPG好きのN1のテスト開始動機を強めるか</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 面白さフック -->
+<div class="hook-section">
+  <h2 class="hook-title">面白さフック — 「最高に面白い入口」でワクワク</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="banners/banner_11.png" onclick="openLB(this)" alt="Banner 11">
+      <div class="card-info">
+        <div class="card-num">#11</div>
+        <div class="card-headline">面白いほうへ、おいで</div>
+        <div class="card-type">カジュアル誘い×トンネル型</div>
+        <div class="card-hypothesis">カジュアルな誘い口調はフォーマルな適性テスト訴求よりCTRが高いか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_12.png" onclick="openLB(this)" alt="Banner 12">
+      <div class="card-info">
+        <div class="card-num">#12</div>
+        <div class="card-headline">最高に面白い入口</div>
+        <div class="card-type">壮大ゲート×入口演出型</div>
+        <div class="card-hypothesis">「入口」メタファーの壮大KVはスクロール停止率を上げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_13.png" onclick="openLB(this)" alt="Banner 13">
+      <div class="card-info">
+        <div class="card-num">#13</div>
+        <div class="card-headline">知ったら最後、戻れない</div>
+        <div class="card-type">禁断フレーズ×渦巻き型</div>
+        <div class="card-hypothesis">禁断系コピーはCTRを上げるがCVR（テスト完了率）は下がるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_14.png" onclick="openLB(this)" alt="Banner 14">
+      <div class="card-info">
+        <div class="card-num">#14</div>
+        <div class="card-headline">一度覗いたら、ハマる世界</div>
+        <div class="card-type">鍵穴覗き見×低コミット型</div>
+        <div class="card-hypothesis">「覗く」低コミットCTAはテスト開始のハードルを下げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_15.png" onclick="openLB(this)" alt="Banner 15">
+      <div class="card-info">
+        <div class="card-num">#15</div>
+        <div class="card-headline">マーケの世界への招待状</div>
+        <div class="card-type">コンセプト直球×ポップアップ型</div>
+        <div class="card-hypothesis">セールスコピーBの直球認知型はCPA効率で勝つか</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 共感フック -->
+<div class="hook-section">
+  <h2 class="hook-title">共感フック — 「発想力、持て余してない？」でN1の痛み</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="banners/banner_16.png" onclick="openLB(this)" alt="Banner 16">
+      <div class="card-info">
+        <div class="card-num">#16</div>
+        <div class="card-headline">その発想力、持て余してない？</div>
+        <div class="card-type">N1痛み直撃×深夜デスク型</div>
+        <div class="card-hypothesis">N1のペインポイント直撃コピーは平日夜20時のCTRを上げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_17.png" onclick="openLB(this)" alt="Banner 17">
+      <div class="card-info">
+        <div class="card-num">#17</div>
+        <div class="card-headline">「このままでいいのかな」</div>
+        <div class="card-type">内面語×窓辺内省型</div>
+        <div class="card-hypothesis">内面の声をそのまま出すコピーはN1の共感→テスト開始を促すか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_18.png" onclick="openLB(this)" alt="Banner 18">
+      <div class="card-info">
+        <div class="card-num">#18</div>
+        <div class="card-headline">そのモヤモヤ、才能の証拠</div>
+        <div class="card-type">モヤモヤ肯定×光る粒子型</div>
+        <div class="card-hypothesis">ネガティブ感情をポジティブに転換するコピーはCVRを上げるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_19.png" onclick="openLB(this)" alt="Banner 19">
+      <div class="card-info">
+        <div class="card-num">#19</div>
+        <div class="card-headline">もっと面白い場所がある</div>
+        <div class="card-type">before/after対比×二分割型</div>
+        <div class="card-hypothesis">現状不満×理想の対比構図はN1の行動トリガーになるか</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners/banner_20.png" onclick="openLB(this)" alt="Banner 20">
+      <div class="card-info">
+        <div class="card-num">#20</div>
+        <div class="card-headline">発想力の使い道、見つかる</div>
+        <div class="card-type">混沌→秩序×収束型</div>
+        <div class="card-hypothesis">痛み→解決の2ステップコピーはCVR（テスト開始率）を上げるか</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  MARKETING DIVE バナー広告 — 20枚最大仮説セット<br>
+  Generated by Banner Park ver.7.0 × Gemini 3 Pro × Nano Banana Pro — ロゴ合成済み
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+function openLB(el) {
+  document.getElementById('lb-img').src = el.src;
+  document.getElementById('lb').classList.add('active');
+}
+function closeLB() {
+  document.getElementById('lb').classList.remove('active');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
+</script>
+
+</body>
+</html>

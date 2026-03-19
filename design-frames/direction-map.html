@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>DESIGN FRAMES</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #f5f2ed;
+  color: #1a1a1a;
+  font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+  padding: 0;
+}
+
+/* ==== HERO ==== */
+.hero {
+  background: #fff;
+  color: #1a1a1a;
+  padding: 52px 40px 40px;
+  border-bottom: 1px solid #eae6df;
+}
+.hero-top {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.hero-left {}
+.hero-label {
+  font-size: 11px; letter-spacing: 3px; font-weight: 700;
+  color: #c4a882; margin-bottom: 10px;
+}
+.hero h1 {
+  font-size: 52px; font-weight: 900; line-height: 1.05;
+  color: #1a1a1a;
+}
+.hero-right {
+  display: flex; gap: 20px; align-items: flex-end; padding-bottom: 6px;
+}
+.stat { text-align: center; }
+.stat-num { font-size: 28px; font-weight: 900; line-height: 1; }
+.stat-num.n-total { color: #1a1a1a; }
+.stat-num.n-female { color: #E63946; }
+.stat-num.n-male { color: #457B9D; }
+.stat-num.n-uni { color: #c4a050; }
+.stat-label { font-size: 8px; letter-spacing: 2px; color: #ccc; margin-top: 4px; font-weight: 700; }
+.hero-divider {
+  height: 3px; border-radius: 2px; margin-bottom: 12px;
+  display: flex; gap: 3px;
+}
+.hero-divider span { flex: 1; border-radius: 2px; }
+.hero-sub { font-size: 12px; color: #bbb; letter-spacing: 0.5px; }
+
+/* ==== MAP ==== */
+.map-section {
+  max-width: 900px; margin: 40px auto; padding: 0 24px;
+}
+.sec-title {
+  font-size: 14px; font-weight: 900; letter-spacing: 3px;
+  border-bottom: 3px solid #1a1a1a; padding-bottom: 8px; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-title .dot { width: 10px; height: 10px; border-radius: 50%; background: #E63946; }
+
+.pm-list {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.pm-row {
+  display: flex; align-items: center; gap: 0;
+  background: #fff; border-radius: 12px; overflow: hidden;
+  transition: transform 0.15s;
+}
+.pm-row:hover { transform: translateX(4px); }
+.pm-row-color {
+  width: 6px; min-height: 100%; flex-shrink: 0;
+}
+.pm-row-body {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 20px; flex: 1;
+}
+.pm-row-num {
+  font-size: 20px; font-weight: 900; color: #ddd; width: 32px; text-align: center; flex-shrink: 0;
+}
+.pm-row-info { flex: 1; }
+.pm-row-info strong { font-size: 14px; font-weight: 900; }
+.pm-row-info .pm-meta { font-size: 11px; color: #999; display: block; margin-top: 2px; }
+.pm-row-tags {
+  display: flex; gap: 6px; align-items: center; flex-shrink: 0;
+}
+.pm-target {
+  display: inline-block; font-size: 8px; padding: 3px 10px; border-radius: 10px;
+  letter-spacing: 1px; font-weight: 900;
+}
+.t-f { background: #E63946; color: #fff; }
+.t-m { background: #457B9D; color: #fff; }
+.t-u { background: #F4D35E; color: #1a1a1a; }
+.pm-tone {
+  font-size: 8px; padding: 3px 10px; border-radius: 10px;
+  letter-spacing: 1px; font-weight: 900;
+  border: 1px solid #eee; color: #bbb;
+}
+
+.pm-legend {
+  display: flex; gap: 20px; justify-content: center; margin-top: 16px;
+  font-size: 11px; color: #999;
+}
+.pm-legend .pm-target { margin-right: 4px; }
+
+/* ==== CARDS ==== */
+.cards-section {
+  max-width: 1100px; margin: 48px auto; padding: 0 24px;
+}
+.cards-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+
+.card {
+  border-radius: 16px; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+
+/* 各カードのカラーテーマ - ヘッダー部分 */
+.card-header {
+  padding: 20px 20px 16px; position: relative;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.card-header .num {
+  font-size: 48px; font-weight: 900; line-height: 1; opacity: 0.25; color: #fff;
+}
+.card-header .badge {
+  font-size: 8px; padding: 4px 10px; border-radius: 10px;
+  font-weight: 900; letter-spacing: 1px; background: rgba(255,255,255,0.2); color: #fff;
+}
+.card-header .brand {
+  position: absolute; bottom: 16px; left: 20px;
+  font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 1px;
+}
+.card-header .industry {
+  position: absolute; bottom: 42px; left: 20px;
+  font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.6); font-weight: 700;
+}
+
+.h-beauty { background: linear-gradient(135deg, #d4a843, #a07830); }
+.h-saas { background: linear-gradient(135deg, #1058C4, #0a3a8a); }
+.h-course { background: linear-gradient(135deg, #ff6b25, #cc4400); }
+.h-cafe { background: linear-gradient(135deg, #a08860, #7a6840); }
+.h-fitness { background: linear-gradient(135deg, #9c27b0, #6a1b9a); }
+.h-travel { background: linear-gradient(135deg, #00897b, #00695c); }
+.h-pet { background: linear-gradient(135deg, #e91e90, #c2185b); }
+.h-kids { background: linear-gradient(135deg, #ff9800, #f57c00); }
+.h-sweets { background: linear-gradient(135deg, #e91e63, #c2185b); }
+
+.card-body {
+  background: #fff; padding: 20px; flex: 1;
+  display: flex; flex-direction: column;
+}
+.card-target-row {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
+}
+.card-concept {
+  font-size: 12px; color: #888; line-height: 1.7; margin-bottom: 14px;
+}
+.card-copy {
+  font-size: 16px; font-weight: 900; color: #1a1a1a; line-height: 1.5;
+  padding: 14px 16px; border-radius: 10px;
+  background: #f5f2ed; margin-bottom: 14px;
+  position: relative;
+}
+.card-copy::before {
+  content: '"'; position: absolute; top: -4px; left: 8px;
+  font-size: 36px; color: #ddd; font-weight: 900; line-height: 1;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: auto; }
+.tag {
+  font-size: 9px; padding: 4px 10px; border-radius: 10px;
+  background: #f5f2ed; color: #888; font-weight: 700;
+}
+
+.card-palette { display: flex; height: 8px; }
+.card-palette .sw { flex: 1; }
+
+/* ==== FOOTER ==== */
+.footer {
+  text-align: center; padding: 32px; font-size: 10px;
+  color: #ccc; letter-spacing: 3px; background: #1a1a1a; font-weight: 700;
+}
+
+@media (max-width: 900px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .cards-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 28px; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="hero-label">DOCKING DESIGN SYSTEM</div>
+      <h1>Design<br>Frames</h1>
+    </div>
+    <div class="hero-right">
+      <div class="stat"><span class="stat-num n-total">9</span><span class="stat-label">TOTAL</span></div>
+      <div class="stat"><span class="stat-num n-female">3</span><span class="stat-label">FEMALE</span></div>
+      <div class="stat"><span class="stat-num n-male">3</span><span class="stat-label">MALE</span></div>
+      <div class="stat"><span class="stat-num n-uni">3</span><span class="stat-label">UNISEX</span></div>
+    </div>
+  </div>
+  <div class="hero-divider">
+    <span style="background:#d4a843;"></span>
+    <span style="background:#1058C4;"></span>
+    <span style="background:#ff6b25;"></span>
+    <span style="background:#a08860;"></span>
+    <span style="background:#9c27b0;"></span>
+    <span style="background:#00897b;"></span>
+    <span style="background:#e91e90;"></span>
+    <span style="background:#ff9800;"></span>
+    <span style="background:#e91e63;"></span>
+  </div>
+  <p class="hero-sub">9 Industries / 3 Tones / Full Coverage Banner Reference</p>
+</div>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="sec-title"><span class="dot"></span>OVERVIEW</div>
+  <div class="pm-list">
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#d4a843;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">01</span>
+        <div class="pm-row-info"><strong>LUMIERE</strong><span class="pm-meta">美容 / 高級スキンケア</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-f">FEMALE</span><span class="pm-tone">HARD</span></div>
+      </div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#1058C4;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">02</span>
+        <div class="pm-row-info"><strong>SIGNALFLOW</strong><span class="pm-meta">SaaS / BtoB</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-m">MALE</span><span class="pm-tone">HARD</span></div>
+      </div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#ff6b25;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">03</span>
+        <div class="pm-row-info"><strong>IGNITE</strong><span class="pm-meta">講座 / 自己投資</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-m">MALE</span><span class="pm-tone">HARD</span></div>
+      </div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#a08860;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">04</span>
+        <div class="pm-row-info"><strong>SOIL & SIP</strong><span class="pm-meta">カフェ / オーガニック</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-u">UNISEX</span><span class="pm-tone">SOFT</span></div>
+      </div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#9c27b0;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">05</span>
+        <div class="pm-row-info"><strong>NEUROBODY</strong><span class="pm-meta">フィットネス / テック</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-m">MALE</span><span class="pm-tone">HARD</span></div>
+      </div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#00897b;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">06</span>
+        <div class="pm-row-info"><strong>FARSHORE</strong><span class="pm-meta">旅行 / 体験</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-u">UNISEX</span><span class="pm-tone">SOFT</span></div>
+      </div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#e91e90;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">07</span>
+        <div class="pm-row-info"><strong>MOFU</strong><span class="pm-meta">ペット / ケア</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-f">FEMALE</span><span class="pm-tone">SOFT</span></div>
+      </div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#ff9800;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">08</span>
+        <div class="pm-row-info"><strong>PIKARU</strong><span class="pm-meta">知育 / エデュテック</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-u">UNISEX</span><span class="pm-tone">PLAYFUL</span></div>
+      </div>
+    </div>
+    <div class="pm-row">
+      <div class="pm-row-color" style="background:#e91e63;"></div>
+      <div class="pm-row-body">
+        <span class="pm-row-num">09</span>
+        <div class="pm-row-info"><strong>MELTY</strong><span class="pm-meta">スイーツ / パティスリー</span></div>
+        <div class="pm-row-tags"><span class="pm-target t-f">FEMALE</span><span class="pm-tone">PLAYFUL</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="pm-legend">
+    <span><span class="pm-target t-f">FEMALE</span> 女性メイン</span>
+    <span><span class="pm-target t-m">MALE</span> 男性メイン</span>
+    <span><span class="pm-target t-u">UNISEX</span> ユニセックス</span>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="cards-section">
+  <div class="sec-title"><span class="dot" style="background:#F4D35E;"></span>ALL DIRECTIONS</div>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-header h-beauty">
+        <span class="num">01</span>
+        <span class="badge">HARD</span>
+        <span class="industry">BEAUTY / SKINCARE</span>
+        <span class="brand">LUMIERE</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-f">FEMALE</span></div>
+        <div class="card-concept">高級スキンケアD2C。肌の奥に眠る光を引き出す。30代女性。本物志向。</div>
+        <div class="card-copy">その肌、まだ目覚めていない。</div>
+        <div class="card-tags"><span class="tag">ラグジュアリー</span><span class="tag">ミニマル</span><span class="tag">光の粒子</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#0d0906;"></div>
+        <div class="sw" style="background:#1a1a1a;"></div>
+        <div class="sw" style="background:#d4a843;"></div>
+        <div class="sw" style="background:#f5d78e;"></div>
+        <div class="sw" style="background:#ffffff;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header h-saas">
+        <span class="num">02</span>
+        <span class="badge">HARD</span>
+        <span class="industry">SAAS / B2B TOOL</span>
+        <span class="brand">SIGNALFLOW</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-m">MALE</span></div>
+        <div class="card-concept">AIデータ分析プラットフォーム。散らばるデータを一つの流れに。マーケ責任者。</div>
+        <div class="card-copy">データは語っている。聞こえているか。</div>
+        <div class="card-tags"><span class="tag">Swiss Design</span><span class="tag">クリーン</span><span class="tag">信頼</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#0a1628;"></div>
+        <div class="sw" style="background:#1058C4;"></div>
+        <div class="sw" style="background:#67CAFF;"></div>
+        <div class="sw" style="background:#e8f4fd;"></div>
+        <div class="sw" style="background:#ffffff;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header h-course">
+        <span class="num">03</span>
+        <span class="badge">HARD</span>
+        <span class="industry">COURSE / SELF-INVESTMENT</span>
+        <span class="brand">IGNITE</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-m">MALE</span></div>
+        <div class="card-concept">副業×マーケ実践講座。くすぶってる人に火をつける。20-30代会社員。</div>
+        <div class="card-copy">「いつか」を待つ人生は、今日で終わりだ。</div>
+        <div class="card-tags"><span class="tag">エネルギッシュ</span><span class="tag">ダーク×炎</span><span class="tag">覚醒</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#0d0d0d;"></div>
+        <div class="sw" style="background:#1a1008;"></div>
+        <div class="sw" style="background:#ff6b25;"></div>
+        <div class="sw" style="background:#ffaa00;"></div>
+        <div class="sw" style="background:#fff5e6;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header h-cafe">
+        <span class="num">04</span>
+        <span class="badge">SOFT</span>
+        <span class="industry">CAFE / ORGANIC</span>
+        <span class="brand">SOIL & SIP</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-u">UNISEX</span></div>
+        <div class="card-concept">オーガニック専門カフェ。土から届くコーヒーと、ゆっくり流れる時間。30代。</div>
+        <div class="card-copy">今日のコーヒー、なんだかやさしい。</div>
+        <div class="card-tags"><span class="tag">ナチュラル</span><span class="tag">Scandinavian</span><span class="tag">余白</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#2a2418;"></div>
+        <div class="sw" style="background:#c4a882;"></div>
+        <div class="sw" style="background:#7a9a50;"></div>
+        <div class="sw" style="background:#e8e0d0;"></div>
+        <div class="sw" style="background:#f5f0e8;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header h-fitness">
+        <span class="num">05</span>
+        <span class="badge">HARD</span>
+        <span class="industry">FITNESS / HEALTH TECH</span>
+        <span class="brand">NEUROBODY</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-m">MALE</span></div>
+        <div class="card-concept">AIパーソナルトレーニングアプリ。脳科学×運動でアップデート。25-40代。</div>
+        <div class="card-copy">鍛えるのは、体じゃない。脳だ。</div>
+        <div class="card-tags"><span class="tag">ネオン</span><span class="tag">サイバー</span><span class="tag">テクノロジー</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#0a0a14;"></div>
+        <div class="sw" style="background:#1a0a2a;"></div>
+        <div class="sw" style="background:#e040fb;"></div>
+        <div class="sw" style="background:#00e5ff;"></div>
+        <div class="sw" style="background:#ffffff;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header h-travel">
+        <span class="num">06</span>
+        <span class="badge">SOFT</span>
+        <span class="industry">TRAVEL / EXPERIENCE</span>
+        <span class="brand">FARSHORE</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-u">UNISEX</span></div>
+        <div class="card-concept">ローカル体験特化の旅行プラットフォーム。暮らしに触れる旅。20-30代。</div>
+        <div class="card-copy">知らない路地を曲がったら、おばあちゃんに手を振られた。</div>
+        <div class="card-tags"><span class="tag">開放感</span><span class="tag">ターコイズ</span><span class="tag">エディトリアル</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#0a1a1a;"></div>
+        <div class="sw" style="background:#082a2a;"></div>
+        <div class="sw" style="background:#00bfa5;"></div>
+        <div class="sw" style="background:#64ffda;"></div>
+        <div class="sw" style="background:#e0f7f4;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header h-pet">
+        <span class="num">07</span>
+        <span class="badge">SOFT</span>
+        <span class="industry">PET CARE / LIFESTYLE</span>
+        <span class="brand">MOFU</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-f">FEMALE</span></div>
+        <div class="card-concept">ペットと飼い主のウェルネスブランド。ごはん・ケア・暮らしをまるごと。20-40代。</div>
+        <div class="card-copy">帰ったら、しっぽが待ってる。それだけで今日も最高。</div>
+        <div class="card-tags"><span class="tag">やわらかい</span><span class="tag">パステル</span><span class="tag">もふもふ</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#f8a4c8;"></div>
+        <div class="sw" style="background:#c8a4f8;"></div>
+        <div class="sw" style="background:#fce4ec;"></div>
+        <div class="sw" style="background:#e8d0f0;"></div>
+        <div class="sw" style="background:#fff8fa;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header h-kids">
+        <span class="num">08</span>
+        <span class="badge">PLAYFUL</span>
+        <span class="industry">KIDS EDTECH / CREATIVE</span>
+        <span class="brand">PIKARU</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-u">UNISEX</span></div>
+        <div class="card-concept">遊びながら学ぶ知育アプリ。「なんで？」から始まる好奇心を応援。3-8歳と親。</div>
+        <div class="card-copy">「なんで？」は、天才のはじまり。</div>
+        <div class="card-tags"><span class="tag">ポップ</span><span class="tag">カラフル</span><span class="tag">ワクワク</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#ffd233;"></div>
+        <div class="sw" style="background:#ff6b9d;"></div>
+        <div class="sw" style="background:#33d4ff;"></div>
+        <div class="sw" style="background:#7cff6b;"></div>
+        <div class="sw" style="background:#ffffff;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header h-sweets">
+        <span class="num">09</span>
+        <span class="badge">PLAYFUL</span>
+        <span class="industry">SWEETS / PATISSERIE</span>
+        <span class="brand">MELTY</span>
+      </div>
+      <div class="card-body">
+        <div class="card-target-row"><span class="pm-target t-f">FEMALE</span></div>
+        <div class="card-concept">ご褒美スイーツのサブスク。毎月届く小さな幸せ。20-30代女性。</div>
+        <div class="card-copy">がんばった日は、もうひとつ食べていい。</div>
+        <div class="card-tags"><span class="tag">かわいい</span><span class="tag">ご褒美感</span><span class="tag">とろける</span></div>
+      </div>
+      <div class="card-palette">
+        <div class="sw" style="background:#ff8a9e;"></div>
+        <div class="sw" style="background:#ffc8a0;"></div>
+        <div class="sw" style="background:#fff0e8;"></div>
+        <div class="sw" style="background:#fce4ec;"></div>
+        <div class="sw" style="background:#fffaf5;"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">DOCKING DESIGN SYSTEM — BUILT BY CODY</div>
+
+</body>
+</html>

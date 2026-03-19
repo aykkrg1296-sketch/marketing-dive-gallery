@@ -1,0 +1,9 @@
+{
+  "index": 6,
+  "group": "B_persona3r_rpg",
+  "hook": "面白さフック",
+  "headline": "面白いほうへ、おいで",
+  "gaze": "中央集中",
+  "hypothesis": "ペルソナ3R的メニューUI構成で、RPG世界観を全面に出して没入感を演出",
+  "prompt": "A Japanese RPG-style menu interface design. Deep blue gradient background resembling underwater depths. Menu items arranged diagonally from top-left to bottom-right in bold Japanese text: DIVE / SKILL / TEST / RESULT — styled like Persona 3 Reload menu. The selected item 'DIVE' is highlighted in bright cyan (#67CAFF) and larger. Small character silhouette on the right side. Blue light particles floating upward like underwater bubbles. Top area: 面白いほうへ、おいで in stylized white text. Bottom: golden (#FFC61C) UI bar with 無料で適性を診断する. Square 1:1 format. Anime/game UI aesthetic, polished and professional."
+}

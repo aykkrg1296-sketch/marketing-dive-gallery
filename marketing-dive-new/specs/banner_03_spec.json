@@ -1,0 +1,11 @@
+{
+  "index": 3,
+  "type": "招待状クローズアップ×パーソナル型",
+  "hook": "歓迎",
+  "headline": "この招待状は、あなた宛て",
+  "sub": "マーケの世界が待っている",
+  "cta": "開封する",
+  "visual": "Close-up of elegant hands holding a beautiful wax-sealed invitation letter that glows with soft golden light. The letter is partially opened, light spilling out. Background is deep dark blue (#1058C4) with subtle light particles. Warm, intimate atmosphere. The wax seal has a subtle compass/dive motif. Soft bokeh in background.",
+  "text_style": "Japanese headline 'この招待状は、あなた宛て' in bold white, positioned top area. 'マーケの世界が待っている' smaller below in light blue (#67CAFF). CTA '開封する' in orange (#FF6600) button at bottom. 'MARKETING DIVE' small logo top-right.",
+  "hypothesis": "パーソナル感（あなた宛て）はCTRとCVR両方に効くか"
+}

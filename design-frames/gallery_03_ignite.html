@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>IGNITE — Design Frames Gallery</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;900&family=Noto+Sans+JP:wght@700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: 'DM Sans', 'Noto Sans JP', sans-serif; }
+.hero { padding: 60px 40px 40px; border-bottom: 2px solid #ff6b25; }
+.hero-label { font-size: 11px; letter-spacing: 4px; color: #ff6b25; font-weight: 700; margin-bottom: 8px; }
+.hero h1 { font-size: 56px; font-weight: 900; line-height: 1.05; }
+.hero h1 span { color: #ff6b25; }
+.hero-sub { font-size: 13px; color: #666; margin-top: 12px; letter-spacing: 0.5px; }
+.brand-info { padding: 20px 40px; background: #111; display: flex; gap: 40px; flex-wrap: wrap; }
+.brand-info .tag { background: #ff6b25; color: #000; font-size: 10px; font-weight: 900; padding: 4px 12px; border-radius: 4px; letter-spacing: 1px; }
+.brand-info .copy { font-size: 14px; color: #ccc; font-style: italic; }
+.brand-info .meta { font-size: 11px; color: #666; }
+.section { max-width: 1200px; margin: 40px auto; padding: 0 24px; }
+.sec-title { font-size: 13px; font-weight: 900; letter-spacing: 3px; color: #ff6b25; border-bottom: 2px solid #222; padding-bottom: 10px; margin-bottom: 24px; }
+.sec-desc { font-size: 12px; color: #888; margin-bottom: 20px; line-height: 1.6; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card { background: #111; border-radius: 8px; overflow: hidden; transition: transform 0.2s; }
+.card:hover { transform: scale(1.02); }
+.card img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.card-info { padding: 12px 16px; }
+.card-info .name { font-size: 12px; font-weight: 900; color: #ff6b25; }
+.card-info .desc { font-size: 11px; color: #666; margin-top: 4px; }
+.card-info .axis { font-size: 9px; color: #333; margin-top: 6px; letter-spacing: 1px; }
+/* FB機能 */
+.fb-row { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+.fb-btn { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #333; background: transparent; color: #666; font-size: 14px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+.fb-btn:hover { border-color: #ff6b25; color: #ff6b25; }
+.fb-btn.active-o { background: #ff6b25; border-color: #ff6b25; color: #000; }
+.fb-btn.active-x { background: #e63946; border-color: #e63946; color: #fff; }
+.fb-comment { flex: 1; background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 6px 10px; color: #ccc; font-size: 11px; font-family: inherit; resize: none; height: 32px; }
+.fb-comment:focus { outline: none; border-color: #ff6b25; }
+.fb-comment::placeholder { color: #444; }
+.fb-status { font-size: 9px; color: #444; margin-top: 4px; }
+.fb-summary { position: fixed; bottom: 20px; right: 20px; background: #111; border: 1px solid #ff6b25; border-radius: 12px; padding: 12px 20px; z-index: 100; font-size: 12px; display: flex; gap: 16px; align-items: center; }
+.fb-summary .count-o { color: #ff6b25; font-weight: 900; }
+.fb-summary .count-x { color: #e63946; font-weight: 900; }
+.fb-summary .count-total { color: #666; }
+.fb-export { background: #ff6b25; color: #000; border: none; padding: 6px 14px; border-radius: 6px; font-size: 11px; font-weight: 900; cursor: pointer; margin-left: 8px; }
+.matrix { margin: 40px auto; max-width: 800px; padding: 0 24px; }
+.matrix table { width: 100%; border-collapse: collapse; }
+.matrix th, .matrix td { padding: 16px; text-align: center; font-size: 12px; border: 1px solid #222; }
+.matrix th { background: #ff6b25; color: #000; font-weight: 900; font-size: 10px; letter-spacing: 2px; }
+.matrix td { background: #111; color: #ccc; }
+.matrix .axis-label { background: #1a1a1a; color: #ff6b25; font-weight: 900; font-size: 10px; letter-spacing: 1px; }
+.dpro { padding: 20px 40px; background: #0d0d0d; border-top: 1px solid #1a1a1a; margin-top: 40px; }
+.dpro h3 { font-size: 11px; letter-spacing: 3px; color: #ff6b25; margin-bottom: 12px; }
+.dpro p { font-size: 11px; color: #555; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">DESIGN FRAMES — 03</div>
+  <h1><span>IGNITE</span></h1>
+  <div class="hero-sub">副業×マーケティング実践講座 — 顕在/潜在 × 売れ筋/オンリーワン 4軸バナー</div>
+</div>
+
+<div class="brand-info">
+  <span class="tag">MALE</span>
+  <span class="tag" style="background:#333;color:#ff6b25;">HARD</span>
+  <span class="copy">「いつか」を待つ人生は、今日で終わりだ。</span>
+  <span class="meta">20-30代会社員 / 副業×マーケ実践講座 / くすぶってる人に火をつける</span>
+</div>
+
+<div class="matrix">
+  <table>
+    <tr>
+      <th></th>
+      <th>売れ筋分析ベース</th>
+      <th>オンリーワン</th>
+    </tr>
+    <tr>
+      <td class="axis-label">顕在意識層</td>
+      <td>①実績数字ドーン<br>②Before/After</td>
+      <td>③燃えるタイポグラフィ<br>④溶ける時計（ダリ）</td>
+    </tr>
+    <tr>
+      <td class="axis-label">潜在意識層</td>
+      <td>⑤同期との差が開く焦り<br>⑥深夜の問いかけ</td>
+      <td>⑦暗闇のマッチ1本<br>⑧白紙の履歴書</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="sec-title">KENZAI × URESJI — 顕在意識 × 売れ筋分析ベース</div>
+  <div class="sec-desc">「スキルアップしたい」「副業で稼ぎたい」と自覚しているニーズに、DPro分析で実証済みの王道パターンで刺す</div>
+  <div class="grid">
+    <div class="card">
+      <img src="banners_03_ignite/ignite_01_kenzai_uresji_numbers.png" alt="Numbers">
+      <div class="card-info">
+        <div class="name">① Numbers — 実績数字ドーン</div>
+        <div class="desc">GFS式。受講生数・月収UP・成功率の数字が視覚的に支配</div>
+        <div class="axis">顕在 × 売れ筋 | REF: GFS投資の達人講座（推定広告費2000万超）</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_02_kenzai_uresji_beforeafter.png" alt="Before/After">
+      <div class="card-info">
+        <div class="name">② Before/After — 変化の可視化</div>
+        <div class="desc">WEBMARKS式。灰色の現在→オレンジの未来。スプリット構図</div>
+        <div class="axis">顕在 × 売れ筋 | REF: WEBMARKS, マケキャン Before→After型</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">KENZAI × ONLY ONE — 顕在意識 × オンリーワン</div>
+  <div class="sec-desc">「スキルアップしたい」という同じニーズに、誰もやったことない表現で刺す</div>
+  <div class="grid">
+    <div class="card">
+      <img src="banners_03_ignite/ignite_03_kenzai_only_burningtypo.png" alt="Burning Typography">
+      <div class="card-info">
+        <div class="name">③ Burning Typography — 燃える文字</div>
+        <div class="desc">「いつか」が炎で燃えている。先延ばしを焼き尽くすメタファー</div>
+        <div class="axis">顕在 × オンリーワン | 映画ポスター級のビジュアルインパクト</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_04_kenzai_only_meltclock.png" alt="Melting Clock">
+      <div class="card-info">
+        <div class="name">④ Melting Clock — 溶ける時計</div>
+        <div class="desc">ダリのシュルレアリスム。11:59を指す溶ける時計=もう遅い</div>
+        <div class="axis">顕在 × オンリーワン | 高級アート×広告の融合</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">SENZAI × URESJI — 潜在意識 × 売れ筋分析ベース</div>
+  <div class="sec-desc">本人も気づいていない「このままでいいのか」という焦りに、実証済みの煽り手法で触れる</div>
+  <div class="grid">
+    <div class="card">
+      <img src="banners_03_ignite/ignite_05_senzai_uresji_gap.png" alt="Widening Gap">
+      <div class="card-info">
+        <div class="name">⑤ Widening Gap — 広がる差</div>
+        <div class="desc">WANNABE式。エスカレーターを上る同期、立ち止まる自分</div>
+        <div class="axis">潜在 × 売れ筋 | REF: WANNABE「ずっとこの仕事でいいの...?」</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_06_senzai_uresji_latenight.png" alt="Late Night">
+      <div class="card-info">
+        <div class="name">⑥ Late Night — 深夜の問いかけ</div>
+        <div class="desc">マケキャン式。深夜2時、PCの光だけの部屋で自問する男</div>
+        <div class="axis">潜在 × 売れ筋 | REF: マケキャン「今の収入で大丈夫か。」</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">SENZAI × ONLY ONE — 潜在意識 × オンリーワン</div>
+  <div class="sec-desc">言語化できない深層心理に、見たことない詩的・アート的表現で揺さぶる</div>
+  <div class="grid">
+    <div class="card">
+      <img src="banners_03_ignite/ignite_07_senzai_only_match.png" alt="Single Match">
+      <div class="card-info">
+        <div class="name">⑦ Single Match — 暗闇のマッチ1本</div>
+        <div class="desc">完全な暗闇に火のついたマッチ1本。煙がコピーを運ぶ</div>
+        <div class="axis">潜在 × オンリーワン | アートギャラリー品質のミニマリズム</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_08_senzai_only_blankresume.png" alt="Blank Resume">
+      <div class="card-info">
+        <div class="name">⑧ Blank Resume — 白紙の履歴書</div>
+        <div class="desc">スキル欄が空白の履歴書。「まだ書けることがある」</div>
+        <div class="axis">潜在 × オンリーワン | 不快な真実を突きつける挑発型</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">TYPOGRAPHY & CONCEPT EXTENSIONS — タイポ＋コンセプト拡張</div>
+  <div class="sec-desc">さらに攻めたタイポグラフィとコンセプチュアルなアプローチ</div>
+  <div class="grid">
+    <div class="card">
+      <img src="banners_03_ignite/ignite_T1_ash.png" alt="Ash">
+      <div class="card-info">
+        <div class="name">T1 Ashes — 灰になる「いつか」</div>
+        <div class="desc">文字が右から灰になって崩れていく。「いつか」が消滅する瞬間</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_T2_neon.png" alt="Neon">
+      <div class="card-info">
+        <div class="name">T2 Neon Sign — 東京の裏路地ネオン</div>
+        <div class="desc">雨の夜、ネオンサインが語りかける。サイバーパンク×広告</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_T3_calligraphy.png" alt="Calligraphy">
+      <div class="card-info">
+        <div class="name">T3 Calligraphy — 書道の一撃</div>
+        <div class="desc">白背景に墨の一閃。「終」だけオレンジ。和×モダン</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_T4_glitch.png" alt="Glitch">
+      <div class="card-info">
+        <div class="name">T4 Glitch — デジタルノイズ</div>
+        <div class="desc">「いつか」がグリッチで崩壊。「今日」だけクリア。ノイズ=迷い</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_T5_xray.png" alt="X-Ray">
+      <div class="card-info">
+        <div class="name">T5 X-Ray — 透視する男</div>
+        <div class="desc">スーツの下の骨格。心臓の場所にオレンジの炎。中身は空か？</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_T6_splitface.png" alt="Split Face">
+      <div class="card-info">
+        <div class="name">T6 Split Face — 二つの顔</div>
+        <div class="desc">左:疲弊グレー 右:自信オレンジ。どちらの自分を選ぶ？</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_T7_countdown.png" alt="Countdown">
+      <div class="card-info">
+        <div class="name">T7 Countdown — 00:00:00</div>
+        <div class="desc">巨大LEDタイマーがゼロ。「いつか」のカウントダウンは終了した</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_T8_mirror.png" alt="Mirror">
+      <div class="card-info">
+        <div class="name">T8 Cracked Mirror — ひび割れた鏡</div>
+        <div class="desc">鏡のひび越しに別の自分が見える。結露でコピーが浮かぶ</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">VARIATIONS — コンセプト別バリエーション</div>
+  <div class="sec-desc">各コンセプトの別バージョン。同じ軸で表現を変えた比較用</div>
+  <div class="grid">
+    <div class="card">
+      <img src="banners_03_ignite/ignite_01b_kenzai_uresji_numbers_v2.png" alt="Numbers v2">
+      <div class="card-info">
+        <div class="name">①v2 Numbers — バーチャート型</div>
+        <div class="desc">インフォグラフィック。横棒グラフでスキル×月収×案件数を可視化</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_02b_kenzai_uresji_beforeafter_v2.png" alt="BA v2">
+      <div class="card-info">
+        <div class="name">②v2 Before/After — 上下分割型</div>
+        <div class="desc">上:狭いキュービクル 下:開放的コワーキング。縦の対比</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_03b_kenzai_only_burningtypo_v2.png" alt="Burn v2">
+      <div class="card-info">
+        <div class="name">③v2 Burning — マッチで着火</div>
+        <div class="desc">「い」の右下からマッチの火が燃え広がる。リアルな延焼</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_04b_kenzai_only_meltclock_v2.png" alt="Hourglass">
+      <div class="card-info">
+        <div class="name">④v2 Hourglass — 砂時計</div>
+        <div class="desc">砂の代わりに「いつか」の文字が降り積もる。無駄な時間の蓄積</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_05b_senzai_uresji_gap_v2.png" alt="Train v2">
+      <div class="card-info">
+        <div class="name">⑤v2 Gap — 満員電車に乗らない朝</div>
+        <div class="desc">ホームで満員電車を見送る男。別の道を選ぶ静かな決意</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_06b_senzai_uresji_latenight_v2.png" alt="Morning">
+      <div class="card-info">
+        <div class="name">⑥v2 Morning After — 夜明け</div>
+        <div class="desc">眠れなかった朝6時。ベッドの端で頭を抱える。でも朝日が差す</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_07b_senzai_only_match_v2.png" alt="Matchbox">
+      <div class="card-info">
+        <div class="name">⑦v2 Match — IGNITEマッチ箱</div>
+        <div class="desc">「IGNITE」と書かれたマッチ箱。残り1本。最後のチャンス</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_08b_senzai_only_blankresume_v2.png" alt="Chair">
+      <div class="card-info">
+        <div class="name">⑧v2 Empty Chair — 空席</div>
+        <div class="desc">会議室の空いた1席。「この席は、まだ空いている。」</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">DESIGN REF INSPIRED — デザイン図鑑から取り入れた6枚</div>
+  <div class="sec-desc">タイポグラフィ16パターン、エディトリアルデザイン、モノカラー技法、スピード表現、マガジングリッチなど図鑑のテクニックを直接適用</div>
+  <div class="grid">
+    <div class="card">
+      <img src="banners_03_ignite/ignite_D1_perspective_burst.png" alt="Perspective Burst">
+      <div class="card-info">
+        <div class="name">D1 Perspective Burst — パース爆発文字</div>
+        <div class="desc">「終わりだ。」が画面奥から手前に飛び出す。漫画のインパクトフレーム×Swiss poster</div>
+        <div class="axis">REF: 004f 飛び出す動き / パース変形</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_D2_editorial_mixed.png" alt="Editorial Mixed">
+      <div class="card-info">
+        <div class="name">D2 Editorial Mixed — 日英混在エディトリアル</div>
+        <div class="desc">サイズ差激しい混在タイポ。#記号、「」括弧、グリッド崩し。Blue Coffee式</div>
+        <div class="axis">REF: 012a Blue Monday Coffee / エディトリアルデザイン</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_D3_monocolor_orange.png" alt="Monocolor">
+      <div class="card-info">
+        <div class="name">D3 Monocolor Orange — 全面オレンジ</div>
+        <div class="desc">画面全体がオレンジの濃淡。白いコピーだけが光のように浮かぶ。1色の極み</div>
+        <div class="axis">REF: 015d モノカラー技法 / 色の制約が生む力</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_D4_speed_italic.png" alt="Speed Italic">
+      <div class="card-info">
+        <div class="name">D4 Speed Italic — 超加速斜体</div>
+        <div class="desc">全文字30度斜体+三角オブジェクト。人生が加速して通り過ぎる</div>
+        <div class="axis">REF: 004f 斜体と角度で動き / 超加速タイポグラフィ</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_D5_magazine_glitch.png" alt="Magazine Glitch">
+      <div class="card-info">
+        <div class="name">D5 Magazine Glitch — 雑誌×グリッチ</div>
+        <div class="desc">GQ風ビジネスマン。顔をグリッチバンドが横断。ファッション誌×存在の危機</div>
+        <div class="axis">REF: 021b マガジングリッチ / 007a グリッチスタイル</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_D6_pure_typography.png" alt="Pure Typography">
+      <div class="card-info">
+        <div class="name">D6 Pure Typography — 文字だけで成立</div>
+        <div class="desc">写真ゼロ。各単語が異なるサイズ・位置・色で配置。余白がデザイン</div>
+        <div class="axis">REF: 004a 文字組みだけで16パターン / 004g タイトル文字の作り方</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">TYPOGRAPHY PLAY vol.3 — デザイン図鑑テクニック直接適用</div>
+  <div class="sec-desc">ロゴタイプ解体、クリッピングマスク、アウトライン、人物×巨大文字融合、ステンシル、床パース</div>
+  <div class="grid">
+    <div class="card">
+      <img src="banners_03_ignite/ignite_E1_logotype_owari.png" alt="Logotype">
+      <div class="card-info">
+        <div class="name">E1 Logotype 終 — 漢字解体アート</div>
+        <div class="desc">「終」の画をジオメトリック×モアレに再構成。004d終末ロゴタイプ直系</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_E2_photo_inside_text.png" alt="Photo Inside">
+      <div class="card-info">
+        <div class="name">E2 Photo Inside Text — 文字の中に世界</div>
+        <div class="desc">「今日で終わりだ。」の文字が窓。中にビジネスマン×都市のゴールデンアワー</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_E3_outline_only.png" alt="Outline">
+      <div class="card-info">
+        <div class="name">E3 Outline Only — 中身のない文字</div>
+        <div class="desc">全文字がアウトラインだけ。中が空。IGNITEだけソリッド＝行動だけが実体</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_E4_giant_person_typo.png" alt="Person Typo">
+      <div class="card-info">
+        <div class="name">E4 Person × Giant Typo — 人物融合</div>
+        <div class="desc">006eミキ漫式。巨大文字がビジネスマンの前後に。人とテキストが一体</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_E5_stencil_spray.png" alt="Stencil">
+      <div class="card-info">
+        <div class="name">E5 Stencil Spray — ストリートアート</div>
+        <div class="desc">コンクリ壁にスプレー。「いつか」にオレンジのXが入る。「いつか」を消す</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="banners_03_ignite/ignite_E6_perspective_floor.png" alt="Floor">
+      <div class="card-info">
+        <div class="name">E6 Perspective Floor — 床に投影された文字</div>
+        <div class="desc">黒い床にテキスト。革靴が踏み出す直前。映画のオープニングシーン</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dpro">
+  <h3>DPRO REAL-TIME ANALYSIS — 売れ筋パターン根拠</h3>
+  <p>
+    GFS投資の達人講座: 推定広告費2,000万超 / 全プラットフォーム展開 / 数字×会話劇が主力<br>
+    WEBMARKS: AI×Webマーケ / Before→After型 / 受講料100%OFF訴求 / Instagram中心<br>
+    WANNABE Academy: 「ずっとこの仕事でいいの...?」/ 漫画記事LP連動 / 潜在不安煽り<br>
+    マケキャン by DMM: 「今の収入で大丈夫か。」/ マンツーマン訴求 / 副業マーケター育成<br>
+    データ取得日: 2026-03-18 / 集計期間: 直近2日間 / ソート: 推定広告費増加額降順
+  </p>
+</div>
+
+<div class="fb-summary" id="fbSummary">
+  <span class="count-o" id="countO">0</span>
+  <span class="count-x" id="countX">0</span>
+  <span class="count-total" id="countTotal">/ 36</span>
+  <button class="fb-export" onclick="exportFB()">FB書き出し</button>
+</div>
+
+<script>
+// FB機能: 全カードにマルバツ+コメント追加
+const cards = document.querySelectorAll('.card');
+const fbData = JSON.parse(localStorage.getItem('ignite_fb') || '{}');
+
+cards.forEach((card, i) => {
+  const name = card.querySelector('.name')?.textContent || `card_${i}`;
+  const key = name.replace(/\s/g, '_');
+
+  const fbRow = document.createElement('div');
+  fbRow.className = 'fb-row';
+
+  const btnO = document.createElement('button');
+  btnO.className = 'fb-btn' + (fbData[key]?.vote === 'o' ? ' active-o' : '');
+  btnO.textContent = 'O';
+  btnO.onclick = () => { toggleVote(key, 'o', btnO, btnX); };
+
+  const btnX = document.createElement('button');
+  btnX.className = 'fb-btn' + (fbData[key]?.vote === 'x' ? ' active-x' : '');
+  btnX.textContent = 'X';
+  btnX.onclick = () => { toggleVote(key, 'x', btnO, btnX); };
+
+  const comment = document.createElement('textarea');
+  comment.className = 'fb-comment';
+  comment.placeholder = 'コメント...';
+  comment.value = fbData[key]?.comment || '';
+  comment.oninput = () => { saveFB(key, null, comment.value); };
+
+  fbRow.appendChild(btnO);
+  fbRow.appendChild(btnX);
+  fbRow.appendChild(comment);
+
+  card.querySelector('.card-info').appendChild(fbRow);
+});
+
+function toggleVote(key, vote, btnO, btnX) {
+  if (!fbData[key]) fbData[key] = {};
+  if (fbData[key].vote === vote) { fbData[key].vote = null; btnO.className = 'fb-btn'; btnX.className = 'fb-btn'; }
+  else {
+    fbData[key].vote = vote;
+    btnO.className = 'fb-btn' + (vote === 'o' ? ' active-o' : '');
+    btnX.className = 'fb-btn' + (vote === 'x' ? ' active-x' : '');
+  }
+  localStorage.setItem('ignite_fb', JSON.stringify(fbData));
+  updateSummary();
+}
+
+function saveFB(key, vote, comment) {
+  if (!fbData[key]) fbData[key] = {};
+  if (comment !== null) fbData[key].comment = comment;
+  localStorage.setItem('ignite_fb', JSON.stringify(fbData));
+}
+
+function updateSummary() {
+  let o = 0, x = 0;
+  Object.values(fbData).forEach(v => { if (v.vote === 'o') o++; if (v.vote === 'x') x++; });
+  document.getElementById('countO').textContent = 'O ' + o;
+  document.getElementById('countX').textContent = 'X ' + x;
+  document.getElementById('countTotal').textContent = '/ ' + cards.length;
+}
+
+function exportFB() {
+  let text = 'IGNITE FB結果\\n\\n';
+  Object.entries(fbData).forEach(([k, v]) => {
+    if (v.vote || v.comment) {
+      text += `${v.vote === 'o' ? 'O' : v.vote === 'x' ? 'X' : '-'} | ${k}`;
+      if (v.comment) text += ` | ${v.comment}`;
+      text += '\\n';
+    }
+  });
+  const blob = new Blob([text], {type: 'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ignite_fb.txt';
+  a.click();
+}
+
+updateSummary();
+</script>
+
+</body>
+</html>

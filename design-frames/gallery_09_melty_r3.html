@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<title>MELTY R3</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#fffaf5;color:#5a3e36;font-family:'Noto Sans JP',sans-serif;font-weight:300;}
+.hero{padding:60px 40px 40px;text-align:center;}
+.hero h1{font-size:48px;font-weight:700;letter-spacing:8px;color:#ff8a9e;}
+.hero p{font-size:16px;color:#5a3e36;margin-top:16px;}
+.hero .meta{display:flex;justify-content:center;gap:16px;margin-top:16px;font-size:10px;letter-spacing:2px;}
+.hero .badge{padding:4px 12px;border-radius:20px;border:1px solid #ff8a9e44;color:#ff8a9e;}
+.grid{max-width:1200px;margin:0 auto;padding:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #fce4ec;transition:transform 0.2s,box-shadow 0.2s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(255,138,158,0.15);}
+.card-img-wrap{aspect-ratio:1;overflow:hidden;background:#fff0e8;}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;}
+.card-info{padding:16px 20px;}
+.card-label{font-size:12px;color:#ff8a9e;letter-spacing:4px;font-weight:700;}
+.card-title{font-size:14px;color:#5a3e36;margin-top:4px;}
+.card-desc{font-size:11px;color:#b08878;margin-top:4px;}
+.zoom-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(90,62,54,0.9);z-index:1000;cursor:zoom-out;justify-content:center;align-items:center;}
+.zoom-overlay.active{display:flex;}
+.zoom-overlay img{max-width:90%;max-height:90%;border-radius:12px;}
+.footer{text-align:center;padding:32px;font-size:9px;letter-spacing:4px;color:#d4a090;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}}
+</style></head><body>
+<div class="hero">
+  <h1>MELTY</h1>
+  <p>「がんばった日は、もうひとつ食べていい。」</p>
+  <div class="meta"><span class="badge">R3</span><span class="badge">デザイン図鑑参照</span><span class="badge">ナノバナナ式テキスト</span></div>
+</div>
+<div class="grid">
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty_r3/melty_A1_flatlay.png" alt="melty_A1_flatlay.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">A1</div>
+                    <div class="card-title">Exploding Flat Lay</div>
+                    <div class="card-desc">弾けるフラットレイ。マカロンが浮遊する瞬間。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty_r3/melty_A2_chocolate.png" alt="melty_A2_chocolate.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">A2</div>
+                    <div class="card-title">Liquid Chocolate</div>
+                    <div class="card-desc">とろけるチョコの至福。極限のインダルジェンス。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty_r3/melty_B1_macaron.png" alt="melty_B1_macaron.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">B1</div>
+                    <div class="card-title">Macaron Cascade</div>
+                    <div class="card-desc">マカロンの虹が流れ落ちる。ダイナミック。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty_r3/melty_B2_giftbox.png" alt="melty_B2_giftbox.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">B2</div>
+                    <div class="card-title">The Unboxing</div>
+                    <div class="card-desc">サブスクBOXを開ける儀式。セルフラブ。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty_r3/melty_C1_woman.png" alt="melty_C1_woman.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">C1</div>
+                    <div class="card-title">Bliss Portrait</div>
+                    <div class="card-desc">一口前の至福。ビューティー広告級。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty_r3/melty_C2_cozy.png" alt="melty_C2_cozy.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">C2</div>
+                    <div class="card-title">Golden Hour Kitchen</div>
+                    <div class="card-desc">日曜午後のキッチン。ゴールデンアワー。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty_r3/melty_D1_minimal.png" alt="melty_D1_minimal.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">D1</div>
+                    <div class="card-title">One Perfect Macaron</div>
+                    <div class="card-desc">1個のマカロン×エディトリアル。テキスト主役。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty_r3/melty_D2_strawberry.png" alt="melty_D2_strawberry.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">D2</div>
+                    <div class="card-title">Strawberry Fantasy</div>
+                    <div class="card-desc">いちごの傑作が完成する瞬間。</div>
+                </div>
+            </div></div>
+<div class="zoom-overlay" id="zo" onclick="closeZoom()"><img id="zi" src=""></div>
+<div class="footer">DESIGN FRAMES 09 MELTY R3 — 2026-03-17 18:09</div>
+<script>
+function openZoom(s){document.getElementById('zi').src=s;document.getElementById('zo').classList.add('active');}
+function closeZoom(){document.getElementById('zo').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeZoom();});
+</script></body></html>

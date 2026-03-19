@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARKETING DIVE — 20 Banner Gallery</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: 'Helvetica Neue', 'Hiragino Sans', sans-serif;
+    padding: 40px 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    margin-bottom: 8px;
+    color: #67CAFF;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 48px;
+    letter-spacing: 2px;
+  }
+  .group-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1058C4;
+    border-left: 4px solid #1058C4;
+    padding-left: 16px;
+    margin: 48px 0 24px;
+    letter-spacing: 2px;
+  }
+  .group-label span {
+    font-size: 12px;
+    font-weight: 300;
+    color: #888;
+    margin-left: 12px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #141414;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(16, 88, 196, 0.3);
+  }
+  .card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+  .card-info {
+    padding: 12px;
+  }
+  .card-num {
+    font-size: 11px;
+    color: #67CAFF;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .card-headline {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .card-hook {
+    font-size: 10px;
+    color: #666;
+    margin-top: 4px;
+  }
+  .card-gaze {
+    font-size: 10px;
+    color: #444;
+    margin-top: 2px;
+  }
+  .fire { border: 2px solid #FF6600; }
+  .fire .card-num::after {
+    content: ' 🔥';
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 80vw;
+    max-height: 85vh;
+    border-radius: 4px;
+  }
+  .lightbox-info {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+  }
+
+  .summary {
+    max-width: 1400px;
+    margin: 64px auto 0;
+    padding: 32px;
+    background: #141414;
+    border-radius: 12px;
+  }
+  .summary h2 {
+    font-size: 16px;
+    color: #67CAFF;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+  .summary table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .summary th {
+    text-align: left;
+    color: #888;
+    padding: 8px;
+    border-bottom: 1px solid #333;
+  }
+  .summary td {
+    padding: 8px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .summary .hot { color: #FF6600; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<h1>MARKETING DIVE</h1>
+<p class="subtitle">20 Banner Variations — Design Reference Based</p>
+
+<!-- Group A -->
+<div class="group-label">GROUP A — 青ポスター系<span>Prague School / Une Saison Graphique / ドットパターン</span></div>
+<div class="grid">
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_01.png" alt="Banner 01">
+    <div class="card-info">
+      <div class="card-num">#01</div>
+      <div class="card-headline">あなたを、迎えにきた</div>
+      <div class="card-hook">歓迎フック / 中央集中</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_02.png" alt="Banner 02">
+    <div class="card-info">
+      <div class="card-num">#02</div>
+      <div class="card-headline">あなたの才能、招待します</div>
+      <div class="card-hook">適性フック / Z型</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_03.png" alt="Banner 03">
+    <div class="card-info">
+      <div class="card-num">#03</div>
+      <div class="card-headline">面白いほうへ、おいで</div>
+      <div class="card-hook">面白さフック / 対角線</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_04.png" alt="Banner 04">
+    <div class="card-info">
+      <div class="card-num">#04</div>
+      <div class="card-headline">その発想力、持て余してない？</div>
+      <div class="card-hook">共感フック / F型</div>
+    </div>
+  </div>
+  <div class="card fire" onclick="openLightbox(this)">
+    <img src="kv/kv_05.png" alt="Banner 05">
+    <div class="card-info">
+      <div class="card-num">#05</div>
+      <div class="card-headline">マーケの世界への招待状</div>
+      <div class="card-hook">歓迎フック / 中央集中</div>
+    </div>
+  </div>
+</div>
+
+<!-- Group B -->
+<div class="group-label">GROUP B — ペルソナ3R RPG UI系<span>メニュー構成 / スキル演出 / ステータス画面 / ダンジョン</span></div>
+<div class="grid">
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_06.png" alt="Banner 06">
+    <div class="card-info">
+      <div class="card-num">#06</div>
+      <div class="card-headline">面白いほうへ、おいで</div>
+      <div class="card-hook">面白さフック / 中央集中</div>
+    </div>
+  </div>
+  <div class="card fire" onclick="openLightbox(this)">
+    <img src="kv/kv_07.png" alt="Banner 07">
+    <div class="card-info">
+      <div class="card-num">#07</div>
+      <div class="card-headline">あなたの才能、招待します</div>
+      <div class="card-hook">適性フック / 対角線</div>
+    </div>
+  </div>
+  <div class="card fire" onclick="openLightbox(this)">
+    <img src="kv/kv_08.png" alt="Banner 08">
+    <div class="card-info">
+      <div class="card-num">#08</div>
+      <div class="card-headline">あなたを、迎えにきた</div>
+      <div class="card-hook">歓迎フック / Z型</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_09.png" alt="Banner 09">
+    <div class="card-info">
+      <div class="card-num">#09</div>
+      <div class="card-headline">その発想力、持て余してない？</div>
+      <div class="card-hook">共感フック / F型</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_10.png" alt="Banner 10">
+    <div class="card-info">
+      <div class="card-num">#10</div>
+      <div class="card-headline">最高に面白い入口</div>
+      <div class="card-hook">面白さフック / 中央集中</div>
+    </div>
+  </div>
+</div>
+
+<!-- Group C -->
+<div class="group-label">GROUP C — コラージュ・グリッド系<span>グリッドテクスチャ / 写真×テキスト重ね / サイバー / 和×モダン</span></div>
+<div class="grid">
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_11.png" alt="Banner 11">
+    <div class="card-info">
+      <div class="card-num">#11</div>
+      <div class="card-headline">あなたを、迎えにきた</div>
+      <div class="card-hook">歓迎フック / Z型</div>
+    </div>
+  </div>
+  <div class="card fire" onclick="openLightbox(this)">
+    <img src="kv/kv_12.png" alt="Banner 12">
+    <div class="card-info">
+      <div class="card-num">#12</div>
+      <div class="card-headline">あなたの才能、招待します</div>
+      <div class="card-hook">適性フック / 対角線</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_13.png" alt="Banner 13">
+    <div class="card-info">
+      <div class="card-num">#13</div>
+      <div class="card-headline">その発想力、持て余してない？</div>
+      <div class="card-hook">共感フック / F型</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_14.png" alt="Banner 14">
+    <div class="card-info">
+      <div class="card-num">#14</div>
+      <div class="card-headline">面白いほうへ、おいで</div>
+      <div class="card-hook">面白さフック / 中央集中</div>
+    </div>
+  </div>
+  <div class="card fire" onclick="openLightbox(this)">
+    <img src="kv/kv_15.png" alt="Banner 15">
+    <div class="card-info">
+      <div class="card-num">#15</div>
+      <div class="card-headline">マーケの世界への招待状</div>
+      <div class="card-hook">歓迎フック / Z型</div>
+    </div>
+  </div>
+</div>
+
+<!-- Group D -->
+<div class="group-label">GROUP D — 深海ファンタジー × タイポグラフィ系<span>Aquatilis / Nike Tech Pack / Dance / 深海KV</span></div>
+<div class="grid">
+  <div class="card fire" onclick="openLightbox(this)">
+    <img src="kv/kv_16.png" alt="Banner 16">
+    <div class="card-info">
+      <div class="card-num">#16</div>
+      <div class="card-headline">あなたを、迎えにきた</div>
+      <div class="card-hook">歓迎フック / 中央集中</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_17.png" alt="Banner 17">
+    <div class="card-info">
+      <div class="card-num">#17</div>
+      <div class="card-headline">あなたの才能、招待します</div>
+      <div class="card-hook">適性フック / 対角線</div>
+    </div>
+  </div>
+  <div class="card fire" onclick="openLightbox(this)">
+    <img src="kv/kv_18.png" alt="Banner 18">
+    <div class="card-info">
+      <div class="card-num">#18</div>
+      <div class="card-headline">その発想力、持て余してない？</div>
+      <div class="card-hook">共感フック / F型</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_19.png" alt="Banner 19">
+    <div class="card-info">
+      <div class="card-num">#19</div>
+      <div class="card-headline">面白いほうへ、おいで</div>
+      <div class="card-hook">面白さフック / Z型</div>
+    </div>
+  </div>
+  <div class="card" onclick="openLightbox(this)">
+    <img src="kv/kv_20.png" alt="Banner 20">
+    <div class="card-info">
+      <div class="card-num">#20</div>
+      <div class="card-headline">あなたを、迎えにきた</div>
+      <div class="card-hook">歓迎フック / 中央集中</div>
+    </div>
+  </div>
+</div>
+
+<!-- Summary -->
+<div class="summary">
+  <h2>GENERATION SUMMARY</h2>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>モデル</td><td>Google Gemini 3.1 Flash Image Preview（直接API）</td></tr>
+    <tr><td>総枚数</td><td>20枚（4グループ × 5枚）</td></tr>
+    <tr><td>フック分布</td><td>歓迎×7 / 適性×4 / 面白さ×5 / 共感×4</td></tr>
+    <tr><td>視線誘導</td><td>中央集中×7 / Z型×5 / 対角線×4 / F型×4</td></tr>
+    <tr><td class="hot">注目バナー</td><td class="hot">#05, #07, #08, #12, #15, #16, #18（🔥マーク）</td></tr>
+    <tr><td>出力先</td><td>parks/banner/output/marketing-dive-ref/kv/</td></tr>
+  </table>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-info" id="lightbox-info"></div>
+</div>
+
+<script>
+function openLightbox(card) {
+  const img = card.querySelector('img');
+  const num = card.querySelector('.card-num').textContent;
+  const headline = card.querySelector('.card-headline').textContent;
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-info').textContent = num + ' — ' + headline;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>

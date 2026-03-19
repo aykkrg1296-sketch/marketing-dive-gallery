@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<title>LUMIERE R4 — Reference Image Test</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0906;color:#e0d8cc;font-family:'Noto Sans JP',sans-serif;font-weight:300;}
+.hero{padding:80px 40px 60px;text-align:center;}
+.hero-brand{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:700;letter-spacing:16px;color:#d4a843;}
+.hero-sub{font-size:11px;letter-spacing:6px;color:#665a45;margin-top:12px;}
+.hero-copy{font-size:22px;color:#fff;margin-top:28px;letter-spacing:2px;}
+.hero-divider{width:60px;height:1px;background:#d4a843;margin:24px auto 0;}
+.hero-hypothesis{max-width:600px;margin:20px auto 0;padding:16px 24px;border:1px solid #d4a84333;border-radius:8px;font-size:12px;color:#888;line-height:1.8;}
+.hero-hypothesis strong{color:#d4a843;}
+.gallery{max-width:1200px;margin:0 auto;padding:40px 24px 80px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#d4a843;letter-spacing:4px;margin-bottom:24px;padding-bottom:8px;border-bottom:1px solid #1a1810;}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:48px;}
+.card{background:#111008;border-radius:12px;overflow:hidden;border:1px solid #1a1810;transition:transform 0.2s,box-shadow 0.2s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(212,168,67,0.1);}
+.card.ref{border-color:#d4a84366;}
+.card.prev{border-color:#2a2010;opacity:0.6;}.card.prev:hover{opacity:1;}
+.card-img-wrap{aspect-ratio:1;overflow:hidden;background:#0a0806;}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform 0.3s;}
+.card-img-wrap img:hover{transform:scale(1.02);}
+.card-info{padding:16px 20px;}
+.card-label{font-family:'Cormorant Garamond',serif;font-size:12px;color:#d4a843;letter-spacing:4px;font-weight:600;margin-bottom:4px;}
+.card-title{font-size:14px;color:#fff;margin-bottom:6px;}
+.card-desc{font-size:11px;color:#665a45;line-height:1.6;}
+.zoom-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;cursor:zoom-out;justify-content:center;align-items:center;}
+.zoom-overlay.active{display:flex;}
+.zoom-overlay img{max-width:90%;max-height:90%;border-radius:8px;box-shadow:0 0 60px rgba(212,168,67,0.2);}
+.footer{text-align:center;padding:32px;font-size:9px;letter-spacing:4px;color:#333;border-top:1px solid #1a1810;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}.hero-brand{font-size:36px;}}
+</style></head><body>
+<div class="hero">
+  <div class="hero-brand">LUMIERE</div>
+  <div class="hero-sub">R4 — Reference Image Hypothesis Test</div>
+  <div class="hero-copy">「その肌、まだ目覚めていない。」</div>
+  <div class="hero-divider"></div>
+  <div class="hero-hypothesis">
+    <strong>仮説:</strong> テキスト精度が高い画像を参照として渡すと、AIが正確なテキスト描画を学んで他のパターンでも精度が上がる<br>
+    <strong>参照画像:</strong> R3 D2b（テキスト精度◎）を全パターンに参照として添付
+  </div>
+</div>
+<div class="gallery">
+  <div class="section-title">REFERENCE IMAGE USED</div>
+  <div class="grid">
+    <div class="card ref">
+        <div class="card-img-wrap">
+            <img src="banners_01_lumiere_r3/lumiere_D2b_gothic.png" alt="reference" onclick="openZoom(this.src)">
+        </div>
+        <div class="card-info">
+            <div class="card-label">REF</div>
+            <div class="card-title">R3 D2b — 参照画像として使用</div>
+            <div class="card-desc">テキスト精度が最も高かった画像を全パターンの参照として使用</div>
+        </div>
+    </div></div>
+
+  <div class="section-title">R4 — WITH REFERENCE IMAGE</div>
+  <div class="grid">
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_01_lumiere_r4/lumiere_A1_ref.png" alt="lumiere_A1_ref.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">A1</div>
+                    <div class="card-title">Close-up — Golden Awakening</div>
+                    <div class="card-desc">クローズアップ + 参照画像テスト</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_01_lumiere_r4/lumiere_A2_ref.png" alt="lumiere_A2_ref.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">A2</div>
+                    <div class="card-title">Close-up — Eyes Opening</div>
+                    <div class="card-desc">目覚め + 参照画像テスト</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_01_lumiere_r4/lumiere_B1_ref.png" alt="lumiere_B1_ref.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">B1</div>
+                    <div class="card-title">Silhouette — Gold Dust</div>
+                    <div class="card-desc">シルエット + 参照画像テスト</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_01_lumiere_r4/lumiere_B2_ref.png" alt="lumiere_B2_ref.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">B2</div>
+                    <div class="card-title">Particle Face</div>
+                    <div class="card-desc">パーティクル + 参照画像テスト</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_01_lumiere_r4/lumiere_C1_ref.png" alt="lumiere_C1_ref.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">C1</div>
+                    <div class="card-title">Product Hero</div>
+                    <div class="card-desc">プロダクト + 参照画像テスト</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_01_lumiere_r4/lumiere_C2_ref.png" alt="lumiere_C2_ref.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">C2</div>
+                    <div class="card-title">Product + Model Split</div>
+                    <div class="card-desc">スプリット + 参照画像テスト</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_01_lumiere_r4/lumiere_D1_ref.png" alt="lumiere_D1_ref.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">D1</div>
+                    <div class="card-title">Editorial — The Gaze</div>
+                    <div class="card-desc">エディトリアル + 参照画像テスト</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_01_lumiere_r4/lumiere_D2_ref.png" alt="lumiere_D2_ref.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">D2</div>
+                    <div class="card-title">Editorial — Touch</div>
+                    <div class="card-desc">タッチ + 参照画像テスト</div>
+                </div>
+            </div></div>
+
+  <div class='section-title'>COMPARE: R3 (NO REFERENCE)</div><div class='grid'>
+            <div class="card prev">
+                <div class="card-img-wrap"><img src="banners_01_lumiere_r3/lumiere_A2a_gothic.png" onclick="openZoom(this.src)"></div>
+                <div class="card-info"><div class="card-label">R3 A2a</div></div>
+            </div>
+            <div class="card prev">
+                <div class="card-img-wrap"><img src="banners_01_lumiere_r3/lumiere_A2b_gothic.png" onclick="openZoom(this.src)"></div>
+                <div class="card-info"><div class="card-label">R3 A2b</div></div>
+            </div>
+            <div class="card prev">
+                <div class="card-img-wrap"><img src="banners_01_lumiere_r3/lumiere_C1a_gothic.png" onclick="openZoom(this.src)"></div>
+                <div class="card-info"><div class="card-label">R3 C1a</div></div>
+            </div>
+            <div class="card prev">
+                <div class="card-img-wrap"><img src="banners_01_lumiere_r3/lumiere_C1b_gothic.png" onclick="openZoom(this.src)"></div>
+                <div class="card-info"><div class="card-label">R3 C1b</div></div>
+            </div>
+            <div class="card prev">
+                <div class="card-img-wrap"><img src="banners_01_lumiere_r3/lumiere_D1a_gothic.png" onclick="openZoom(this.src)"></div>
+                <div class="card-info"><div class="card-label">R3 D1a</div></div>
+            </div>
+            <div class="card prev">
+                <div class="card-img-wrap"><img src="banners_01_lumiere_r3/lumiere_D1b_gothic.png" onclick="openZoom(this.src)"></div>
+                <div class="card-info"><div class="card-label">R3 D1b</div></div>
+            </div>
+            <div class="card prev">
+                <div class="card-img-wrap"><img src="banners_01_lumiere_r3/lumiere_D2a_gothic.png" onclick="openZoom(this.src)"></div>
+                <div class="card-info"><div class="card-label">R3 D2a</div></div>
+            </div>
+            <div class="card prev">
+                <div class="card-img-wrap"><img src="banners_01_lumiere_r3/lumiere_D2b_gothic.png" onclick="openZoom(this.src)"></div>
+                <div class="card-info"><div class="card-label">R3 D2b</div></div>
+            </div></div>
+</div>
+<div class="zoom-overlay" id="zoomOverlay" onclick="closeZoom()"><img id="zoomImg" src="" alt="zoom"></div>
+<div class="footer">LUMIERE R4 REF TEST — 2026-03-17 17:12</div>
+<script>
+function openZoom(s){document.getElementById('zoomImg').src=s;document.getElementById('zoomOverlay').classList.add('active');}
+function closeZoom(){document.getElementById('zoomOverlay').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeZoom();});
+</script></body></html>

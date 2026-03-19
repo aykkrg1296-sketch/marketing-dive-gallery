@@ -1,0 +1,9 @@
+{
+  "index": 8,
+  "group": "B_persona3r_rpg",
+  "hook": "歓迎フック",
+  "headline": "あなたを、迎えにきた",
+  "gaze": "Z型",
+  "hypothesis": "キャラクター顔アップ×全身2レイヤーで、迎えに来た存在を演出",
+  "prompt": "A stylish RPG character reveal screen. Blue-purple gradient background like deep ocean. Background layer: large faded close-up of a mysterious character's face looking directly at viewer. Foreground layer: full-body silhouette of the same character extending a hand toward the viewer. Dramatic blue lighting from behind the character creating a halo effect. Bold white Japanese text at top: あなたを、迎えにきた. Style reference: Persona 3 Reload's dual-layer character presentation. Glowing blue particles floating in the air. Bottom UI bar with 無料で適性を診断する in a clean button. Square 1:1 format. Anime-influenced, cinematic, atmospheric."
+}

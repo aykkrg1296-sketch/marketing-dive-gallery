@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>DOCKING デザインフレーム選定 — 配信レベル厳選8枚</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #e0e0e0; font-family: 'Helvetica Neue', sans-serif; padding: 40px 20px; }
+h1 { text-align: center; font-size: 26px; margin-bottom: 6px; color: #fff; letter-spacing: 2px; }
+.subtitle { text-align: center; font-size: 13px; color: #888; margin-bottom: 40px; }
+h2 { font-size: 18px; margin: 40px 0 20px; color: #00c8ff; border-bottom: 1px solid #1a3a5a; padding-bottom: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 28px; margin-bottom: 40px; }
+.card {
+  background: #111; border-radius: 10px; overflow: hidden;
+  border: 1px solid #00ff8833; transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,200,255,0.1); }
+.card img { width: 100%; display: block; cursor: pointer; }
+.card-info { padding: 16px 20px; }
+.frame-name { font-size: 15px; font-weight: bold; color: #00c8ff; margin-bottom: 4px; }
+.frame-file { font-size: 11px; color: #555; margin-bottom: 8px; }
+.frame-desc { font-size: 13px; color: #bbb; line-height: 1.6; }
+.frame-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.frame-tag {
+  font-size: 11px; padding: 3px 10px; border-radius: 12px;
+  background: #1a1a2e; border: 1px solid #00c8ff33; color: #00c8ff;
+}
+
+/* 選定コメントエリア */
+.select-area { padding: 8px 20px 16px; border-top: 1px solid #1a1a2e; }
+.select-btns { display: flex; gap: 8px; margin-bottom: 8px; }
+.select-btn {
+  font-size: 12px; padding: 6px 16px; border-radius: 6px; border: 1px solid #333;
+  background: transparent; color: #888; cursor: pointer; transition: all 0.2s;
+}
+.select-btn:hover { border-color: #00ff88; color: #00ff88; }
+.select-btn.yes { background: #00ff8822; border-color: #00ff88; color: #00ff88; }
+.select-btn.no { background: #ff446622; border-color: #ff4466; color: #ff4466; }
+.select-btn.maybe { background: #ffaa0022; border-color: #ffaa00; color: #ffaa00; }
+textarea.frame-comment {
+  width: 100%; min-height: 50px; background: #0a0a0a; border: 1px solid #222;
+  border-radius: 6px; color: #e0e0e0; font-size: 12px; padding: 8px 10px;
+  resize: vertical; font-family: inherit;
+}
+textarea.frame-comment:focus { outline: none; border-color: #00c8ff; }
+textarea.frame-comment::placeholder { color: #444; }
+
+/* 集約バー */
+.action-bar {
+  position: sticky; top: 0; z-index: 100; background: #111; border-bottom: 1px solid #1a3a5a;
+  padding: 12px 20px; margin: -40px -20px 30px; display: flex; align-items: center; gap: 12px;
+}
+.action-btn {
+  padding: 10px 20px; border-radius: 6px; border: none; font-size: 13px;
+  font-weight: bold; cursor: pointer; transition: background 0.2s;
+}
+.action-btn.primary { background: #00c8ff; color: #0a0a0a; }
+.action-btn.primary:hover { background: #00e0ff; }
+.action-btn.copy { background: #00ff88; color: #0a0a0a; }
+.action-btn.copy:hover { background: #33ff99; }
+.action-count { font-size: 13px; color: #888; margin-left: auto; }
+
+/* モーダル */
+.modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center;
+}
+.modal-overlay.show { display: flex; }
+.modal-overlay img { max-width: 90%; max-height: 90%; border-radius: 8px; cursor: zoom-out; }
+.result-modal {
+  background: #111; border: 1px solid #00c8ff33; border-radius: 12px; padding: 28px;
+  max-width: 650px; width: 90%; max-height: 80vh; overflow-y: auto;
+}
+.result-modal h3 { color: #00c8ff; margin-bottom: 16px; }
+.result-modal pre {
+  background: #0a0a0a; border: 1px solid #222; border-radius: 8px; padding: 16px;
+  font-size: 13px; line-height: 1.8; white-space: pre-wrap; color: #e0e0e0; font-family: inherit;
+}
+.result-modal .close { margin-top: 16px; }
+.toast {
+  position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+  background: #00ff88; color: #0a0a0a; padding: 10px 24px; border-radius: 8px;
+  font-weight: bold; font-size: 14px; z-index: 300; display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="action-bar">
+  <button class="action-btn primary" onclick="showResult()">選定結果を見る</button>
+  <button class="action-btn copy" onclick="copyResult()">結果をコピー</button>
+  <span class="action-count" id="countDisplay">採用: 0 / 保留: 0 / 不採用: 0</span>
+</div>
+
+<h1>DOCKING デザインフレーム選定</h1>
+<p class="subtitle">v18 全21枚から配信レベル8枚を厳選 | バナーキットのデザインフレーム候補</p>
+
+<h2>厳選8枚 — 配信レベルのデザインフレーム</h2>
+<div class="grid">
+
+  <div class="card" data-id="frame1">
+    <img src="../banners_v18/v18_B01_v9-04.png" onclick="zoom(this)" alt="">
+    <div class="card-info">
+      <div class="frame-name">Frame 1: 壮大世界観 x ゴールド枠</div>
+      <div class="frame-file">v18_B01 — 潜入 おもしろい世界へ</div>
+      <div class="frame-desc">巨大テキストが画面を支配。水中神殿＋金の装飾枠でラグジュアリー感。人物シルエットがスケール感を生む。広告としてのCTA導線も明確。</div>
+      <div class="frame-tags">
+        <span class="frame-tag">壮大</span>
+        <span class="frame-tag">ゴールド</span>
+        <span class="frame-tag">巨大テキスト</span>
+        <span class="frame-tag">ファンタジー</span>
+      </div>
+    </div>
+    <div class="select-area">
+      <div class="select-btns">
+        <button class="select-btn" onclick="vote(this,'yes')">採用</button>
+        <button class="select-btn" onclick="vote(this,'maybe')">保留</button>
+        <button class="select-btn" onclick="vote(this,'no')">不採用</button>
+      </div>
+      <textarea class="frame-comment" placeholder="コメント..." oninput="saveComment(this)"></textarea>
+    </div>
+  </div>
+
+  <div class="card" data-id="frame2">
+    <img src="../banners_v18/v18_A08_v15-01.png" onclick="zoom(this)" alt="">
+    <div class="card-info">
+      <div class="frame-name">Frame 2: ダーク x 割れ目インパクト</div>
+      <div class="frame-file">v18_A08 — その「退屈」、才能だ。</div>
+      <div class="frame-desc">黒背景にテキストが割れ、中から光る目が覗く。モノクロ×カラーの対比が強烈。テキストの視認性もコントラストも広告として完成度が高い。</div>
+      <div class="frame-tags">
+        <span class="frame-tag">ダーク</span>
+        <span class="frame-tag">インパクト</span>
+        <span class="frame-tag">割れ目</span>
+        <span class="frame-tag">ミステリアス</span>
+      </div>
+    </div>
+    <div class="select-area">
+      <div class="select-btns">
+        <button class="select-btn" onclick="vote(this,'yes')">採用</button>
+        <button class="select-btn" onclick="vote(this,'maybe')">保留</button>
+        <button class="select-btn" onclick="vote(this,'no')">不採用</button>
+      </div>
+      <textarea class="frame-comment" placeholder="コメント..." oninput="saveComment(this)"></textarea>
+    </div>
+  </div>
+
+  <div class="card" data-id="frame3">
+    <img src="../banners_v18/v18_A01_v10-07.png" onclick="zoom(this)" alt="">
+    <div class="card-info">
+      <div class="frame-name">Frame 3: エモーショナル x アート</div>
+      <div class="frame-file">v18_A01 — その「退屈」、才能だ。（翼の少年）</div>
+      <div class="frame-desc">雨の中でうずくまる少年の背中から虹色の翼。水面の反射が美しい。「退屈の中に才能が眠ってる」を一枚で語るストーリーテリング。</div>
+      <div class="frame-tags">
+        <span class="frame-tag">エモーショナル</span>
+        <span class="frame-tag">アート</span>
+        <span class="frame-tag">ストーリー</span>
+        <span class="frame-tag">レインボー</span>
+      </div>
+    </div>
+    <div class="select-area">
+      <div class="select-btns">
+        <button class="select-btn" onclick="vote(this,'yes')">採用</button>
+        <button class="select-btn" onclick="vote(this,'maybe')">保留</button>
+        <button class="select-btn" onclick="vote(this,'no')">不採用</button>
+      </div>
+      <textarea class="frame-comment" placeholder="コメント..." oninput="saveComment(this)"></textarea>
+    </div>
+  </div>
+
+  <div class="card" data-id="frame4">
+    <img src="../banners_v18/v18_C05_v14-09.png" onclick="zoom(this)" alt="">
+    <div class="card-info">
+      <div class="frame-name">Frame 4: ダブルエクスポージャー x シネマティック</div>
+      <div class="frame-file">v18_C05 — あなたを、迎えにきた。</div>
+      <div class="frame-desc">人物と世界が融合するダブルエクスポージャー。頭から深海へ、縦に世界が変わる構図。テキスト左配置でバランスも良い。映画ポスター級。</div>
+      <div class="frame-tags">
+        <span class="frame-tag">ダブルエクスポージャー</span>
+        <span class="frame-tag">シネマティック</span>
+        <span class="frame-tag">融合</span>
+        <span class="frame-tag">深海</span>
+      </div>
+    </div>
+    <div class="select-area">
+      <div class="select-btns">
+        <button class="select-btn" onclick="vote(this,'yes')">採用</button>
+        <button class="select-btn" onclick="vote(this,'maybe')">保留</button>
+        <button class="select-btn" onclick="vote(this,'no')">不採用</button>
+      </div>
+      <textarea class="frame-comment" placeholder="コメント..." oninput="saveComment(this)"></textarea>
+    </div>
+  </div>
+
+  <div class="card" data-id="frame5">
+    <img src="../banners_v18/v18_B06_v15-03.png" onclick="zoom(this)" alt="">
+    <div class="card-info">
+      <div class="frame-name">Frame 5: タイポグラフィ主役 x テクスチャ</div>
+      <div class="frame-file">v18_B06 — 潜入 おもしろい世界へ</div>
+      <div class="frame-desc">テキストが画面を支配。文字の中に海のテクスチャが透ける。黒背景×巨大タイポ。ぎいちゃんが好きな「文字の支配力」を最も体現。</div>
+      <div class="frame-tags">
+        <span class="frame-tag">タイポグラフィ</span>
+        <span class="frame-tag">テクスチャ</span>
+        <span class="frame-tag">巨大文字</span>
+        <span class="frame-tag">ミニマル</span>
+      </div>
+    </div>
+    <div class="select-area">
+      <div class="select-btns">
+        <button class="select-btn" onclick="vote(this,'yes')">採用</button>
+        <button class="select-btn" onclick="vote(this,'maybe')">保留</button>
+        <button class="select-btn" onclick="vote(this,'no')">不採用</button>
+      </div>
+      <textarea class="frame-comment" placeholder="コメント..." oninput="saveComment(this)"></textarea>
+    </div>
+  </div>
+
+  <div class="card" data-id="frame6">
+    <img src="../banners_v18/v18_C06_v15c-01.png" onclick="zoom(this)" alt="">
+    <div class="card-info">
+      <div class="frame-name">Frame 6: マクロ x コンセプチュアル</div>
+      <div class="frame-file">v18_C06 — あなたを、迎えにきた。（目の中の世界）</div>
+      <div class="frame-desc">目のクローズアップ。瞳の中に海の世界が広がる。「あなたの中に別の世界がある」を直感的に伝える。一発で引き込まれるインパクト。</div>
+      <div class="frame-tags">
+        <span class="frame-tag">マクロ</span>
+        <span class="frame-tag">コンセプチュアル</span>
+        <span class="frame-tag">目</span>
+        <span class="frame-tag">内なる世界</span>
+      </div>
+    </div>
+    <div class="select-area">
+      <div class="select-btns">
+        <button class="select-btn" onclick="vote(this,'yes')">採用</button>
+        <button class="select-btn" onclick="vote(this,'maybe')">保留</button>
+        <button class="select-btn" onclick="vote(this,'no')">不採用</button>
+      </div>
+      <textarea class="frame-comment" placeholder="コメント..." oninput="saveComment(this)"></textarea>
+    </div>
+  </div>
+
+  <div class="card" data-id="frame7">
+    <img src="../banners_v18/v18_A04_v12-01.png" onclick="zoom(this)" alt="">
+    <div class="card-info">
+      <div class="frame-name">Frame 7: ミニマル x シルエット</div>
+      <div class="frame-file">v18_A04 — その「退屈」、才能だ。（都市シルエット）</div>
+      <div class="frame-desc">都市背景に立つシルエット。手から光が溢れる。テキストが大きく読みやすい。最も「広告らしい」構図。配信してすぐ成果が出そう。</div>
+      <div class="frame-tags">
+        <span class="frame-tag">ミニマル</span>
+        <span class="frame-tag">シルエット</span>
+        <span class="frame-tag">都市</span>
+        <span class="frame-tag">広告的</span>
+      </div>
+    </div>
+    <div class="select-area">
+      <div class="select-btns">
+        <button class="select-btn" onclick="vote(this,'yes')">採用</button>
+        <button class="select-btn" onclick="vote(this,'maybe')">保留</button>
+        <button class="select-btn" onclick="vote(this,'no')">不採用</button>
+      </div>
+      <textarea class="frame-comment" placeholder="コメント..." oninput="saveComment(this)"></textarea>
+    </div>
+  </div>
+
+  <div class="card" data-id="frame8">
+    <img src="../banners_v18/v18_C04_v13-06.png" onclick="zoom(this)" alt="">
+    <div class="card-info">
+      <div class="frame-name">Frame 8: エモーショナル x 日常</div>
+      <div class="frame-file">v18_C04 — あなたを、迎えにきた。（ビーチの二人）</div>
+      <div class="frame-desc">夕暮れのビーチ、二人の人物。水彩タッチで温かみ。他のフレームがクール系なので、この1枚が「人の温もり」方向のバランスを取る。</div>
+      <div class="frame-tags">
+        <span class="frame-tag">エモーショナル</span>
+        <span class="frame-tag">日常</span>
+        <span class="frame-tag">水彩</span>
+        <span class="frame-tag">温かい</span>
+      </div>
+    </div>
+    <div class="select-area">
+      <div class="select-btns">
+        <button class="select-btn" onclick="vote(this,'yes')">採用</button>
+        <button class="select-btn" onclick="vote(this,'maybe')">保留</button>
+        <button class="select-btn" onclick="vote(this,'no')">不採用</button>
+      </div>
+      <textarea class="frame-comment" placeholder="コメント..." oninput="saveComment(this)"></textarea>
+    </div>
+  </div>
+
+</div>
+
+<!-- 画像拡大 -->
+<div class="modal-overlay" id="imgModal" onclick="this.classList.remove('show')">
+  <img id="imgModalImg" src="" alt="">
+</div>
+
+<!-- 結果モーダル -->
+<div class="modal-overlay" id="resultModal">
+  <div class="result-modal">
+    <h3>デザインフレーム選定結果</h3>
+    <pre id="resultText"></pre>
+    <div style="display:flex;gap:12px;margin-top:16px;">
+      <button class="action-btn copy" onclick="copyFromModal()">コピー</button>
+      <button class="action-btn" style="background:#333;color:#fff;border:none;" onclick="document.getElementById('resultModal').classList.remove('show')">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">コピーしました</div>
+
+<script>
+const KEY = 'docking_frame_selection';
+
+function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } }
+function save(d) { localStorage.setItem(KEY, JSON.stringify(d)); updateCount(); }
+
+function vote(btn, status) {
+  const card = btn.closest('.card');
+  const id = card.dataset.id;
+  const d = load();
+  if (!d[id]) d[id] = {};
+
+  // Reset all buttons in this card
+  card.querySelectorAll('.select-btn').forEach(b => b.className = 'select-btn');
+  btn.classList.add(status);
+  d[id].status = status;
+  d[id].name = card.querySelector('.frame-name').textContent;
+  save(d);
+}
+
+function saveComment(ta) {
+  const card = ta.closest('.card');
+  const id = card.dataset.id;
+  const d = load();
+  if (!d[id]) d[id] = {};
+  d[id].comment = ta.value.trim();
+  d[id].name = card.querySelector('.frame-name').textContent;
+  save(d);
+}
+
+function updateCount() {
+  const d = load();
+  let yes = 0, maybe = 0, no = 0;
+  Object.values(d).forEach(v => {
+    if (v.status === 'yes') yes++;
+    else if (v.status === 'maybe') maybe++;
+    else if (v.status === 'no') no++;
+  });
+  document.getElementById('countDisplay').textContent = `採用: ${yes} / 保留: ${maybe} / 不採用: ${no}`;
+}
+
+function collectText() {
+  const d = load();
+  const ids = Object.keys(d);
+  if (!ids.length) return '（まだ選定されていません）';
+
+  const statusLabel = { yes: '採用', maybe: '保留', no: '不採用' };
+  let text = '=== DOCKING デザインフレーム選定結果 ===\n\n';
+
+  ['yes', 'maybe', 'no'].forEach(s => {
+    const items = ids.filter(id => d[id].status === s);
+    if (!items.length) return;
+    text += `【${statusLabel[s]}】\n`;
+    items.forEach(id => {
+      const v = d[id];
+      text += `  ${v.name || id}\n`;
+      if (v.comment) text += `    → ${v.comment}\n`;
+    });
+    text += '\n';
+  });
+  return text.trim();
+}
+
+function showResult() {
+  document.getElementById('resultText').textContent = collectText();
+  document.getElementById('resultModal').classList.add('show');
+}
+
+function copyResult() {
+  navigator.clipboard.writeText(collectText()).then(() => showToast());
+}
+function copyFromModal() {
+  navigator.clipboard.writeText(document.getElementById('resultText').textContent).then(() => showToast());
+}
+function showToast() {
+  const t = document.getElementById('toast');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2000);
+}
+
+function zoom(img) {
+  document.getElementById('imgModalImg').src = img.src;
+  document.getElementById('imgModal').classList.add('show');
+}
+
+// 復元
+function restore() {
+  const d = load();
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    const v = d[id];
+    if (!v) return;
+    if (v.status) {
+      card.querySelectorAll('.select-btn').forEach(b => {
+        if ((b.textContent === '採用' && v.status === 'yes') ||
+            (b.textContent === '保留' && v.status === 'maybe') ||
+            (b.textContent === '不採用' && v.status === 'no')) {
+          b.classList.add(v.status);
+        }
+      });
+    }
+    if (v.comment) card.querySelector('.frame-comment').value = v.comment;
+  });
+  updateCount();
+}
+restore();
+</script>
+
+</body>
+</html>

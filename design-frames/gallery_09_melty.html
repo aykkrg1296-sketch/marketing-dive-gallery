@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<title>DESIGN FRAMES 09: MELTY</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#fffaf5;color:#5a3e36;font-family:'Noto Sans JP',sans-serif;font-weight:300;}
+.hero{padding:80px 40px 60px;text-align:center;position:relative;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 80%,rgba(255,138,158,0.08) 0%,transparent 60%);}
+.hero-brand{font-family:'Zen Maru Gothic',sans-serif;font-size:64px;font-weight:700;letter-spacing:8px;color:#ff8a9e;position:relative;}
+.hero-sub{font-size:11px;letter-spacing:6px;color:#d4a090;margin-top:12px;}
+.hero-copy{font-size:20px;font-weight:400;color:#5a3e36;margin-top:28px;letter-spacing:1px;position:relative;}
+.hero-divider{width:60px;height:2px;background:linear-gradient(90deg,#ff8a9e,#ffc8a0);margin:24px auto 0;border-radius:1px;}
+.hero-meta{display:flex;justify-content:center;gap:24px;margin-top:20px;font-size:10px;letter-spacing:2px;color:#b08878;}
+.hero-meta .badge{padding:4px 12px;border-radius:20px;border:1px solid #ff8a9e44;color:#ff8a9e;}
+.palette-strip{display:flex;height:6px;max-width:300px;margin:20px auto 0;border-radius:3px;overflow:hidden;}
+.palette-strip .sw{flex:1;}
+.gallery{max-width:1200px;margin:0 auto;padding:40px 24px 80px;}
+.section-title{font-family:'Zen Maru Gothic',sans-serif;font-size:20px;color:#ff8a9e;letter-spacing:4px;margin-bottom:24px;padding-bottom:8px;border-bottom:2px solid #fce4ec;}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:48px;}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #fce4ec;transition:transform 0.2s,box-shadow 0.2s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(255,138,158,0.15);}
+.card-img-wrap{aspect-ratio:1;overflow:hidden;background:#fff0e8;}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform 0.3s;}
+.card-img-wrap img:hover{transform:scale(1.02);}
+.card-info{padding:16px 20px;}
+.card-label{font-family:'Zen Maru Gothic',sans-serif;font-size:12px;color:#ff8a9e;letter-spacing:4px;font-weight:700;margin-bottom:4px;}
+.card-title{font-size:14px;font-weight:400;color:#5a3e36;margin-bottom:6px;}
+.card-desc{font-size:11px;color:#b08878;line-height:1.6;}
+.zoom-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(90,62,54,0.9);z-index:1000;cursor:zoom-out;justify-content:center;align-items:center;}
+.zoom-overlay.active{display:flex;}
+.zoom-overlay img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 60px rgba(255,138,158,0.3);}
+.footer{text-align:center;padding:32px;font-size:9px;letter-spacing:4px;color:#d4a090;border-top:2px solid #fce4ec;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}.hero-brand{font-size:36px;}}
+</style></head><body>
+<div class="hero">
+  <div class="hero-brand">MELTY</div>
+  <div class="hero-sub">Design Frames 09 — Reward Sweets Subscription</div>
+  <div class="hero-copy">「がんばった日は、もうひとつ食べていい。」</div>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="badge">FEMALE</span>
+    <span class="badge">PLAYFUL</span>
+    <span class="badge">SWEETS</span>
+  </div>
+  <div class="palette-strip">
+    <div class="sw" style="background:#ff8a9e;"></div>
+    <div class="sw" style="background:#ffc8a0;"></div>
+    <div class="sw" style="background:#fff0e8;"></div>
+    <div class="sw" style="background:#fce4ec;"></div>
+    <div class="sw" style="background:#fffaf5;"></div>
+  </div>
+</div>
+<div class="gallery">
+  <div class="section-title">ALL PATTERNS</div>
+  <div class="grid">
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty/melty_A1_flatlay.png" alt="melty_A1_flatlay.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">A1</div>
+                    <div class="card-title">Flat Lay Paradise</div>
+                    <div class="card-desc">俯瞰撮り。マカロン×チョコ×バラの花びら。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty/melty_A2_chocolate.png" alt="melty_A2_chocolate.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">A2</div>
+                    <div class="card-title">Chocolate Drip</div>
+                    <div class="card-desc">とろけるチョコレートの瞬間。温かさ。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty/melty_B1_macaron.png" alt="melty_B1_macaron.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">B1</div>
+                    <div class="card-title">Macaron Tower</div>
+                    <div class="card-desc">パステルマカロンの山。豊かさと喜び。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty/melty_B2_giftbox.png" alt="melty_B2_giftbox.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">B2</div>
+                    <div class="card-title">Gift Box Reveal</div>
+                    <div class="card-desc">自分へのご褒美を開ける瞬間。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty/melty_C1_woman.png" alt="melty_C1_woman.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">C1</div>
+                    <div class="card-title">Sweet Moment</div>
+                    <div class="card-desc">マカロンを食べる至福の表情。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty/melty_C2_cozy.png" alt="melty_C2_cozy.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">C2</div>
+                    <div class="card-title">Cozy Evening</div>
+                    <div class="card-desc">がんばった日の夜。ココアとスイーツ。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty/melty_D1_minimal.png" alt="melty_D1_minimal.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">D1</div>
+                    <div class="card-title">Minimal Pink</div>
+                    <div class="card-desc">1つのマカロン×大きな余白。ミニマル。</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <img src="banners_09_melty/melty_D2_strawberry.png" alt="melty_D2_strawberry.png" onclick="openZoom(this.src)">
+                </div>
+                <div class="card-info">
+                    <div class="card-label">D2</div>
+                    <div class="card-title">Strawberry Dream</div>
+                    <div class="card-desc">いちごタルトが完成する瞬間。粉糖。</div>
+                </div>
+            </div></div>
+</div>
+<div class="zoom-overlay" id="zoomOverlay" onclick="closeZoom()"><img id="zoomImg" src="" alt="zoom"></div>
+<div class="footer">DOCKING DESIGN SYSTEM — DESIGN FRAMES 09 MELTY — 2026-03-17 17:18</div>
+<script>
+function openZoom(s){document.getElementById('zoomImg').src=s;document.getElementById('zoomOverlay').classList.add('active');}
+function closeZoom(){document.getElementById('zoomOverlay').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeZoom();});
+</script></body></html>

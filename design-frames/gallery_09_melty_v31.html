@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<title>MELTY v3.1 — Design Frames 09</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#fffaf5;color:#5a3e36;font-family:'Noto Sans JP',sans-serif;font-weight:300;}
+.hero{padding:60px 40px;text-align:center;}
+.hero h1{font-family:'Zen Maru Gothic';font-size:52px;font-weight:700;color:#ff8a9e;letter-spacing:8px;}
+.hero p{font-size:17px;margin-top:14px;}
+.hero .meta{display:flex;justify-content:center;gap:14px;margin-top:14px;}
+.hero .badge{font-size:10px;padding:4px 14px;border-radius:20px;border:1px solid #ff8a9e44;color:#ff8a9e;letter-spacing:2px;}
+.grid{max-width:1200px;margin:0 auto;padding:20px 24px 60px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #fce4ec;transition:all .2s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(255,138,158,.15);}
+.img-wrap{aspect-ratio:1;overflow:hidden;background:#fff0e8;}
+.img-wrap img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;}
+.info{padding:14px 18px;display:flex;flex-direction:column;gap:2px;}
+.label{font-size:11px;color:#ff8a9e;letter-spacing:4px;font-weight:700;}
+.title{font-size:13px;color:#5a3e36;}
+.desc{font-size:10px;color:#b08878;}
+.zo{display:none;position:fixed;inset:0;background:rgba(90,62,54,.92);z-index:1000;cursor:zoom-out;justify-content:center;align-items:center;}
+.zo.on{display:flex;}.zo img{max-width:90%;max-height:90%;border-radius:12px;}
+.ft{text-align:center;padding:30px;font-size:9px;letter-spacing:4px;color:#d4a090;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}}
+</style></head><body>
+<div class="hero">
+  <h1>MELTY</h1>
+  <p>「がんばった日は、もうひとつ食べていい。」</p>
+  <div class="meta">
+    <span class="badge">gemini-3.1-flash</span>
+    <span class="badge">TEXT 100% ACCURATE</span>
+    <span class="badge">FEMALE / PLAYFUL</span>
+  </div>
+</div>
+<div class="grid">
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_A1_flatlay.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">A1</span><span class="title">Luxurious Flat Lay</span><span class="desc">マカロン×チョコ×花びら。宝箱のような俯瞰。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_A2_chocolate.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">A2</span><span class="title">Liquid Chocolate</span><span class="desc">とろけるチョコの至福。ダーク×ゴールド。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_B1_macaron.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">B1</span><span class="title">Macaron Cascade</span><span class="desc">パステルの虹が流れ落ちる。ダイナミック。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_B2_giftbox.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">B2</span><span class="title">The Unboxing</span><span class="desc">自分へのご褒美を開ける瞬間。セルフラブ。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_C1_woman.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">C1</span><span class="title">Bliss Portrait</span><span class="desc">至福の一口前。ビューティー広告級。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_C2_cozy.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">C2</span><span class="title">Cozy Evening</span><span class="desc">ココア×サブスクBOX。温かい夜。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_D1_minimal.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">D1</span><span class="title">Minimal Editorial</span><span class="desc">1個のマカロン×テキスト主役。ミニマル。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_D2_strawberry.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">D2</span><span class="title">Strawberry Fantasy</span><span class="desc">いちごタルト完成の瞬間。粉糖が舞う。</span></div></div>
+</div>
+<div class="section-divider" style="max-width:1200px;margin:0 auto;padding:10px 24px 20px;"><h2 style="font-family:'Zen Maru Gothic';font-size:28px;color:#ff8a9e;letter-spacing:6px;text-align:center;border-top:1px solid #fce4ec;padding-top:40px;">TYPOGRAPHY PLAY</h2><p style="text-align:center;font-size:13px;margin-top:8px;color:#b08878;">テキストデザインの可能性を探る4バリエーション</p></div>
+<div class="grid">
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_T1_size_play.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">T1</span><span class="title">Size Play</span><span class="desc">「ひとつ」を3倍サイズに。感情のコアを視覚化。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_T2_vertical.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">T2</span><span class="title">Vertical Text</span><span class="desc">縦書き日本語。和の余白×洋菓子の融合。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_T3_overlap.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">T3</span><span class="title">Text Overlap</span><span class="desc">テキストが写真に溶け込む。奥行きのあるレイヤー。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_T4_split_color.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">T4</span><span class="title">Split Color</span><span class="desc">ピンク面×写真面の2分割。雑誌の見開き感。</span></div></div>
+</div>
+<div class="section-divider" style="max-width:1200px;margin:0 auto;padding:10px 24px 20px;"><h2 style="font-family:'Zen Maru Gothic';font-size:28px;color:#ff8a9e;letter-spacing:6px;text-align:center;border-top:1px solid #fce4ec;padding-top:40px;">TYPOGRAPHY PLAY vol.2</h2><p style="text-align:center;font-size:13px;margin-top:8px;color:#b08878;">もっと攻めたタイポグラフィ — 世界観を守りながら遊ぶ</p></div>
+<div class="grid">
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_T5_melting_text.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">T5</span><span class="title">Melting Text</span><span class="desc">文字がチョコのように溶ける。テキスト×スイーツの融合。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_T6_giant_letter.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">T6</span><span class="title">Giant Letter</span><span class="desc">「M」一文字が画面を支配。中にスイーツが見える窓。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_T7_handwritten.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">T7</span><span class="title">Handwritten</span><span class="desc">手書きラブレター風。自分へのご褒美メッセージ。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_T8_negative_space.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">T8</span><span class="title">Negative Space</span><span class="desc">スイーツ写真から文字が白抜き。エディトリアル。</span></div></div>
+</div>
+<div class="section-divider" style="max-width:1200px;margin:0 auto;padding:10px 24px 20px;"><h2 style="font-family:'Zen Maru Gothic';font-size:28px;color:#ff8a9e;letter-spacing:6px;text-align:center;border-top:1px solid #fce4ec;padding-top:40px;">VISUAL × TYPOGRAPHY</h2><p style="text-align:center;font-size:13px;margin-top:8px;color:#b08878;">ベースビジュアルの世界観 × タイポグラフィ遊びの融合</p></div>
+<div class="grid">
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_A1t_flatlay_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">A1t</span><span class="title">Flat Lay × Scattered Text</span><span class="desc">スイーツのリースに囲まれた「もうひとつ」。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_A2t_chocolate_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">A2t</span><span class="title">Chocolate × Gold Text</span><span class="desc">ダークチョコ×ゴールド。「食べていい。」が主役。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_B1t_macaron_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">B1t</span><span class="title">Macaron × Dancing Text</span><span class="desc">マカロンと踊るパステルカラーのテキスト。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_B2t_giftbox_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">B2t</span><span class="title">Giftbox × Tag Text</span><span class="desc">ギフトタグ風テキスト。パッケージデザイン感。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_C1t_woman_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">C1t</span><span class="title">Portrait × Whisper Text</span><span class="desc">内なる声。「もうひとつ」がマカロンの横で囁く。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_C2t_cozy_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">C2t</span><span class="title">Cozy × Diary Text</span><span class="desc">ココアの湯気と日記風テキスト。温かい夜。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_D1t_minimal_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">D1t</span><span class="title">Minimal × Giant Text</span><span class="desc">テキスト主役×マカロン1個。ポスターデザイン。</span></div></div>
+  <div class="card"><div class="img-wrap"><img src="banners_09_melty_v31/melty_D2t_strawberry_typo.png" onclick="openZoom(this.src)"></div><div class="info"><span class="label">D2t</span><span class="title">Strawberry × Stack Text</span><span class="desc">粉糖が舞う中の縦スタックテキスト。</span></div></div>
+</div>
+<div class="zo" id="zo" onclick="this.classList.remove('on')"><img id="zi"></div>
+<div class="ft">DOCKING DESIGN SYSTEM — DESIGN FRAMES 09 MELTY — gemini-3.1-flash-image-preview — 2026-03-17</div>
+<script>function openZoom(s){document.getElementById('zi').src=s;document.getElementById('zo').classList.add('on');}</script>
+</body></html>

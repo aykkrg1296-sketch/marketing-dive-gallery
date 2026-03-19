@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>DESIGN FRAMES — COMPLETE ARCHIVE</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;900&family=Noto+Sans+JP:wght@700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#fff;font-family:'DM Sans','Noto Sans JP',sans-serif}
+.tab-nav{position:sticky;top:0;z-index:200;background:#0a0a0a;border-bottom:2px solid #222;display:flex;padding:0 16px;overflow-x:auto;white-space:nowrap;align-items:center}
+.tab-btn{padding:14px 20px;font-size:11px;font-weight:900;letter-spacing:1.5px;color:#666;background:none;border:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;flex-shrink:0}
+.tab-btn:hover{color:#fff}
+.tab-btn.active{color:#fff;border-bottom-color:var(--accent)}
+.tab-btn .count{font-size:9px;color:#444;margin-left:4px}
+.tab-page{display:none}
+.tab-page.active{display:block}
+.hero{padding:40px 40px 28px}
+.hero-label{font-size:10px;letter-spacing:4px;font-weight:700;margin-bottom:6px}
+.hero h1{font-size:44px;font-weight:900;line-height:1.05}
+.hero-sub{font-size:12px;color:#888;margin-top:8px}
+.hero-tags{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.tag{font-size:9px;padding:3px 10px;border-radius:4px;font-weight:900;letter-spacing:1px}
+.section{max-width:1400px;margin:28px auto;padding:0 20px}
+.sec-title{font-size:11px;font-weight:900;letter-spacing:2px;border-bottom:1px solid #222;padding-bottom:8px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+.card{background:#111;border-radius:6px;overflow:hidden;position:relative;cursor:pointer;transition:transform .15s}
+.card:hover{transform:scale(1.02)}
+.card.selected{outline:3px solid #00ff88;outline-offset:-3px}
+.card.selected::after{content:'DOCKING';position:absolute;top:8px;right:8px;background:#00ff88;color:#000;font-size:8px;font-weight:900;padding:3px 8px;border-radius:3px;letter-spacing:1px}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.card-info{padding:8px 10px}
+.card-info .name{font-size:10px;font-weight:900}
+.card-info .round{font-size:8px;color:#444;margin-top:2px}
+
+/* DOCKING bar */
+.dock-bar{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(0,255,136,0.95);color:#000;padding:12px 24px;display:none;align-items:center;justify-content:space-between;font-weight:900;backdrop-filter:blur(10px)}
+.dock-bar.show{display:flex}
+.dock-bar .dock-count{font-size:14px}
+.dock-bar .dock-actions{display:flex;gap:10px}
+.dock-bar button{padding:8px 20px;border:none;border-radius:4px;font-weight:900;font-size:11px;cursor:pointer;letter-spacing:1px}
+.dock-bar .btn-send{background:#000;color:#00ff88}
+.dock-bar .btn-clear{background:rgba(0,0,0,0.2);color:#000}
+.dock-bar .btn-export{background:#222;color:#00ff88}
+
+/* Lightbox */
+.lightbox{position:fixed;top:0;left:0;right:0;bottom:0;z-index:400;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox.show{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
+</style>
+</head>
+<body>
+
+<div class="tab-nav" id="tabNav">
+  <div style="margin-left:auto;display:flex;align-items:center;gap:8px;padding:0 12px">
+    <span style="font-size:9px;color:#00ff88;letter-spacing:1px;font-weight:900">SELECT MODE</span>
+    <label style="position:relative;width:36px;height:20px;cursor:pointer">
+      <input type="checkbox" id="selectMode" style="display:none">
+      <span id="toggleTrack" style="position:absolute;inset:0;background:#333;border-radius:10px;transition:.2s"></span>
+      <span id="toggleThumb" style="position:absolute;top:2px;left:2px;width:16px;height:16px;background:#666;border-radius:50%;transition:.2s"></span>
+    </label>
+  </div>
+</div>
+<div id="pages"></div>
+
+<!-- DOCKING bar -->
+<div class="dock-bar" id="dockBar">
+  <div class="dock-count"><span id="dockCount">0</span> 枚選択中 → DOCKING REF</div>
+  <div class="dock-actions">
+    <button class="btn-export" onclick="exportList()">リスト出力</button>
+    <button class="btn-clear" onclick="clearSelection()">クリア</button>
+    <button class="btn-send" onclick="sendToDocking()">DOCKINGに送る</button>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('show')">
+  <img id="lightboxImg">
+</div>
+
+<script>
+const selected = new Set();
+let selectMode = false;
+
+document.getElementById('selectMode').addEventListener('change', function() {
+  selectMode = this.checked;
+  const track = document.getElementById('toggleTrack');
+  const thumb = document.getElementById('toggleThumb');
+  if (selectMode) {
+    track.style.background = '#00ff88';
+    thumb.style.left = '18px';
+    thumb.style.background = '#000';
+  } else {
+    track.style.background = '#333';
+    thumb.style.left = '2px';
+    thumb.style.background = '#666';
+  }
+});
+
+function updateDockBar() {
+  const bar = document.getElementById('dockBar');
+  document.getElementById('dockCount').textContent = selected.size;
+  bar.classList.toggle('show', selected.size > 0);
+}
+
+function clearSelection() {
+  selected.clear();
+  document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+  updateDockBar();
+}
+
+function exportList() {
+  const list = [...selected].join('\n');
+  const blob = new Blob([list], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'docking_selection.txt';
+  a.click();
+}
+
+function sendToDocking() {
+  const data = {
+    selected: [...selected],
+    timestamp: new Date().toISOString(),
+    count: selected.size
+  };
+  localStorage.setItem('docking_selection', JSON.stringify(data));
+  alert(`${selected.size}枚をDOCKINGリファレンスに送る準備完了！\n\nコーディーに「DOCKINGに送って」と伝えてください。\n選択リストはlocalStorageに保存されています。`);
+}
+
+const brands = [
+  {
+    id:'lumiere', label:'LUMIERE', num:'01', accent:'#c4a882',
+    title:'LUMIERE', sub:'高級スキンケア — 「その肌、まだ目覚めていない。」',
+    tags:[{t:'FEMALE',bg:'#E63946',fg:'#fff'},{t:'HARD',bg:'#333',fg:'#c4a882'}],
+    folders:[
+      {name:'R1（初回）',folder:'banners_01_lumiere'},
+      {name:'R2',folder:'banners_01_lumiere_r2'},
+      {name:'R3',folder:'banners_01_lumiere_r3'},
+      {name:'R4',folder:'banners_01_lumiere_r4'},
+    ]
+  },
+  {
+    id:'signalflow', label:'SIGNALFLOW', num:'02', accent:'#1058C4',
+    title:'SIGNALFLOW', sub:'AIデータ分析 — 「データは語っている。聞こえているか。」',
+    tags:[{t:'MALE',bg:'#457B9D',fg:'#fff'},{t:'HARD',bg:'#333',fg:'#67CAFF'}],
+    folders:[{name:'BASE + TYPO',folder:'banners_02_signalflow'}]
+  },
+  {
+    id:'ignite', label:'IGNITE', num:'03', accent:'#ff6b25',
+    title:'IGNITE', sub:'副業×マーケ講座 — 「いつか」を待つ人生は、今日で終わりだ。',
+    tags:[{t:'MALE',bg:'#457B9D',fg:'#fff'},{t:'HARD',bg:'#333',fg:'#ff6b25'}],
+    folders:[{name:'ALL（4軸+タイポ+図鑑+バリエーション）',folder:'banners_03_ignite'}]
+  },
+  {
+    id:'ignite-best', label:'IGNITE BEST', num:'03B', accent:'#ff6b25',
+    title:'IGNITE BEST', sub:'FB反映キュレーション — O採用+修正反映',
+    tags:[{t:'18 SELECTED',bg:'#ff6b25',fg:'#000'}],
+    folders:['CUSTOM']
+  },
+  {
+    id:'soilsip', label:'SOIL & SIP', num:'04', accent:'#6b8f5e',
+    title:'SOIL & SIP', sub:'オーガニックカフェ — 「今日のコーヒー、なんだかやさしい。」',
+    tags:[{t:'UNISEX',bg:'#555',fg:'#fff'},{t:'SOFT',bg:'#333',fg:'#6b8f5e'}],
+    folders:[{name:'4軸 + タイポ',folder:'banners_04_soilsip'}]
+  },
+  {
+    id:'melty', label:'MELTY', num:'09', accent:'#ff8a9e',
+    title:'MELTY', sub:'スイーツ定期便 — 「がんばった日は、もうひとつ食べていい。」',
+    tags:[{t:'FEMALE',bg:'#E63946',fg:'#fff'},{t:'PLAYFUL',bg:'#333',fg:'#ff8a9e'}],
+    folders:[
+      {name:'R1（初回・テキスト崩れ）',folder:'banners_09_melty'},
+      {name:'R2（改善試行）',folder:'banners_09_melty_r2'},
+      {name:'R3（モデル変更前）',folder:'banners_09_melty_r3'},
+      {name:'ガチャ（ランダム生成）',folder:'banners_09_melty_gacha'},
+      {name:'R5（Pillow overlay）',folder:'banners_09_melty_r5'},
+      {name:'R5b（Pillow修正）',folder:'banners_09_melty_r5b'},
+      {name:'v3.1 FINAL（最新モデル）',folder:'banners_09_melty_v31'},
+    ]
+  },
+];
+
+const nav = document.getElementById('tabNav');
+const pages = document.getElementById('pages');
+const modeToggle = nav.querySelector('div[style*="margin-left"]');
+
+brands.forEach((b, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'tab-btn' + (i===0?' active':'');
+  btn.style.setProperty('--accent', b.accent);
+  btn.innerHTML = b.label;
+  btn.onclick = () => {
+    document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('page-'+b.id).classList.add('active');
+    btn.classList.add('active');
+  };
+  nav.insertBefore(btn, modeToggle);
+
+  const page = document.createElement('div');
+  page.className = 'tab-page' + (i===0?' active':'');
+  page.id = 'page-'+b.id;
+
+  page.innerHTML = `
+    <div class="hero" style="border-bottom:2px solid ${b.accent}">
+      <div class="hero-label" style="color:${b.accent}">DESIGN FRAMES — ${b.num}</div>
+      <h1 style="color:${b.accent}">${b.title}</h1>
+      <div class="hero-sub">${b.sub}</div>
+      <div class="hero-tags">${b.tags.map(t=>`<span class="tag" style="background:${t.bg};color:${t.fg}">${t.t}</span>`).join('')}</div>
+    </div>
+  `;
+
+  if (b.id === 'ignite-best') {
+    page.innerHTML += `
+      <div class="section">
+        <div class="sec-title" style="color:#ff6b25">O — 採用（10枚）</div>
+        <div class="grid" id="ib-o"></div>
+      </div>
+      <div class="section">
+        <div class="sec-title" style="color:#888">FB修正反映（7枚）</div>
+        <div class="grid" id="ib-fix"></div>
+      </div>
+      <div class="section">
+        <div class="sec-title" style="color:#444">T8 テキスト修正</div>
+        <div class="grid" id="ib-t8"></div>
+      </div>
+    `;
+  }
+
+  pages.appendChild(page);
+});
+
+function addCard(gridEl, folder, file, round) {
+  const name = file.replace(/\.(png|jpg)$/,'').replace(/^(melty_|sf_|ignite_|lumiere_|ss_)/,'').replace(/_/g,' ');
+  const key = folder + '/' + file;
+  const card = document.createElement('div');
+  card.className = 'card' + (selected.has(key) ? ' selected' : '');
+  card.dataset.key = key;
+  card.innerHTML = `<img src="${folder}/${file}" loading="lazy"><div class="card-info"><div class="name">${name}</div>${round?'<div class="round">'+round+'</div>':''}</div>`;
+  card.onclick = (e) => {
+    if (selectMode) {
+      e.preventDefault();
+      if (selected.has(key)) {
+        selected.delete(key);
+        card.classList.remove('selected');
+      } else {
+        selected.add(key);
+        card.classList.add('selected');
+      }
+      updateDockBar();
+    } else {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightboxImg').src = folder + '/' + file;
+      lb.classList.add('show');
+    }
+  };
+  gridEl.appendChild(card);
+}
+
+brands.forEach(b => {
+  if (b.id === 'ignite-best') return;
+  const page = document.getElementById('page-'+b.id);
+  b.folders.forEach(f => {
+    const sec = document.createElement('div');
+    sec.className = 'section';
+    sec.innerHTML = `<div class="sec-title" style="color:${b.accent}">${f.name}</div><div class="grid" id="grid-${f.folder}"></div>`;
+    page.appendChild(sec);
+    fetch(f.folder + '/')
+      .then(r => r.text())
+      .then(html => {
+        const matches = [...html.matchAll(/href="([^"]+\.(png|jpg))"/g)].map(m=>m[1]).filter(n=>!n.startsWith('.'));
+        const grid = document.getElementById('grid-'+f.folder);
+        if (matches.length > 0) {
+          matches.sort().forEach(file => addCard(grid, f.folder, file, null));
+        }
+        const idx = [...nav.querySelectorAll('.tab-btn')].findIndex(c=>c.textContent.includes(b.label));
+        if(idx>=0) {
+          const total = page.querySelectorAll('.card img').length;
+          nav.querySelectorAll('.tab-btn')[idx].innerHTML = `${b.label} <span class="count">${total}</span>`;
+        }
+      })
+      .catch(() => {});
+  });
+});
+
+const bestO = ['ignite_02_kenzai_uresji_beforeafter.png','ignite_T4_glitch.png','ignite_03b_kenzai_only_burningtypo_v2.png','ignite_07b_senzai_only_match_v2.png','ignite_08b_senzai_only_blankresume_v2.png','ignite_E1_logotype_owari.png','ignite_E2_photo_inside_text.png','ignite_E4_giant_person_typo.png','ignite_E6_perspective_floor.png'];
+const bestFix = ['ignite_05_senzai_uresji_gap.png','ignite_06_senzai_uresji_latenight.png','ignite_03_kenzai_only_burningtypo.png','ignite_07_senzai_only_match.png','ignite_T1_ash.png','ignite_T2_neon.png'];
+const bestT8 = ['ignite_T8_mirror.png'];
+
+setTimeout(() => {
+  const gO = document.getElementById('ib-o');
+  const gF = document.getElementById('ib-fix');
+  const gT = document.getElementById('ib-t8');
+  if(gO) bestO.forEach(f => addCard(gO,'banners_03_ignite',f,'O採用'));
+  if(gF) bestFix.forEach(f => addCard(gF,'banners_03_ignite',f,'修正反映'));
+  if(gT) bestT8.forEach(f => addCard(gT,'banners_03_ignite',f,'テキスト修正'));
+}, 100);
+</script>
+
+</body>
+</html>
