@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>DESIGN FRAMES — COMPLETE ARCHIVE</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#fff;font-family:'DM Sans','Noto Sans JP',sans-serif}
+.tab-nav{position:sticky;top:0;z-index:200;background:#0a0a0a;border-bottom:2px solid #222;display:flex;padding:0 16px;overflow-x:auto;white-space:nowrap;align-items:center}
+.tab-btn{padding:14px 20px;font-size:11px;font-weight:900;letter-spacing:1.5px;color:#666;background:none;border:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;flex-shrink:0}
+.tab-btn:hover{color:#fff}
+.tab-btn.active{color:#fff;border-bottom-color:var(--accent)}
+.tab-btn .count{font-size:9px;color:#444;margin-left:4px}
+.tab-page{display:none}
+.tab-page.active{display:block}
+.hero{padding:40px 40px 28px}
+.hero-label{font-size:10px;letter-spacing:4px;font-weight:700;margin-bottom:6px}
+.hero h1{font-size:44px;font-weight:900;line-height:1.05}
+.hero-sub{font-size:12px;color:#888;margin-top:8px}
+.hero-tags{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.tag{font-size:9px;padding:3px 10px;border-radius:4px;font-weight:900;letter-spacing:1px}
+.section{max-width:1400px;margin:28px auto;padding:0 20px}
+.sec-title{font-size:11px;font-weight:900;letter-spacing:2px;border-bottom:1px solid #222;padding-bottom:8px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+
+/* Card */
+.card{background:#111;border-radius:8px;overflow:hidden;position:relative;transition:transform .15s}
+.card:hover{transform:scale(1.01)}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;cursor:pointer}
+.card-info{padding:8px 10px 6px}
+.card-info .name{font-size:10px;font-weight:900;margin-bottom:6px}
+
+/* FB buttons */
+.fb-row{display:flex;gap:4px;margin-bottom:6px}
+.fb-btn{flex:1;padding:6px 0;border:none;border-radius:4px;font-size:10px;font-weight:900;cursor:pointer;transition:all .15s;letter-spacing:0.5px}
+.fb-btn:hover{filter:brightness(1.2)}
+.fb-btn.btn-o{background:#222;color:#666}
+.fb-btn.btn-o.active{background:#00cc66;color:#000}
+.fb-btn.btn-x{background:#222;color:#666}
+.fb-btn.btn-x.active{background:#ff3344;color:#fff}
+.fb-btn.btn-dock{background:#222;color:#666}
+.fb-btn.btn-dock.active{background:#00ff88;color:#000}
+
+/* Status badges */
+.card.status-o{outline:3px solid #00cc66;outline-offset:-3px}
+.card.status-o::after{content:'O';position:absolute;top:8px;right:8px;background:#00cc66;color:#000;font-size:12px;font-weight:900;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.card.status-x{outline:3px solid #ff3344;outline-offset:-3px;opacity:0.5}
+.card.status-x::after{content:'X';position:absolute;top:8px;right:8px;background:#ff3344;color:#fff;font-size:12px;font-weight:900;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.card.status-dock{outline:3px solid #00ff88;outline-offset:-3px}
+.card.status-dock::after{content:'DOCK';position:absolute;top:8px;right:8px;background:#00ff88;color:#000;font-size:8px;font-weight:900;padding:4px 8px;border-radius:4px;letter-spacing:1px}
+
+/* Comment */
+.fb-comment{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:4px;color:#fff;font-size:10px;padding:6px 8px;resize:none;height:28px;font-family:inherit;transition:height .2s}
+.fb-comment:focus{height:56px;outline:none;border-color:#555}
+.fb-comment::placeholder{color:#444}
+
+/* Bottom bar */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(10,10,10,0.95);border-top:2px solid #222;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(10px)}
+.bar-stats{display:flex;gap:16px;font-size:11px}
+.bar-stats .stat{display:flex;align-items:center;gap:4px}
+.bar-stats .dot{width:8px;height:8px;border-radius:50%}
+.bar-actions{display:flex;gap:8px}
+.bar-btn{padding:8px 16px;border:none;border-radius:4px;font-weight:900;font-size:10px;cursor:pointer;letter-spacing:1px;transition:all .15s}
+.bar-btn:hover{filter:brightness(1.2)}
+.bar-btn.btn-export{background:#333;color:#fff}
+.bar-btn.btn-send{background:#00ff88;color:#000}
+.bar-btn.btn-clear{background:#222;color:#666}
+
+/* Lightbox */
+.lightbox{position:fixed;top:0;left:0;right:0;bottom:0;z-index:400;background:rgba(0,0,0,0.95);display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox.show{display:flex}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px}
+</style>
+</head>
+<body>
+
+<div class="tab-nav" id="tabNav"></div>
+<div id="pages"></div>
+
+<div class="bottom-bar">
+  <div class="bar-stats">
+    <div class="stat"><div class="dot" style="background:#00cc66"></div><span id="countO">0</span> O</div>
+    <div class="stat"><div class="dot" style="background:#ff3344"></div><span id="countX">0</span> X</div>
+    <div class="stat"><div class="dot" style="background:#00ff88"></div><span id="countD">0</span> DOCK</div>
+    <div class="stat" style="color:#444">|</div>
+    <div class="stat" style="color:#888"><span id="countTotal">0</span> 枚中 <span id="countReviewed">0</span> 枚レビュー済</div>
+  </div>
+  <div class="bar-actions">
+    <button class="bar-btn btn-export" onclick="exportFB()">FB出力</button>
+    <button class="bar-btn btn-send" onclick="sendDocking()">DOCKINGに送る</button>
+    <button class="bar-btn btn-clear" onclick="if(confirm('全FBをクリアしますか？'))clearAll()">クリア</button>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('show')">
+  <img id="lightboxImg">
+</div>
+
+<script>
+// FB state: { [key]: { status: 'o'|'x'|'dock'|null, comment: '' } }
+let fb = JSON.parse(localStorage.getItem('design_frames_fb') || '{}');
+
+function saveFB() {
+  localStorage.setItem('design_frames_fb', JSON.stringify(fb));
+  updateCounts();
+}
+
+function setStatus(key, status) {
+  if (!fb[key]) fb[key] = { status: null, comment: '' };
+  fb[key].status = fb[key].status === status ? null : status; // toggle
+  saveFB();
+  renderCardStatus(key);
+}
+
+function setComment(key, comment) {
+  if (!fb[key]) fb[key] = { status: null, comment: '' };
+  fb[key].comment = comment;
+  saveFB();
+}
+
+function renderCardStatus(key) {
+  const card = document.querySelector(`.card[data-key="${key}"]`);
+  if (!card) return;
+  card.classList.remove('status-o','status-x','status-dock');
+  const s = fb[key]?.status;
+  if (s === 'o') card.classList.add('status-o');
+  if (s === 'x') card.classList.add('status-x');
+  if (s === 'dock') card.classList.add('status-dock');
+  // Update buttons
+  card.querySelectorAll('.fb-btn').forEach(b => b.classList.remove('active'));
+  if (s) card.querySelector(`.btn-${s === 'dock' ? 'dock' : s}`)?.classList.add('active');
+}
+
+function updateCounts() {
+  let o=0, x=0, d=0;
+  Object.values(fb).forEach(v => {
+    if (v.status === 'o') o++;
+    if (v.status === 'x') x++;
+    if (v.status === 'dock') d++;
+  });
+  document.getElementById('countO').textContent = o;
+  document.getElementById('countX').textContent = x;
+  document.getElementById('countD').textContent = d;
+  document.getElementById('countReviewed').textContent = o + x + d;
+  document.getElementById('countTotal').textContent = document.querySelectorAll('.card').length;
+}
+
+function exportFB() {
+  const lines = ['=== DESIGN FRAMES FB ===', `Date: ${new Date().toISOString()}`, ''];
+  const oList = [], xList = [], dockList = [];
+  Object.entries(fb).forEach(([key, v]) => {
+    const line = `${key}${v.comment ? ' — ' + v.comment : ''}`;
+    if (v.status === 'o') oList.push(line);
+    if (v.status === 'x') xList.push(line);
+    if (v.status === 'dock') dockList.push(line);
+  });
+  if (dockList.length) { lines.push('🟢 DOCKING:'); dockList.forEach(l => lines.push('  ' + l)); lines.push(''); }
+  if (oList.length) { lines.push('⭕ O (採用):'); oList.forEach(l => lines.push('  ' + l)); lines.push(''); }
+  if (xList.length) { lines.push('❌ X (没):'); xList.forEach(l => lines.push('  ' + l)); lines.push(''); }
+  const blob = new Blob([lines.join('\n')], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'design_frames_fb.txt';
+  a.click();
+}
+
+function sendDocking() {
+  const dockItems = Object.entries(fb).filter(([k,v]) => v.status === 'dock').map(([k,v]) => ({path: k, comment: v.comment}));
+  if (dockItems.length === 0) { alert('DOCKINGに送る画像が選択されていません'); return; }
+  localStorage.setItem('docking_selection', JSON.stringify({items: dockItems, timestamp: new Date().toISOString()}));
+  alert(`${dockItems.length}枚をDOCKINGに送る準備完了！\n\nコーディーに「DOCKINGに送って」と伝えてください。`);
+}
+
+function clearAll() {
+  fb = {};
+  saveFB();
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.remove('status-o','status-x','status-dock');
+    c.querySelectorAll('.fb-btn').forEach(b => b.classList.remove('active'));
+    const ta = c.querySelector('.fb-comment');
+    if (ta) ta.value = '';
+  });
+}
+
+// === Brand definitions ===
+const brands = [
+  {id:'lumiere',label:'LUMIERE',num:'01',accent:'#c4a882',title:'LUMIERE',sub:'高級スキンケア — 「その肌、まだ目覚めていない。」',tags:[{t:'FEMALE',bg:'#E63946',fg:'#fff'},{t:'HARD',bg:'#333',fg:'#c4a882'}],folders:[{name:'R1',folder:'banners_01_lumiere'},{name:'R2',folder:'banners_01_lumiere_r2'},{name:'R3',folder:'banners_01_lumiere_r3'},{name:'R4',folder:'banners_01_lumiere_r4'}]},
+  {id:'signalflow',label:'SIGNALFLOW',num:'02',accent:'#1058C4',title:'SIGNALFLOW',sub:'AIデータ分析 — 「データは語っている。聞こえているか。」',tags:[{t:'MALE',bg:'#457B9D',fg:'#fff'},{t:'HARD',bg:'#333',fg:'#67CAFF'}],folders:[{name:'BASE + TYPO',folder:'banners_02_signalflow'}]},
+  {id:'ignite',label:'IGNITE',num:'03',accent:'#ff6b25',title:'IGNITE',sub:'副業×マーケ講座 — 「いつか」を待つ人生は、今日で終わりだ。',tags:[{t:'MALE',bg:'#457B9D',fg:'#fff'},{t:'HARD',bg:'#333',fg:'#ff6b25'}],folders:[{name:'全量',folder:'banners_03_ignite'}]},
+  {id:'soilsip',label:'SOIL & SIP',num:'04',accent:'#6b8f5e',title:'SOIL & SIP',sub:'オーガニックカフェ — 「今日のコーヒー、なんだかやさしい。」',tags:[{t:'UNISEX',bg:'#555',fg:'#fff'},{t:'SOFT',bg:'#333',fg:'#6b8f5e'}],folders:[{name:'4軸 + タイポ',folder:'banners_04_soilsip'}]},
+  {id:'melty',label:'MELTY',num:'09',accent:'#ff8a9e',title:'MELTY',sub:'スイーツ定期便',tags:[{t:'FEMALE',bg:'#E63946',fg:'#fff'},{t:'PLAYFUL',bg:'#333',fg:'#ff8a9e'}],folders:[{name:'🆕 最新（3/20 FB反映）',folder:'banners_09_melty_ad/latest'},{name:'AD版全量（3/20）',folder:'banners_09_melty_ad'},{name:'旧ポスター版（3/18）',folder:'banners_09_melty_v31'}]},
+];
+
+const nav = document.getElementById('tabNav');
+const pages = document.getElementById('pages');
+
+brands.forEach((b, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'tab-btn' + (i===0?' active':'');
+  btn.style.setProperty('--accent', b.accent);
+  btn.innerHTML = b.label;
+  btn.onclick = () => {
+    document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+    document.getElementById('page-'+b.id).classList.add('active');
+    btn.classList.add('active');
+  };
+  nav.appendChild(btn);
+
+  const page = document.createElement('div');
+  page.className = 'tab-page' + (i===0?' active':'');
+  page.id = 'page-'+b.id;
+  page.innerHTML = `<div class="hero" style="border-bottom:2px solid ${b.accent}"><div class="hero-label" style="color:${b.accent}">DESIGN FRAMES — ${b.num}</div><h1 style="color:${b.accent}">${b.title}</h1><div class="hero-sub">${b.sub}</div><div class="hero-tags">${b.tags.map(t=>`<span class="tag" style="background:${t.bg};color:${t.fg}">${t.t}</span>`).join('')}</div></div>`;
+  pages.appendChild(page);
+});
+
+function addCard(gridEl, folder, file) {
+  const name = file.replace(/\.(png|jpg)$/,'').replace(/^(melty_|sf_|ignite_|lumiere_|ss_)/,'').replace(/_/g,' ');
+  const key = folder + '/' + file;
+  const existing = fb[key] || { status: null, comment: '' };
+
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.key = key;
+
+  card.innerHTML = `
+    <img src="${folder}/${file}" loading="lazy">
+    <div class="card-info">
+      <div class="name">${name}</div>
+      <div class="fb-row">
+        <button class="fb-btn btn-o${existing.status==='o'?' active':''}" onclick="event.stopPropagation();setStatus('${key}','o')">O</button>
+        <button class="fb-btn btn-x${existing.status==='x'?' active':''}" onclick="event.stopPropagation();setStatus('${key}','x')">X</button>
+        <button class="fb-btn btn-dock${existing.status==='dock'?' active':''}" onclick="event.stopPropagation();setStatus('${key}','dock')">DOCK</button>
+      </div>
+      <textarea class="fb-comment" placeholder="コメント..." onchange="setComment('${key}',this.value)" onclick="event.stopPropagation()">${existing.comment || ''}</textarea>
+    </div>
+  `;
+
+  card.querySelector('img').onclick = () => {
+    document.getElementById('lightboxImg').src = folder + '/' + file;
+    document.getElementById('lightbox').classList.add('show');
+  };
+
+  if (existing.status === 'o') card.classList.add('status-o');
+  if (existing.status === 'x') card.classList.add('status-x');
+  if (existing.status === 'dock') card.classList.add('status-dock');
+
+  gridEl.appendChild(card);
+}
+
+brands.forEach(b => {
+  const page = document.getElementById('page-'+b.id);
+  b.folders.forEach(f => {
+    const sec = document.createElement('div');
+    sec.className = 'section';
+    sec.innerHTML = `<div class="sec-title" style="color:${b.accent}">${f.name}</div><div class="grid" id="grid-${f.folder}"></div>`;
+    page.appendChild(sec);
+    fetch(f.folder + '/')
+      .then(r => r.text())
+      .then(html => {
+        const matches = [...html.matchAll(/href="([^"]+\.(png|jpg))"/g)].map(m=>m[1]).filter(n=>!n.startsWith('.'));
+        const grid = document.getElementById('grid-'+f.folder);
+        // If a fix version exists, hide the original
+        const fixBases = new Set();
+        matches.filter(f => f.includes('_fix')).forEach(f => {
+          // ss_T2_bean_mosaic_fix.png → ss_T2_bean_mosaic
+          const base = f.replace(/_fix\d*\.png$/, '.png');
+          fixBases.add(base);
+        });
+        const filtered = matches.filter(f => !fixBases.has(f)).sort().reverse();
+        filtered.forEach(file => addCard(grid, f.folder, file));
+        // Update tab count
+        const idx = [...nav.querySelectorAll('.tab-btn')].findIndex(c=>c.textContent.includes(b.label));
+        if(idx>=0) {
+          const total = page.querySelectorAll('.card').length;
+          nav.querySelectorAll('.tab-btn')[idx].innerHTML = `${b.label} <span class="count">${total}</span>`;
+        }
+        updateCounts();
+      })
+      .catch(() => {});
+  });
+});
+
+// Restore counts on load
+setTimeout(updateCounts, 500);
+</script>
+
+</body>
+</html>
