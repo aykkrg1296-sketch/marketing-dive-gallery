@@ -185,6 +185,26 @@ function clearAll() {
   });
 }
 
+// === Static file lists (for GitHub Pages compatibility) ===
+const FILE_LISTS = {
+  'banners_01_lumiere': ["lumiere_A1_closeup.png","lumiere_A2_eyes.png","lumiere_B1_silhouette.png","lumiere_B2_particle.png","lumiere_C1_product.png","lumiere_C2_split.png","lumiere_D1_editorial.png","lumiere_D2_touch.png"],
+  'banners_01_lumiere_r2': ["lumiere_A1_closeup.png","lumiere_A2_eyes.png","lumiere_B1_silhouette.png","lumiere_B2_particle.png","lumiere_C1_product.png","lumiere_C2_split.png","lumiere_D1_editorial.png","lumiere_D2_touch.png"],
+  'banners_01_lumiere_r3': ["lumiere_A2a_gothic.png","lumiere_A2b_gothic.png","lumiere_C1a_gothic.png","lumiere_C1b_gothic.png","lumiere_D1a_gothic.png","lumiere_D1b_gothic.png","lumiere_D2a_gothic.png","lumiere_D2b_gothic.png"],
+  'banners_01_lumiere_r4': ["lumiere_A1_ref.png","lumiere_A2_ref.png","lumiere_B1_ref.png","lumiere_B2_ref.png","lumiere_C1_ref.png","lumiere_C2_ref.png","lumiere_D1_ref.png","lumiere_D2_ref.png"],
+  'banners_02_signalflow': ["sf_A1_dashboard.png","sf_A1t_dashboard_typo.png","sf_A2_dataflow.png","sf_A2t_dataflow_typo.png","sf_B1_grid.png","sf_B1t_grid_typo.png","sf_B2_signal.png","sf_B2t_signal_typo.png","sf_C1_executive.png","sf_C1t_exec_typo.png","sf_C2_meeting.png","sf_C2t_meeting_typo.png","sf_D1_minimal.png","sf_D1t_minimal_typo.png","sf_D2_split.png","sf_D2t_split_typo.png"],
+  'banners_03_ignite': ["ignite_01_kenzai_uresji_numbers.png","ignite_01b_kenzai_uresji_numbers_v2.png","ignite_02_kenzai_uresji_beforeafter.png","ignite_02b_kenzai_uresji_beforeafter_v2.png","ignite_03_kenzai_only_burningtypo.png","ignite_03b_kenzai_only_burningtypo_v2.png","ignite_04_kenzai_only_meltclock.png","ignite_04b_kenzai_only_meltclock_v2.png","ignite_05_senzai_uresji_gap.png","ignite_05b_senzai_uresji_gap_v2.png","ignite_06_senzai_uresji_latenight.png","ignite_06b_senzai_uresji_latenight_v2.png","ignite_07_senzai_only_match.png","ignite_07b_senzai_only_match_v2.png","ignite_08_senzai_only_blankresume.png","ignite_08b_senzai_only_blankresume_v2.png","ignite_D1_perspective_burst.png","ignite_D2_editorial_mixed.png","ignite_D3_monocolor_orange.png","ignite_D4_speed_italic.png","ignite_D5_magazine_glitch.png","ignite_D6_pure_typography.png","ignite_E1_logotype_owari.png","ignite_E2_photo_inside_text.png","ignite_E3_outline_only.png","ignite_E4_giant_person_typo.png","ignite_E5_stamp_seal.png","ignite_E5_stencil_spray.png","ignite_E6_perspective_floor.png","ignite_T1_ash.png","ignite_T2_neon.png","ignite_T3_calligraphy.png","ignite_T4_glitch.png","ignite_T5_xray.png","ignite_T6_splitface.png","ignite_T7_countdown.png","ignite_T8_mirror.png"],
+  'banners_04_soilsip': ["ss_01_kenzai_uresji_latte.png","ss_02_kenzai_uresji_beans.png","ss_03_kenzai_only_pourover.png","ss_04_kenzai_only_botanical.png","ss_05_senzai_uresji_hands.png","ss_06_senzai_uresji_rain.png","ss_07_senzai_only_soil.png","ss_08_senzai_only_silence.png","ss_T1_steam_text.png","ss_T2_bean_mosaic.png","ss_T2_bean_mosaic_fix.png","ss_T2_bean_mosaic_fix2.png","ss_T3_watercolor.png","ss_T3_watercolor_fix.png","ss_T4_woodblock.png","ss_T4_woodblock_fix.png","ss_v2_01_authority.png","ss_v2_02_personalize.png","ss_v2_02_personalize_fix.png","ss_v2_03_experience.png","ss_v2_03_experience_fix.png","ss_v2_04_lifestyle.png"],
+  'banners_09_melty': ["melty_A1_flatlay.png","melty_A2_chocolate.png","melty_B1_macaron.png","melty_B2_giftbox.png","melty_C1_woman.png","melty_C2_cozy.png","melty_D1_minimal.png","melty_D2_strawberry.png"],
+  'banners_09_melty_ad': ["melty_02_shinninchi_f.png","melty_02_shinninchi_v2.png","melty_03_taiken_center.png","melty_04_costhikaku_diagonal.png","melty_05_kenni_f.png","melty_06_toikake_z.png","melty_07_chohatsu_center.png","melty_08_lifestyle_diagonal.png","melty_A01_gohoubi_kyoukan_z.png","melty_ULTIMATE.png","melty_ad_01_unboxing.png","melty_v3_02_shinninchi.png","melty_v3_02b_shinninchi.png","melty_v3_03_taiken.png","melty_v3_04_toikake.png","melty_v3_05_kenni.png","melty_v3_05b_kenni.png","melty_v3_06_lifestyle.png","melty_v3_06b_lifestyle.png","melty_v3_07_cost.png","melty_v3_07b_cost.png","melty_v3_08_chohatsu.png","melty_v3_beauty_first.png","melty_v4_n1_empathy.png"],
+  'banners_09_melty_ad/latest': ["melty_ad_01_unboxing.png","melty_v3_02b_shinninchi.png","melty_v3_03_taiken.png","melty_v3_05b_kenni.png","melty_v3_06_lifestyle.png","melty_v3_06b_lifestyle.png","melty_v3_07b_cost.png","melty_v3_beauty_first.png","melty_v4_n1_empathy.png"],
+  'banners_09_melty_gacha': ["D1_gacha_1.png","D1_gacha_2.png","D1_gacha_3.png","D1_gacha_4.png","D1_gacha_5.png","D1_v31_1.png"],
+  'banners_09_melty_r2': ["melty_A1_flatlay.png","melty_A2_chocolate.png","melty_B1_macaron.png","melty_B2_giftbox.png","melty_C1_woman.png","melty_C2_cozy.png","melty_D1_minimal.png","melty_D2_strawberry.png"],
+  'banners_09_melty_r3': ["melty_A1_flatlay.png","melty_A2_chocolate.png","melty_B1_macaron.png","melty_B2_giftbox.png","melty_C1_woman.png","melty_C2_cozy.png","melty_D1_minimal.png","melty_D2_strawberry.png"],
+  'banners_09_melty_r5': ["kv_A1_flatlay.png","kv_A2_chocolate.png","kv_B1_macaron.png","kv_B2_giftbox.png","kv_C1_woman.png","kv_C2_cozy.png","kv_D1_minimal.png","kv_D2_strawberry.png","melty_A1_flatlay.png","melty_A2_chocolate.png","melty_B1_macaron.png","melty_B2_giftbox.png","melty_C1_woman.png","melty_C2_cozy.png","melty_D1_minimal.png","melty_D2_strawberry.png"],
+  'banners_09_melty_r5b': ["kv_A1.png","kv_A2.png","kv_B1.png","kv_B2.png","kv_C1.png","kv_C2.png","kv_D1.png","kv_D2.png","melty_A1_flatlay.png","melty_A2_chocolate.png","melty_B1_macaron.png","melty_B2_giftbox.png","melty_C1_woman.png","melty_C2_cozy.png","melty_D1_minimal.png","melty_D2_strawberry.png"],
+  'banners_09_melty_v31': ["melty_A1_flatlay.png","melty_A1t_flatlay_typo.png","melty_A2_chocolate.png","melty_A2t_chocolate_typo.png","melty_B1_macaron.png","melty_B1t_macaron_typo.png","melty_B2_giftbox.png","melty_B2t_giftbox_typo.png","melty_C1_woman.png","melty_C1t_woman_typo.png","melty_C2_cozy.png","melty_C2t_cozy_typo.png","melty_D1_minimal.png","melty_D1t_minimal_typo.png","melty_D2_strawberry.png","melty_D2t_strawberry_typo.png","melty_T1_size_play.png","melty_T2_vertical.png","melty_T3_overlap.png","melty_T4_split_color.png","melty_T5_melting_text.png","melty_T6_giant_letter.png","melty_T7_handwritten.png","melty_T8_negative_space.png"],
+};
+
 // === Brand definitions ===
 const brands = [
   {id:'lumiere',label:'LUMIERE',num:'01',accent:'#c4a882',title:'LUMIERE',sub:'高級スキンケア — 「その肌、まだ目覚めていない。」',tags:[{t:'FEMALE',bg:'#E63946',fg:'#fff'},{t:'HARD',bg:'#333',fg:'#c4a882'}],folders:[{name:'R1',folder:'banners_01_lumiere'},{name:'R2',folder:'banners_01_lumiere_r2'},{name:'R3',folder:'banners_01_lumiere_r3'},{name:'R4',folder:'banners_01_lumiere_r4'}]},
@@ -258,30 +278,24 @@ brands.forEach(b => {
     sec.className = 'section';
     sec.innerHTML = `<div class="sec-title" style="color:${b.accent}">${f.name}</div><div class="grid" id="grid-${f.folder}"></div>`;
     page.appendChild(sec);
-    fetch(f.folder + '/')
-      .then(r => r.text())
-      .then(html => {
-        const matches = [...html.matchAll(/href="([^"]+\.(png|jpg))"/g)].map(m=>m[1]).filter(n=>!n.startsWith('.'));
-        const grid = document.getElementById('grid-'+f.folder);
-        // If a fix version exists, hide the original
-        const fixBases = new Set();
-        matches.filter(f => f.includes('_fix')).forEach(f => {
-          // ss_T2_bean_mosaic_fix.png → ss_T2_bean_mosaic
-          const base = f.replace(/_fix\d*\.png$/, '.png');
-          fixBases.add(base);
-        });
-        const filtered = matches.filter(f => !fixBases.has(f)).sort().reverse();
-        filtered.forEach(file => addCard(grid, f.folder, file));
-        // Update tab count
-        const idx = [...nav.querySelectorAll('.tab-btn')].findIndex(c=>c.textContent.includes(b.label));
-        if(idx>=0) {
-          const total = page.querySelectorAll('.card').length;
-          nav.querySelectorAll('.tab-btn')[idx].innerHTML = `${b.label} <span class="count">${total}</span>`;
-        }
-        updateCounts();
-      })
-      .catch(() => {});
+    const grid = document.getElementById('grid-'+f.folder);
+    const files = FILE_LISTS[f.folder] || [];
+    // If a fix version exists, hide the original
+    const fixBases = new Set();
+    files.filter(fn => fn.includes('_fix')).forEach(fn => {
+      const base = fn.replace(/_fix\d*\.png$/, '.png');
+      fixBases.add(base);
+    });
+    const filtered = files.filter(fn => !fixBases.has(fn)).sort().reverse();
+    filtered.forEach(file => addCard(grid, f.folder, file));
+    // Update tab count
+    const idx = [...nav.querySelectorAll('.tab-btn')].findIndex(c=>c.textContent.includes(b.label));
+    if(idx>=0) {
+      const total = page.querySelectorAll('.card').length;
+      nav.querySelectorAll('.tab-btn')[idx].innerHTML = `${b.label} <span class="count">${total}</span>`;
+    }
   });
+  updateCounts();
 });
 
 // Restore counts on load
