@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>MARKETING DIVE v18a R2 — FB第2弾反映</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #e0e0e0; font-family: 'Helvetica Neue', sans-serif; padding: 40px 20px; }
+h1 { text-align: center; font-size: 28px; margin-bottom: 8px; color: #fff; letter-spacing: 2px; }
+.subtitle { text-align: center; font-size: 14px; color: #888; margin-bottom: 20px; }
+h2 { font-size: 20px; margin: 40px 0 20px; color: #00c8ff; border-bottom: 1px solid #1a3a5a; padding-bottom: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 24px; margin-bottom: 40px; }
+.card { background: #111; border-radius: 8px; overflow: hidden; border: 1px solid #222; position: relative; }
+.card.new { border-color: #00ff8833; }
+.card.prev { border-color: #ff8c0033; }
+.card.original { border-color: #333; }
+.card.fv { border-color: #00c8ff33; }
+.card img { width: 100%; display: block; cursor: pointer; transition: opacity 0.2s; }
+.card img:hover { opacity: 0.9; }
+.label { padding: 12px 16px 8px; font-size: 13px; font-weight: bold; color: #fff; }
+.desc { padding: 4px 16px 8px; font-size: 12px; color: #888; }
+
+/* FB コメントエリア */
+.fb-area { padding: 8px 16px 16px; }
+.fb-area textarea {
+  width: 100%; min-height: 60px; background: #0a0a0a; border: 1px solid #333;
+  border-radius: 6px; color: #e0e0e0; font-size: 13px; padding: 10px 12px;
+  resize: vertical; font-family: inherit; transition: border-color 0.2s;
+}
+.fb-area textarea:focus { outline: none; border-color: #00c8ff; }
+.fb-area textarea::placeholder { color: #555; }
+.fb-status { font-size: 11px; color: #555; margin-top: 4px; text-align: right; min-height: 16px; }
+.fb-status.saved { color: #00ff88; }
+
+/* タグボタン */
+.fb-tags { display: flex; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+.fb-tag {
+  font-size: 11px; padding: 3px 8px; border-radius: 12px; border: 1px solid #333;
+  background: transparent; color: #888; cursor: pointer; transition: all 0.2s;
+}
+.fb-tag:hover { border-color: #00c8ff; color: #00c8ff; }
+.fb-tag.active { background: #00c8ff22; border-color: #00c8ff; color: #00c8ff; }
+
+/* FB集約パネル */
+.fb-collect-bar {
+  position: sticky; top: 0; z-index: 100; background: #111; border-bottom: 1px solid #1a3a5a;
+  padding: 12px 20px; margin: -40px -20px 30px; display: flex; align-items: center; gap: 16px;
+}
+.fb-collect-btn {
+  background: #00c8ff; color: #0a0a0a; border: none; padding: 10px 24px; border-radius: 6px;
+  font-size: 14px; font-weight: bold; cursor: pointer; transition: background 0.2s;
+}
+.fb-collect-btn:hover { background: #00e0ff; }
+.fb-collect-btn.copy { background: #00ff88; }
+.fb-collect-btn.copy:hover { background: #33ff99; }
+.fb-collect-btn.clear { background: #ff4466; margin-left: auto; }
+.fb-collect-btn.clear:hover { background: #ff6688; }
+.fb-count { font-size: 13px; color: #888; }
+
+/* FB集約モーダル */
+.fb-modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85); z-index: 200; justify-content: center; align-items: center;
+}
+.fb-modal-overlay.show { display: flex; }
+.fb-modal {
+  background: #111; border: 1px solid #00c8ff33; border-radius: 12px; padding: 32px;
+  max-width: 700px; width: 90%; max-height: 80vh; overflow-y: auto;
+}
+.fb-modal h3 { color: #00c8ff; margin-bottom: 16px; font-size: 18px; }
+.fb-modal pre {
+  background: #0a0a0a; border: 1px solid #222; border-radius: 8px; padding: 16px;
+  font-size: 13px; line-height: 1.8; white-space: pre-wrap; color: #e0e0e0; font-family: inherit;
+}
+.fb-modal .close-btn {
+  margin-top: 16px; background: #333; color: #fff; border: none; padding: 8px 20px;
+  border-radius: 6px; cursor: pointer; font-size: 13px;
+}
+.fb-modal .actions { display: flex; gap: 12px; margin-top: 16px; }
+.copied-toast {
+  position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+  background: #00ff88; color: #0a0a0a; padding: 10px 24px; border-radius: 8px;
+  font-weight: bold; font-size: 14px; z-index: 300; display: none;
+}
+
+/* 画像拡大モーダル */
+.img-modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.92); z-index: 150; justify-content: center; align-items: center;
+  cursor: zoom-out;
+}
+.img-modal-overlay.show { display: flex; }
+.img-modal-overlay img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+
+.fb-note { background: #1a1a2e; border: 1px solid #00c8ff33; border-radius: 8px; padding: 20px; margin-bottom: 40px; }
+.fb-note h3 { color: #00c8ff; margin-bottom: 12px; }
+.fb-note ul { list-style: none; padding: 0; }
+.fb-note li { padding: 6px 0; font-size: 14px; }
+.fb-note li::before { content: "\25B6 "; color: #00ff88; }
+</style>
+</head>
+<body>
+
+<!-- FB集約バー -->
+<div class="fb-collect-bar">
+  <button class="fb-collect-btn" onclick="showCollected()">FB集約して見る</button>
+  <button class="fb-collect-btn copy" onclick="copyCollected()">FBをコピー</button>
+  <span class="fb-count" id="fbCount">コメント: 0件</span>
+  <button class="fb-collect-btn clear" onclick="clearAllFB()">全クリア</button>
+</div>
+
+<h1>MARKETING DIVE v18a R2</h1>
+<p class="subtitle">Generated 2026-03-16 14:08 | Google Gemini API | FB第2弾反映</p>
+
+<div class="fb-note">
+<h3>FB第2弾 反映ポイント</h3>
+<ul>
+<li>C05: 空を青空快晴に。街並み追加。FV Girl同一人物の徹底</li>
+<li>A08: 変化球方向で。テキスト品質UP。目キラキラ・光・コントラスト。同一人物</li>
+<li>B01: 元B01の良さに戻す。女の子こっち向き</li>
+<li>B05: くり抜き維持。テキストのフチ（シアンエッジグロー）で視認性UP</li>
+</ul>
+</div>
+
+<h2>v18a R2: FB第2弾反映</h2>
+<div class="grid">
+  <div class="card new" data-id="C05_01">
+    <div class="label">C05: あなたを、迎えにきた。 — 正統派</div>
+    <img src="v18a2_C05_01.png" alt="v18a2_C05_01.png" onclick="zoomImg(this)">
+    <div class="desc">R2: 青空快晴 + 街並み + FV Girl同一人物</div>
+    <div class="fb-area">
+      <div class="fb-tags">
+        <span class="fb-tag" onclick="toggleTag(this)">良い</span>
+        <span class="fb-tag" onclick="toggleTag(this)">惜しい</span>
+        <span class="fb-tag" onclick="toggleTag(this)">構図OK</span>
+        <span class="fb-tag" onclick="toggleTag(this)">色変更</span>
+        <span class="fb-tag" onclick="toggleTag(this)">テキスト修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">女の子修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">やり直し</span>
+      </div>
+      <textarea placeholder="このバナーへのFBを入力..." oninput="saveFB(this)"></textarea>
+      <div class="fb-status"></div>
+    </div>
+  </div>
+
+  <div class="card new" data-id="C05_02">
+    <div class="label">C05: あなたを、迎えにきた。 — 変化球</div>
+    <img src="v18a2_C05_02.png" alt="v18a2_C05_02.png" onclick="zoomImg(this)">
+    <div class="desc">R2: 青空快晴 + 街並み + FV Girl同一人物</div>
+    <div class="fb-area">
+      <div class="fb-tags">
+        <span class="fb-tag" onclick="toggleTag(this)">良い</span>
+        <span class="fb-tag" onclick="toggleTag(this)">惜しい</span>
+        <span class="fb-tag" onclick="toggleTag(this)">構図OK</span>
+        <span class="fb-tag" onclick="toggleTag(this)">色変更</span>
+        <span class="fb-tag" onclick="toggleTag(this)">テキスト修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">女の子修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">やり直し</span>
+      </div>
+      <textarea placeholder="このバナーへのFBを入力..." oninput="saveFB(this)"></textarea>
+      <div class="fb-status"></div>
+    </div>
+  </div>
+
+  <div class="card new" data-id="A08_01">
+    <div class="label">A08: その「退屈」、才能だ。 — 正統派</div>
+    <img src="v18a2_A08_01.png" alt="v18a2_A08_01.png" onclick="zoomImg(this)">
+    <div class="desc">R2: テキスト品質UP + 目キラキラ + コントラスト + 同一人物</div>
+    <div class="fb-area">
+      <div class="fb-tags">
+        <span class="fb-tag" onclick="toggleTag(this)">良い</span>
+        <span class="fb-tag" onclick="toggleTag(this)">惜しい</span>
+        <span class="fb-tag" onclick="toggleTag(this)">構図OK</span>
+        <span class="fb-tag" onclick="toggleTag(this)">色変更</span>
+        <span class="fb-tag" onclick="toggleTag(this)">テキスト修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">女の子修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">やり直し</span>
+      </div>
+      <textarea placeholder="このバナーへのFBを入力..." oninput="saveFB(this)"></textarea>
+      <div class="fb-status"></div>
+    </div>
+  </div>
+
+  <div class="card new" data-id="A08_02">
+    <div class="label">A08: その「退屈」、才能だ。 — 変化球</div>
+    <img src="v18a2_A08_02.png" alt="v18a2_A08_02.png" onclick="zoomImg(this)">
+    <div class="desc">R2: テキスト品質UP + 目キラキラ + コントラスト + 同一人物</div>
+    <div class="fb-area">
+      <div class="fb-tags">
+        <span class="fb-tag" onclick="toggleTag(this)">良い</span>
+        <span class="fb-tag" onclick="toggleTag(this)">惜しい</span>
+        <span class="fb-tag" onclick="toggleTag(this)">構図OK</span>
+        <span class="fb-tag" onclick="toggleTag(this)">色変更</span>
+        <span class="fb-tag" onclick="toggleTag(this)">テキスト修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">女の子修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">やり直し</span>
+      </div>
+      <textarea placeholder="このバナーへのFBを入力..." oninput="saveFB(this)"></textarea>
+      <div class="fb-status"></div>
+    </div>
+  </div>
+
+  <div class="card new" data-id="B01_01">
+    <div class="label">B01: 潜入 おもしろい世界へ — 正統派</div>
+    <img src="v18a2_B01_01.png" alt="v18a2_B01_01.png" onclick="zoomImg(this)">
+    <div class="desc">R2: 元B01の良さ + 女の子こっち向き</div>
+    <div class="fb-area">
+      <div class="fb-tags">
+        <span class="fb-tag" onclick="toggleTag(this)">良い</span>
+        <span class="fb-tag" onclick="toggleTag(this)">惜しい</span>
+        <span class="fb-tag" onclick="toggleTag(this)">構図OK</span>
+        <span class="fb-tag" onclick="toggleTag(this)">色変更</span>
+        <span class="fb-tag" onclick="toggleTag(this)">テキスト修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">女の子修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">やり直し</span>
+      </div>
+      <textarea placeholder="このバナーへのFBを入力..." oninput="saveFB(this)"></textarea>
+      <div class="fb-status"></div>
+    </div>
+  </div>
+
+  <div class="card new" data-id="B01_02">
+    <div class="label">B01: 潜入 おもしろい世界へ — 変化球</div>
+    <img src="v18a2_B01_02.png" alt="v18a2_B01_02.png" onclick="zoomImg(this)">
+    <div class="desc">R2: 元B01の良さ + 女の子こっち向き</div>
+    <div class="fb-area">
+      <div class="fb-tags">
+        <span class="fb-tag" onclick="toggleTag(this)">良い</span>
+        <span class="fb-tag" onclick="toggleTag(this)">惜しい</span>
+        <span class="fb-tag" onclick="toggleTag(this)">構図OK</span>
+        <span class="fb-tag" onclick="toggleTag(this)">色変更</span>
+        <span class="fb-tag" onclick="toggleTag(this)">テキスト修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">女の子修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">やり直し</span>
+      </div>
+      <textarea placeholder="このバナーへのFBを入力..." oninput="saveFB(this)"></textarea>
+      <div class="fb-status"></div>
+    </div>
+  </div>
+
+  <div class="card new" data-id="B05_01">
+    <div class="label">B05: 潜入（カットアウト） — 正統派</div>
+    <img src="v18a2_B05_01.png" alt="v18a2_B05_01.png" onclick="zoomImg(this)">
+    <div class="desc">R2: テキストフチ強化 + 視認性UP</div>
+    <div class="fb-area">
+      <div class="fb-tags">
+        <span class="fb-tag" onclick="toggleTag(this)">良い</span>
+        <span class="fb-tag" onclick="toggleTag(this)">惜しい</span>
+        <span class="fb-tag" onclick="toggleTag(this)">構図OK</span>
+        <span class="fb-tag" onclick="toggleTag(this)">色変更</span>
+        <span class="fb-tag" onclick="toggleTag(this)">テキスト修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">女の子修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">やり直し</span>
+      </div>
+      <textarea placeholder="このバナーへのFBを入力..." oninput="saveFB(this)"></textarea>
+      <div class="fb-status"></div>
+    </div>
+  </div>
+
+  <div class="card new" data-id="B05_02">
+    <div class="label">B05: 潜入（カットアウト） — 変化球</div>
+    <img src="v18a2_B05_02.png" alt="v18a2_B05_02.png" onclick="zoomImg(this)">
+    <div class="desc">R2: FV Girl目寄せ + テキストフチ強化</div>
+    <div class="fb-area">
+      <div class="fb-tags">
+        <span class="fb-tag" onclick="toggleTag(this)">良い</span>
+        <span class="fb-tag" onclick="toggleTag(this)">惜しい</span>
+        <span class="fb-tag" onclick="toggleTag(this)">構図OK</span>
+        <span class="fb-tag" onclick="toggleTag(this)">色変更</span>
+        <span class="fb-tag" onclick="toggleTag(this)">テキスト修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">女の子修正</span>
+        <span class="fb-tag" onclick="toggleTag(this)">やり直し</span>
+      </div>
+      <textarea placeholder="このバナーへのFBを入力..." oninput="saveFB(this)"></textarea>
+      <div class="fb-status"></div>
+    </div>
+  </div>
+</div>
+
+<h2>比較: 前回 v18a</h2>
+<div class="grid">
+  <div class="card prev">
+    <div class="label">C05 v18a</div>
+    <img src="../banners_v18a/v18a_C05_01.png" alt="C05 v18a" onclick="zoomImg(this)">
+  </div>
+  <div class="card prev">
+    <div class="label">A08変化球 v18a</div>
+    <img src="../banners_v18a/v18a_A08_02.png" alt="A08変化球 v18a" onclick="zoomImg(this)">
+  </div>
+  <div class="card prev">
+    <div class="label">B01 v18a</div>
+    <img src="../banners_v18a/v18a_B01_01.png" alt="B01 v18a" onclick="zoomImg(this)">
+  </div>
+  <div class="card prev">
+    <div class="label">B05 v18a</div>
+    <img src="../banners_v18a/v18a_B05_01.png" alt="B05 v18a" onclick="zoomImg(this)">
+  </div>
+</div>
+
+<h2>比較: 元v18</h2>
+<div class="grid">
+  <div class="card original">
+    <div class="label">C05 元</div>
+    <img src="../banners_v18/v18_C05_v14-09.png" alt="C05 元" onclick="zoomImg(this)">
+  </div>
+  <div class="card original">
+    <div class="label">A08 元</div>
+    <img src="../banners_v18/v18_A08_v15-01.png" alt="A08 元" onclick="zoomImg(this)">
+  </div>
+  <div class="card original">
+    <div class="label">B01 元</div>
+    <img src="../banners_v18/v18_B01_v9-04.png" alt="B01 元" onclick="zoomImg(this)">
+  </div>
+  <div class="card original">
+    <div class="label">B05 元</div>
+    <img src="../banners_v18/v18_B05_v14-01.png" alt="B05 元" onclick="zoomImg(this)">
+  </div>
+</div>
+
+<h2>Reference: FV Girl</h2>
+<div class="grid">
+  <div class="card fv">
+    <div class="label">FV Girl 正面</div>
+    <img src="../banners_lp/banner_02_orthodox.png" alt="FV Girl 正面" onclick="zoomImg(this)">
+  </div>
+  <div class="card fv">
+    <div class="label">FV Girl 横</div>
+    <img src="../banners_lp/banner_02_creative.png" alt="FV Girl 横" onclick="zoomImg(this)">
+  </div>
+</div>
+
+<!-- 画像拡大モーダル -->
+<div class="img-modal-overlay" id="imgModal" onclick="this.classList.remove('show')">
+  <img id="imgModalImg" src="" alt="">
+</div>
+
+<!-- FB集約モーダル -->
+<div class="fb-modal-overlay" id="fbModal">
+  <div class="fb-modal">
+    <h3>FB集約 — コーディーへの指示</h3>
+    <pre id="fbCollectedText"></pre>
+    <div class="actions">
+      <button class="fb-collect-btn copy" onclick="copyFromModal()">コピー</button>
+      <button class="fb-modal close-btn" onclick="document.getElementById('fbModal').classList.remove('show')">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- コピー完了トースト -->
+<div class="copied-toast" id="copiedToast">コピーしました</div>
+
+<script>
+const STORAGE_KEY = 'v18a_r2_fb';
+
+// ローカルストレージからFBデータを読み込み
+function loadAllFB() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch { return {}; }
+}
+
+function saveAllFB(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  updateCount();
+}
+
+// 起動時に復元
+function restoreFB() {
+  const data = loadAllFB();
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    const saved = data[id];
+    if (!saved) return;
+    const textarea = card.querySelector('textarea');
+    if (saved.text) textarea.value = saved.text;
+    if (saved.tags) {
+      card.querySelectorAll('.fb-tag').forEach(tag => {
+        if (saved.tags.includes(tag.textContent)) tag.classList.add('active');
+      });
+    }
+  });
+  updateCount();
+}
+
+// タグ切り替え
+function toggleTag(el) {
+  el.classList.toggle('active');
+  const card = el.closest('.card');
+  saveFBFromCard(card);
+}
+
+// テキスト入力時に保存
+function saveFB(textarea) {
+  const card = textarea.closest('.card');
+  saveFBFromCard(card);
+  const status = card.querySelector('.fb-status');
+  status.textContent = '保存済み';
+  status.className = 'fb-status saved';
+  clearTimeout(textarea._timer);
+  textarea._timer = setTimeout(() => { status.textContent = ''; status.className = 'fb-status'; }, 2000);
+}
+
+function saveFBFromCard(card) {
+  const id = card.dataset.id;
+  const text = card.querySelector('textarea').value.trim();
+  const tags = [...card.querySelectorAll('.fb-tag.active')].map(t => t.textContent);
+  const data = loadAllFB();
+  if (text || tags.length) {
+    data[id] = { text, tags, label: card.querySelector('.label').textContent };
+  } else {
+    delete data[id];
+  }
+  saveAllFB(data);
+}
+
+// FB件数更新
+function updateCount() {
+  const data = loadAllFB();
+  const count = Object.keys(data).length;
+  document.getElementById('fbCount').textContent = `コメント: ${count}件`;
+}
+
+// FB集約テキスト生成
+function collectFBText() {
+  const data = loadAllFB();
+  const ids = Object.keys(data);
+  if (!ids.length) return '（まだFBコメントがありません）';
+
+  let text = '=== MARKETING DIVE v18a R2 フィードバック ===\n\n';
+  ids.forEach(id => {
+    const fb = data[id];
+    text += `■ ${fb.label}\n`;
+    if (fb.tags && fb.tags.length) text += `  タグ: ${fb.tags.join(' / ')}\n`;
+    if (fb.text) text += `  ${fb.text}\n`;
+    text += '\n';
+  });
+  return text.trim();
+}
+
+// 集約モーダル表示
+function showCollected() {
+  document.getElementById('fbCollectedText').textContent = collectFBText();
+  document.getElementById('fbModal').classList.add('show');
+}
+
+// クリップボードにコピー
+function copyCollected() {
+  const text = collectFBText();
+  navigator.clipboard.writeText(text).then(() => showToast());
+}
+function copyFromModal() {
+  const text = document.getElementById('fbCollectedText').textContent;
+  navigator.clipboard.writeText(text).then(() => showToast());
+}
+function showToast() {
+  const t = document.getElementById('copiedToast');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2000);
+}
+
+// 全クリア
+function clearAllFB() {
+  if (!confirm('全てのFBコメントをクリアしますか？')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('.card[data-id] textarea').forEach(t => t.value = '');
+  document.querySelectorAll('.fb-tag.active').forEach(t => t.classList.remove('active'));
+  updateCount();
+}
+
+// 画像拡大
+function zoomImg(img) {
+  document.getElementById('imgModalImg').src = img.src;
+  document.getElementById('imgModal').classList.add('show');
+}
+
+// 起動
+restoreFB();
+</script>
+</body>
+</html>
